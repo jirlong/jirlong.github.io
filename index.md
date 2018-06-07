@@ -4,4 +4,4 @@
 
 # Networks
 * [ideology and network (data provided by ECON NTU Prof. Chung-Fang Chiang and Prof. Min-Jen Lin)](html/fbpage_network_lv10.html)
-* [Hate-Girl on PTT (data provided by jenyiyu)](html/mention.d3.html)
+* [Hate-Girl on PTT (data provided by jenyiyu, Sociology, sinica)](html/mention.d3.html)
