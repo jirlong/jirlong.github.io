@@ -11,5 +11,5 @@
 
 # Meetings
 * [China-TW]()
-  * [china-taiwan-chronology-udn-%](figs/china-taiwan-chron-perc.png)
-  * [china-taiwan-chronology-udn](figs/china-taiwan-chron.png)
+  * [china-taiwan-chronology-cht-%](figs/china-taiwan-chron-perc.png)
+  * [china-taiwan-chronology-cht](figs/china-taiwan-chron.png)
