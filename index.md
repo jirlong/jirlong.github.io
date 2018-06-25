@@ -10,4 +10,4 @@
 
 
 # Meetings
-* [2018-06-26-China-TW](https://docs.google.com/presentation/d/1CFSmPScJnmARC1Suqnf-5bb15iOmPlyeMRRa9gfslI4/edit?usp=sharing)
+* [2018-06-26-China-TW](https://docs.google.com/presentation/d/1CFSmPScJnmARC1Suqnf-5bb15iOmPlyeMRRa9gfslI4/edit?usp=sharing) with Prof. Tse-Min Lin and Chuan-Shien Chang @ NTU
