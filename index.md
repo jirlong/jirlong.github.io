@@ -10,6 +10,5 @@
 
 
 # Meetings
-* [2018-06-26-China-TW](https://docs.google.com/presentation/d/e/2PACX-1vS8rZIWhsZJ2Mu-fF7ywqR2WzqsgoU1mtfGMGIvhqcUOMn0yDQFjzTwsTt6KTXPmITaHhQc2YOBGE-4/pub?start=false&loop=false&delayms=3000) with Prof. Tse-Min Lin and Chuan-Shien Chang @ NTU
- * [events sheet](https://drive.google.com/open?id=1MHarPtq5er0CefSnRsylucPvnSoJsmEd6jMxHj1fsTQ)
+* [2018-06-26-China-TW](https://docs.google.com/presentation/d/e/2PACX-1vS8rZIWhsZJ2Mu-fF7ywqR2WzqsgoU1mtfGMGIvhqcUOMn0yDQFjzTwsTt6KTXPmITaHhQc2YOBGE-4/pub?start=false&loop=false&delayms=3000) with Prof. Tse-Min Lin and Chuan-Shien Chang @ NTU, [events sheet](https://drive.google.com/open?id=1MHarPtq5er0CefSnRsylucPvnSoJsmEd6jMxHj1fsTQ)
 * [2018-06-27-UserXper](https://docs.google.com/presentation/d/e/2PACX-1vS0HWUqB_6sM-mqcZJRXO3pcdIrMbfIC9dBZ6vppBeo_bqWDvibynE6uA0KvzWg2kIPKJZ1svIGH8MO/pub?start=false&loop=false&delayms=3000)
