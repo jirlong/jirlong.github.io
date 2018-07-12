@@ -1,7 +1,7 @@
 # Speeches
 
-* [2018-06-05 中研院社會所](https://docs.google.com/presentation/d/e/2PACX-1vT9z-10g1mL8bRxgvVWcg-g_UYEr_Sa2W0hkQtQuK28jfaoGPeDS6YbeQM34zAbfvmvEmEcUbdrJhF-/pub?start=false&loop=false&delayms=3000): Social Networks and Visualization
-* [2018-06-08 中研院人社中心](https://docs.google.com/presentation/d/e/2PACX-1vQlM-S9WEV6L-pAS_G4l-6ZbH60-x1VEqtP8_YnDTgpCSsCwn2vyy9RdBD2XLraL75FLRb2jGwdOXN3/pub?start=false&loop=false&delayms=3000): Social Surveillance
+* [2018-06-05 中研院社會所-網絡研究](https://docs.google.com/presentation/d/e/2PACX-1vT9z-10g1mL8bRxgvVWcg-g_UYEr_Sa2W0hkQtQuK28jfaoGPeDS6YbeQM34zAbfvmvEmEcUbdrJhF-/pub?start=false&loop=false&delayms=3000): Social Networks and Visualization
+* [2018-06-08 中研院人社中心-社群媒介](https://docs.google.com/presentation/d/e/2PACX-1vQlM-S9WEV6L-pAS_G4l-6ZbH60-x1VEqtP8_YnDTgpCSsCwn2vyy9RdBD2XLraL75FLRb2jGwdOXN3/pub?start=false&loop=false&delayms=3000): Social Surveillance
   * [newsdiff(fork)](http://140.112.153.64:8000/news_meta_list)
 * [2018-07-16 交大眼動簡介](): Eyetracking for researches
 
