@@ -5,7 +5,8 @@
   * [newsdiff(fork)](http://140.112.153.64:8000/news_meta_list)
 * [2018-07-16 交大-眼動分析簡介：視知覺、認知、與資訊呈現](https://docs.google.com/presentation/d/e/2PACX-1vSMO9E-X6-e7anyxPNyw1By7Ne1QhT11znB4BBTasDvogOYgkvsbL4xSo9MNDIV2m31kLLWveAeKxOV/pub?start=false&loop=false&delayms=3000): Eyetracking for researches
 * [2018-09/25 中研院經濟所-從手機資料量化個體的生活韻律]
-* [2018-10-16 台大新生講座-運算思維、演算法與程式語言](https://docs.google.com/presentation/d/e/2PACX-1vSiyB2vjMqi_UQj72tviG0Icdka-pRRmwoF6QycyBXkvDhHMMg-pzJfQwPWxhQpEKNEJ_MZswfkNDps/pub?start=false&loop=false&delayms=3000)
+* [2018-10-13 中國傳媒大學-計算傳播學]
+* [2018-10-16 台大新生講座-運算思維、演算法與程式語言](https://docs.google.com/presentation/d/e/2PACX-1vSiyB2vjMqi_UQj72tviG0Icdka-pRRmwoF6QycyBXkvDhHMMg-pzJfQwPWxhQpEKNEJ_MZswfkNDps/pub?start=false&loop=false&delayms=3000) - [test.md](test.md)
 
 
 # Networks
