@@ -12,3 +12,12 @@ for i in range(0, int(total_page/30)+1):
     all_data.extend(res["data"]["data"])
     print("{:3d}\t{:4d}".format(i, len(all_data)))
 ```
+
+
+# test
+```
+import pandas as pd
+df = pd.DataFrame(all_data)
+df.groupby("user_id")['id'].count().reset_index(name='count').sort_values(['count'], ascending=False).head()
+df[(df.user_id == 1318377)].filter(items=['address', 'area', "price"])
+```
