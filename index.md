@@ -8,6 +8,7 @@
 * [2018-10-13 中國傳媒大學-計算傳播學]
 * [2018-10-16 台大新生講座-運算思維、演算法與程式語言](https://docs.google.com/presentation/d/e/2PACX-1vSiyB2vjMqi_UQj72tviG0Icdka-pRRmwoF6QycyBXkvDhHMMg-pzJfQwPWxhQpEKNEJ_MZswfkNDps/pub?start=false&loop=false&delayms=3000)
 * [2019-02-14 Sociology Sinica](https://docs.google.com/presentation/d/11avWPH_-Vl3gm1FonGHCuPspKdOD6ASsqn8zuCx3BCw/edit?usp=sharing) 
+* [2019-04-16, SooChow University](https://docs.google.com/presentation/d/e/2PACX-1vQPNMVPCECqrUMDIim_q5ge5Pmyl2RnA-5R8zNvsrReQ9b05cBNPd7WoekVC3AWYEz2px6WAdso5zic/pub?start=false&loop=false&delayms=3000)
 
 
 # Networks
