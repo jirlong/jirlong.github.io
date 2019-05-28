@@ -10,6 +10,8 @@
 * [2019-04-16, SooChow University](https://docs.google.com/presentation/d/e/2PACX-1vQPNMVPCECqrUMDIim_q5ge5Pmyl2RnA-5R8zNvsrReQ9b05cBNPd7WoekVC3AWYEz2px6WAdso5zic/pub?start=false&loop=false&delayms=3000): Machine learning on ideology
 * [2019-05-01, NTU-UFO-Proposal](https://docs.google.com/presentation/d/1GSaPVmkJkcBZanBNfDuncuuWrkSYD3MVwNAa_DbaP_c/edit?usp=sharing)
 * [2019-05-08, UserXper AI and UX]
+* [2019-05-29, UFO: NLP for disinformation](https://docs.google.com/presentation/d/1GSaPVmkJkcBZanBNfDuncuuWrkSYD3MVwNAa_DbaP_c/edit?usp=sharing): Opening.
+* [2019-06-14, NTUIM: computational thinking?]
 
 
 # Networks
