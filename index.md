@@ -11,7 +11,7 @@
 * [2019-05-01, NTU-UFO-Proposal](https://docs.google.com/presentation/d/1GSaPVmkJkcBZanBNfDuncuuWrkSYD3MVwNAa_DbaP_c/edit?usp=sharing)
 * [2019-05-08, UserXper AI and UX]
 * [2019-05-29, UFO: NLP for disinformation](https://docs.google.com/presentation/d/1GSaPVmkJkcBZanBNfDuncuuWrkSYD3MVwNAa_DbaP_c/edit?usp=sharing): Opening.
-* [2019-06-14, NTUIM: computational thinking?]
+* 2019-06-14, NTU computational thinking workshop [slide1](https://docs.google.com/presentation/d/1fHaMwmbLKQ_VZ2AmkL--KjO3L7i6BLI1kxKcqW3bHUU/edit?usp=sharing), [slide2](https://docs.google.com/presentation/d/1SXGvIacVhFSd3ZDo-bPsHSWULm7ll3-cILtrgwKFDFU/edit?usp=sharing)
 
 
 # Networks
