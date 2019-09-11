@@ -12,7 +12,9 @@
 * [2019-05-08, UserXper AI and UX]
 * [2019-05-29, UFO: NLP for disinformation](https://docs.google.com/presentation/d/1GSaPVmkJkcBZanBNfDuncuuWrkSYD3MVwNAa_DbaP_c/edit?usp=sharing): Opening.
 * 2019-06-14, NTU computational thinking workshop [slide1](https://docs.google.com/presentation/d/1fHaMwmbLKQ_VZ2AmkL--KjO3L7i6BLI1kxKcqW3bHUU/edit?usp=sharing), [slide2](https://docs.google.com/presentation/d/1SXGvIacVhFSd3ZDo-bPsHSWULm7ll3-cILtrgwKFDFU/edit?usp=sharing)
+* [201907-22 Code free data analysis]
 * [2019-08-06 Code free analysis on Bibliographical data of open access journal](https://docs.google.com/presentation/d/e/2PACX-1vRvHIbP38BZd4vvma1y49jlFwimz1c2IkxIkILbdSmk0P9e-qodDwtC92DnbRIwcUvBo574-aN7YEG0/pub?start=false&loop=false&delayms=3000)
+* [2019-09-11 CoSS News programming sharing](https://docs.google.com/presentation/d/e/2PACX-1vQEe0auY-6DVJl5NCrJbip0QaNJFP4SsjcoefK7QQ2b5s6pk1azKvo2m63ZXI53iCpN_BZH4lZ8cT01/pub?start=false&loop=false&delayms=3000)
 * [2019-09-21 Referendum and social community of marriage-equality]()
 
 
