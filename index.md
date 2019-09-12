@@ -29,3 +29,6 @@
 * [2018-06-26-China-TW](https://docs.google.com/presentation/d/e/2PACX-1vS8rZIWhsZJ2Mu-fF7ywqR2WzqsgoU1mtfGMGIvhqcUOMn0yDQFjzTwsTt6KTXPmITaHhQc2YOBGE-4/pub?start=false&loop=false&delayms=3000) with Prof. Tse-Min Lin and Chuan-Shien Chang @ NTU, [events sheet](https://drive.google.com/open?id=1MHarPtq5er0CefSnRsylucPvnSoJsmEd6jMxHj1fsTQ)
 * [2018-06-27-UserXper](https://docs.google.com/presentation/d/e/2PACX-1vS0HWUqB_6sM-mqcZJRXO3pcdIrMbfIC9dBZ6vppBeo_bqWDvibynE6uA0KvzWg2kIPKJZ1svIGH8MO/pub?start=false&loop=false&delayms=3000)
 * [2018-07-13 R4CSS teaching plan](https://docs.google.com/presentation/d/e/2PACX-1vQNE8CV6t1NJM2hMwjh2xBnbXypB8GjeHoR8ygMA3cH651YNb9KH9eXfDHsll14ORtJqCZtUt_HkI0y/pub?start=false&loop=false&delayms=3000)
+
+# Course
+* [20190912 Web and storytelling: overview](https://docs.google.com/presentation/d/e/2PACX-1vSn4136pWlNea1Kn79F73lE4UU7zpbFRatmnwG7LsLrxsqK71zlC8L7J9iT8cct5aavfONB3IoFqN7K/pub?start=false&loop=false&delayms=3000)
