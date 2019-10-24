@@ -20,6 +20,7 @@
 # Slides
 * [2019-10-18 UFO-In-Short](https://docs.google.com/presentation/d/e/2PACX-1vQiu3ypFlvAWbE89pFb5iWw_6TcFpaG2ftj7LxWYB2LA6EBusLWVq4gjNvmG1j-_ounVpCZjZZXHekq/pub?start=false&loop=false&delayms=3000)
 * [2019-10-18 Thesis Intro to MS](https://docs.google.com/presentation/d/e/2PACX-1vSFQNGmM_A5a78LRgQDPYXBq_37qOY3CJFY1zPJE6sRhMYT5bJHveYVH6VZQg8aLGgwlED_60k1555E/pub?start=false&loop=false&delayms=3000)
+* [2019-10-24 UFO Y1](https://docs.google.com/presentation/d/e/2PACX-1vRIozyyLFvfQ_Gp6iWVvavgVoVr4MV8I0B6-XzTam8jLH28fcCXYnRz4E79zFHuU7UAFNVv7S2S-68_/pub?start=false&loop=false&delayms=3000)
 
 
 # Networks
