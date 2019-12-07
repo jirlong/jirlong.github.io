@@ -24,6 +24,10 @@
 * [2019-10-24 UFO Y1](https://docs.google.com/presentation/d/e/2PACX-1vRIozyyLFvfQ_Gp6iWVvavgVoVr4MV8I0B6-XzTam8jLH28fcCXYnRz4E79zFHuU7UAFNVv7S2S-68_/pub?start=false&loop=false&delayms=3000)
 
 
+# Courses
+* [2019-09-14 DSSI1081](https://docs.google.com/presentation/d/e/2PACX-1vTSSfrUAnwy-mlcA7I3YBj1NeCTZY6z8b--cuyOqtg-p7-GbMmF11JejhGb6sOoogBbaSKMxpYSLcem/pub?start=false&loop=false&delayms=3000)
+* [2019-02-24 R1072](https://docs.google.com/presentation/d/e/2PACX-1vQ-zTp75r_vQ2n1mKP249OOna8QKBsAPMEijdQ5-B_E7yFW-Q-_uXpsLQMNDLj-0WY3nX3eU3KmCb-v/pub?start=false&loop=false&delayms=3000)
+
 # Networks
 
 * [ideology and network (data provided by ECON NTU Prof. Chung-Fang Chiang and Prof. Min-Jen Lin)](html/fbpage_network_lv10.html)
