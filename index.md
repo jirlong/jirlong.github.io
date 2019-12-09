@@ -42,7 +42,3 @@
 
 # Course
 * [20190912 Web and storytelling: overview](https://docs.google.com/presentation/d/e/2PACX-1vSn4136pWlNea1Kn79F73lE4UU7zpbFRatmnwG7LsLrxsqK71zlC8L7J9iT8cct5aavfONB3IoFqN7K/pub?start=false&loop=false&delayms=3000)
-
-
-# iframe testing
-<iframe scrolling="NO" src="https://historical.findrate.tw/graph.php?cur=JPY&amp;m=3m" width="725" height="350"></iframe>
