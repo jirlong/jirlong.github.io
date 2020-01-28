@@ -35,8 +35,8 @@
 
 
 # Trends
-* [The trend of hashtags related to #china show the rise of Wuhan Coronavirus crisis!](html/#china_related_timeline.html)
-* [The trend of hashtags related to #metoo.](html/#metoo_related_timeline.html)
+* [The trend of hashtags related to #china show the rise of Wuhan Coronavirus crisis!](html/china_related_timeline.html)
+* [The trend of hashtags related to #metoo.](html/metoo_related_timeline.html)
 
 
 # Meetings
