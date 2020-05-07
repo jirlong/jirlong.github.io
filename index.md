@@ -27,6 +27,7 @@
 
 # Courses
 * [2019-09-14 DSSI1081](https://docs.google.com/presentation/d/e/2PACX-1vTSSfrUAnwy-mlcA7I3YBj1NeCTZY6z8b--cuyOqtg-p7-GbMmF11JejhGb6sOoogBbaSKMxpYSLcem/pub?start=false&loop=false&delayms=3000)
+* [20190912 Web and storytelling: overview](https://docs.google.com/presentation/d/e/2PACX-1vSn4136pWlNea1Kn79F73lE4UU7zpbFRatmnwG7LsLrxsqK71zlC8L7J9iT8cct5aavfONB3IoFqN7K/pub?start=false&loop=false&delayms=3000)
 * [2019-02-24 R1072](https://docs.google.com/presentation/d/e/2PACX-1vQ-zTp75r_vQ2n1mKP249OOna8QKBsAPMEijdQ5-B_E7yFW-Q-_uXpsLQMNDLj-0WY3nX3eU3KmCb-v/pub?start=false&loop=false&delayms=3000)
 
 # Networks
@@ -46,5 +47,6 @@
 * [2018-06-27-UserXper](https://docs.google.com/presentation/d/e/2PACX-1vS0HWUqB_6sM-mqcZJRXO3pcdIrMbfIC9dBZ6vppBeo_bqWDvibynE6uA0KvzWg2kIPKJZ1svIGH8MO/pub?start=false&loop=false&delayms=3000)
 * [2018-07-13 R4CSS teaching plan](https://docs.google.com/presentation/d/e/2PACX-1vQNE8CV6t1NJM2hMwjh2xBnbXypB8GjeHoR8ygMA3cH651YNb9KH9eXfDHsll14ORtJqCZtUt_HkI0y/pub?start=false&loop=false&delayms=3000)
 
-# Course
-* [20190912 Web and storytelling: overview](https://docs.google.com/presentation/d/e/2PACX-1vSn4136pWlNea1Kn79F73lE4UU7zpbFRatmnwG7LsLrxsqK71zlC8L7J9iT8cct5aavfONB3IoFqN7K/pub?start=false&loop=false&delayms=3000)
+# Tutorials
+* [20200507 Qualitative research method](https://paper.dropbox.com/doc/--Azeo1Updn09nI2mY0nw8O6wyAg-mhBata9sL4wMRgIe1RaaL)
+
