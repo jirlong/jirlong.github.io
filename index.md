@@ -18,6 +18,7 @@
 * [2019-09-21 KMU Referendum and social community of marriage-equality](https://docs.google.com/presentation/d/e/2PACX-1vS_9LoOt4YSA7YMkdxhGLfyHoBEO6t6raY0yoIucHDTZSD1KJTyIvCGTNVyQmklgEzm29WdSt8RP_4J/pub?start=false&loop=false&delayms=3000)
 * [2019-11-13 Digital Humanity](https://docs.google.com/presentation/d/e/2PACX-1vQgGylQCeeZ2OQP8Jnp5TcOlqELIVyOHrNIZwmLE3EWUeumXcuIHhLLiB11VSXbft3WRq3UL6nIzwtA/pub?start=false&loop=false&delayms=3000)
 * [2020-02-26 UFO Mid](https://docs.google.com/presentation/d/e/2PACX-1vQiu3ypFlvAWbE89pFb5iWw_6TcFpaG2ftj7LxWYB2LA6EBusLWVq4gjNvmG1j-_ounVpCZjZZXHekq/pub?start=false&loop=false&delayms=3000)
+* [2020-07-03 gvm](https://docs.google.com/presentation/d/e/2PACX-1vSXVxGS9LZsgvx9mN-3JbCEvM5aMYM675kbNozoK3y6EuUCKzHDpyZyALNYJalHU96aPLP7bOxRZWc0/pub?start=false&loop=false&delayms=3000)
 
 # Slides
 * [2019-10-18 UFO-In-Short](https://docs.google.com/presentation/d/e/2PACX-1vQiu3ypFlvAWbE89pFb5iWw_6TcFpaG2ftj7LxWYB2LA6EBusLWVq4gjNvmG1j-_ounVpCZjZZXHekq/pub?start=false&loop=false&delayms=3000)
