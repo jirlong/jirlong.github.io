@@ -1,3 +1,10 @@
+# UFO 20200715, 0716
+* [Session 1. Architecture by Jilung](https://docs.google.com/presentation/d/1cDX80wB2NpIrgkk4zFQScFIBjbO2pRENUIYv6SPswWM/edit#slide=id.g7d31ae5422_0_15)
+* [Session 2. Industry-Academia Cooperation by Jilung and ShuKai](https://docs.google.com/presentation/d/1cDX80wB2NpIrgkk4zFQScFIBjbO2pRENUIYv6SPswWM/edit#slide=id.g8b320e0de4_0_1)
+* [Session 3. Scholar collaboration by Jilung](https://docs.google.com/presentation/d/1cDX80wB2NpIrgkk4zFQScFIBjbO2pRENUIYv6SPswWM/edit#slide=id.g7d31ae5422_0_9)
+* [Session 4. Course and Curriculumn design by Terry](https://docs.google.com/presentation/d/1cDX80wB2NpIrgkk4zFQScFIBjbO2pRENUIYv6SPswWM/edit#slide=id.g7d31ae5422_0_5)
+* [Session 6. Evaluation by ShuKai](https://docs.google.com/presentation/d/1cDX80wB2NpIrgkk4zFQScFIBjbO2pRENUIYv6SPswWM/edit#slide=id.g8b320e0de4_0_11). Second day
+
 # Speeches
 
 * [2018-06-05 中研院社會所-網絡研究](https://docs.google.com/presentation/d/e/2PACX-1vT9z-10g1mL8bRxgvVWcg-g_UYEr_Sa2W0hkQtQuK28jfaoGPeDS6YbeQM34zAbfvmvEmEcUbdrJhF-/pub?start=false&loop=false&delayms=3000): Social Networks and Visualization
