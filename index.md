@@ -1,9 +1,9 @@
 # UFO 20200715, 0716
-* [Session 1. Architecture by Jilung](https://docs.google.com/presentation/d/1cDX80wB2NpIrgkk4zFQScFIBjbO2pRENUIYv6SPswWM/edit#slide=id.g7d31ae5422_0_15)
-* [Session 2. Industry-Academia Cooperation by Jilung and ShuKai](https://docs.google.com/presentation/d/1cDX80wB2NpIrgkk4zFQScFIBjbO2pRENUIYv6SPswWM/edit#slide=id.g8b320e0de4_0_1)
-* [Session 3. Scholar collaboration by Jilung](https://docs.google.com/presentation/d/1cDX80wB2NpIrgkk4zFQScFIBjbO2pRENUIYv6SPswWM/edit#slide=id.g7d31ae5422_0_9)
-* [Session 4. Course and Curriculumn design by Terry](https://docs.google.com/presentation/d/1cDX80wB2NpIrgkk4zFQScFIBjbO2pRENUIYv6SPswWM/edit#slide=id.g7d31ae5422_0_5)
-* [Session 6. Evaluation by ShuKai](https://docs.google.com/presentation/d/1cDX80wB2NpIrgkk4zFQScFIBjbO2pRENUIYv6SPswWM/edit#slide=id.g8b320e0de4_0_11). Second day
+* [Session 1. Architecture by Jilung](https://docs.google.com/presentation/d/e/2PACX-1vS0Ktb6kV6tiHC8issQ27P3BjCmuQ38MRjrhdKMJ6UsTurg7Q7t0Bs0hcU3gAqFK89bXLSXzYMXBNOk/pub?start=false&loop=false&delayms=3000)
+* [Session 2. Industry-Academia Cooperation by Jilung and ShuKai](https://docs.google.com/presentation/d/e/2PACX-1vR5P12_ZAg2OEqDSvo2XetxePq8188YLdeBwd9r4UEAosu9A0jZUhEW4GnP_l43B7K7Ekmu9sM61ikD/pub?start=false&loop=false&delayms=3000)
+* [Session 3. Scholar collaboration by Jilung](https://docs.google.com/presentation/d/e/2PACX-1vRNGoZilFIFbtV8MpFl8ZpBDvyVp-H7YKHDxZbcspq32CLbmWb5QHO_fm8-09D2pVveMOrpDYtRzjpc/pub?start=false&loop=false&delayms=3000)
+* [Session 4. Course and Curriculumn design by Terry](https://docs.google.com/presentation/d/e/2PACX-1vQZq98ALjwEV28Bc1C-BDTp92FPKJmPJ7u-Il41E1aJ404ufLUoCqOCyd2A-ho1GBhLbVHT8lJGWhtU/pub?start=false&loop=false&delayms=3000)
+* [Session 6. Evaluation by ShuKai](https://docs.google.com/presentation/d/e/2PACX-1vTFUYdOcQaUdjoSpXwEQ6FtsbWfEDvcFemqJ4B-RUqz8CbZwKGSWaSl5kuAc9oLg6ZST6sfpDofpAz8/pub?start=false&loop=false&delayms=3000). Second day
 
 # Speeches
 
