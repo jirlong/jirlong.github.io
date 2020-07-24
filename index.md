@@ -59,3 +59,6 @@
 # Tutorials
 * [20200507 Qualitative research method](https://paper.dropbox.com/doc/--Azeo1Updn09nI2mY0nw8O6wyAg-mhBata9sL4wMRgIe1RaaL)
 
+# Tooks
+* [jsLDA + jieba.js for online topic modeling in Chinese](https://jirlong.github.io/jsLDA/jslda.html)
+
