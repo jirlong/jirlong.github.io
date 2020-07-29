@@ -1,11 +1,3 @@
-# UFO 20200715, 0716
-[pptdownload](https://drive.google.com/drive/folders/1AIJ3NsO4YfxGIslSi0mQal0JI2_NgOPi?usp=sharing)
-* [Session 1. Architecture by Jilung](https://docs.google.com/presentation/d/e/2PACX-1vS0Ktb6kV6tiHC8issQ27P3BjCmuQ38MRjrhdKMJ6UsTurg7Q7t0Bs0hcU3gAqFK89bXLSXzYMXBNOk/pub?start=false&loop=false&delayms=3000)
-* [Session 2. Industry-Academia Cooperation by Jilung and ShuKai](https://docs.google.com/presentation/d/e/2PACX-1vR5P12_ZAg2OEqDSvo2XetxePq8188YLdeBwd9r4UEAosu9A0jZUhEW4GnP_l43B7K7Ekmu9sM61ikD/pub?start=false&loop=false&delayms=3000)
-* [Session 3. Scholar collaboration by Jilung](https://docs.google.com/presentation/d/e/2PACX-1vRNGoZilFIFbtV8MpFl8ZpBDvyVp-H7YKHDxZbcspq32CLbmWb5QHO_fm8-09D2pVveMOrpDYtRzjpc/pub?start=false&loop=false&delayms=3000)
-* [Session 4. Course and Curriculumn design by Terry](https://docs.google.com/presentation/d/e/2PACX-1vQZq98ALjwEV28Bc1C-BDTp92FPKJmPJ7u-Il41E1aJ404ufLUoCqOCyd2A-ho1GBhLbVHT8lJGWhtU/pub?start=false&loop=false&delayms=3000)
-* [Session 6. Evaluation by ShuKai](https://docs.google.com/presentation/d/e/2PACX-1vTFUYdOcQaUdjoSpXwEQ6FtsbWfEDvcFemqJ4B-RUqz8CbZwKGSWaSl5kuAc9oLg6ZST6sfpDofpAz8/pub?start=false&loop=false&delayms=3000). Second day
-
 # Speeches
 
 * [2018-06-05 中研院社會所-網絡研究](https://docs.google.com/presentation/d/e/2PACX-1vT9z-10g1mL8bRxgvVWcg-g_UYEr_Sa2W0hkQtQuK28jfaoGPeDS6YbeQM34zAbfvmvEmEcUbdrJhF-/pub?start=false&loop=false&delayms=3000): Social Networks and Visualization
@@ -59,6 +51,16 @@
 # Tutorials
 * [20200507 Qualitative research method](https://paper.dropbox.com/doc/--Azeo1Updn09nI2mY0nw8O6wyAg-mhBata9sL4wMRgIe1RaaL)
 
-# Tooks
+# Tools
 * [jsLDA + jieba.js for online topic modeling in Chinese](https://jirlong.github.io/jsLDA/jslda.html)
+
+# Project report: UFO 20200715, 0716
+[pptdownload](https://drive.google.com/drive/folders/1AIJ3NsO4YfxGIslSi0mQal0JI2_NgOPi?usp=sharing)
+* [Session 1. Architecture by Jilung](https://docs.google.com/presentation/d/e/2PACX-1vS0Ktb6kV6tiHC8issQ27P3BjCmuQ38MRjrhdKMJ6UsTurg7Q7t0Bs0hcU3gAqFK89bXLSXzYMXBNOk/pub?start=false&loop=false&delayms=3000)
+* [Session 2. Industry-Academia Cooperation by Jilung and ShuKai](https://docs.google.com/presentation/d/e/2PACX-1vR5P12_ZAg2OEqDSvo2XetxePq8188YLdeBwd9r4UEAosu9A0jZUhEW4GnP_l43B7K7Ekmu9sM61ikD/pub?start=false&loop=false&delayms=3000)
+* [Session 3. Scholar collaboration by Jilung](https://docs.google.com/presentation/d/e/2PACX-1vRNGoZilFIFbtV8MpFl8ZpBDvyVp-H7YKHDxZbcspq32CLbmWb5QHO_fm8-09D2pVveMOrpDYtRzjpc/pub?start=false&loop=false&delayms=3000)
+* [Session 4. Course and Curriculumn design by Terry](https://docs.google.com/presentation/d/e/2PACX-1vQZq98ALjwEV28Bc1C-BDTp92FPKJmPJ7u-Il41E1aJ404ufLUoCqOCyd2A-ho1GBhLbVHT8lJGWhtU/pub?start=false&loop=false&delayms=3000)
+* [Session 6. Evaluation by ShuKai](https://docs.google.com/presentation/d/e/2PACX-1vTFUYdOcQaUdjoSpXwEQ6FtsbWfEDvcFemqJ4B-RUqz8CbZwKGSWaSl5kuAc9oLg6ZST6sfpDofpAz8/pub?start=false&loop=false&delayms=3000). Second day
+
+
 
