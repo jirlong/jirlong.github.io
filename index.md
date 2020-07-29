@@ -31,13 +31,16 @@
 * [20190912 Web and storytelling: overview](https://docs.google.com/presentation/d/e/2PACX-1vSn4136pWlNea1Kn79F73lE4UU7zpbFRatmnwG7LsLrxsqK71zlC8L7J9iT8cct5aavfONB3IoFqN7K/pub?start=false&loop=false&delayms=3000)
 * [2019-02-24 R1072](https://docs.google.com/presentation/d/e/2PACX-1vQ-zTp75r_vQ2n1mKP249OOna8QKBsAPMEijdQ5-B_E7yFW-Q-_uXpsLQMNDLj-0WY3nX3eU3KmCb-v/pub?start=false&loop=false&delayms=3000)
 
-# Networks
+---
+# VIS
+
+## Networks
 
 * [ideology and network (data provided by ECON NTU Prof. Chung-Fang Chiang and Prof. Min-Jen Lin)](html/fbpage_network_lv10.html)
 * [Hate-Girl on PTT (data provided by jenyiyu, Sociology, sinica)](html/mention.d3.html)
 
 
-# Trends
+## Trends
 * [The trend of hashtags related to #china show the rise of Wuhan Coronavirus crisis!](html/china_related_timeline.html)
 * [The trend of hashtags related to #metoo.](html/metoo_related_timeline.html)
 
