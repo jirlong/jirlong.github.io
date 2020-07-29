@@ -1,5 +1,5 @@
 # UFO 20200715, 0716
-[pttdownload](https://drive.google.com/drive/folders/1AIJ3NsO4YfxGIslSi0mQal0JI2_NgOPi?usp=sharing)
+[pptdownload](https://drive.google.com/drive/folders/1AIJ3NsO4YfxGIslSi0mQal0JI2_NgOPi?usp=sharing)
 * [Session 1. Architecture by Jilung](https://docs.google.com/presentation/d/e/2PACX-1vS0Ktb6kV6tiHC8issQ27P3BjCmuQ38MRjrhdKMJ6UsTurg7Q7t0Bs0hcU3gAqFK89bXLSXzYMXBNOk/pub?start=false&loop=false&delayms=3000)
 * [Session 2. Industry-Academia Cooperation by Jilung and ShuKai](https://docs.google.com/presentation/d/e/2PACX-1vR5P12_ZAg2OEqDSvo2XetxePq8188YLdeBwd9r4UEAosu9A0jZUhEW4GnP_l43B7K7Ekmu9sM61ikD/pub?start=false&loop=false&delayms=3000)
 * [Session 3. Scholar collaboration by Jilung](https://docs.google.com/presentation/d/e/2PACX-1vRNGoZilFIFbtV8MpFl8ZpBDvyVp-H7YKHDxZbcspq32CLbmWb5QHO_fm8-09D2pVveMOrpDYtRzjpc/pub?start=false&loop=false&delayms=3000)
