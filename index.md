@@ -20,16 +20,6 @@
 * [2020-02-26 UFO Mid](https://docs.google.com/presentation/d/e/2PACX-1vQiu3ypFlvAWbE89pFb5iWw_6TcFpaG2ftj7LxWYB2LA6EBusLWVq4gjNvmG1j-_ounVpCZjZZXHekq/pub?start=false&loop=false&delayms=3000)
 * [2020-07-03 gvm](https://docs.google.com/presentation/d/e/2PACX-1vSXVxGS9LZsgvx9mN-3JbCEvM5aMYM675kbNozoK3y6EuUCKzHDpyZyALNYJalHU96aPLP7bOxRZWc0/pub?start=false&loop=false&delayms=3000)
 
-# Slides
-* [2019-10-18 UFO-In-Short](https://docs.google.com/presentation/d/e/2PACX-1vQiu3ypFlvAWbE89pFb5iWw_6TcFpaG2ftj7LxWYB2LA6EBusLWVq4gjNvmG1j-_ounVpCZjZZXHekq/pub?start=false&loop=false&delayms=3000)
-* [2019-10-18 Thesis Intro to MS](https://docs.google.com/presentation/d/e/2PACX-1vSFQNGmM_A5a78LRgQDPYXBq_37qOY3CJFY1zPJE6sRhMYT5bJHveYVH6VZQg8aLGgwlED_60k1555E/pub?start=false&loop=false&delayms=3000)
-* [2019-10-24 UFO Y1](https://docs.google.com/presentation/d/e/2PACX-1vRIozyyLFvfQ_Gp6iWVvavgVoVr4MV8I0B6-XzTam8jLH28fcCXYnRz4E79zFHuU7UAFNVv7S2S-68_/pub?start=false&loop=false&delayms=3000)
-
-
-# Courses
-* [2019-09-14 DSSI1081](https://docs.google.com/presentation/d/e/2PACX-1vTSSfrUAnwy-mlcA7I3YBj1NeCTZY6z8b--cuyOqtg-p7-GbMmF11JejhGb6sOoogBbaSKMxpYSLcem/pub?start=false&loop=false&delayms=3000)
-* [20190912 Web and storytelling: overview](https://docs.google.com/presentation/d/e/2PACX-1vSn4136pWlNea1Kn79F73lE4UU7zpbFRatmnwG7LsLrxsqK71zlC8L7J9iT8cct5aavfONB3IoFqN7K/pub?start=false&loop=false&delayms=3000)
-* [2019-02-24 R1072](https://docs.google.com/presentation/d/e/2PACX-1vQ-zTp75r_vQ2n1mKP249OOna8QKBsAPMEijdQ5-B_E7yFW-Q-_uXpsLQMNDLj-0WY3nX3eU3KmCb-v/pub?start=false&loop=false&delayms=3000)
 
 ---
 # VIS
@@ -44,20 +34,42 @@
 * [The trend of hashtags related to #china show the rise of Wuhan Coronavirus crisis!](html/china_related_timeline.html)
 * [The trend of hashtags related to #metoo.](html/metoo_related_timeline.html)
 
-
-# Meetings
-
-* [2018-06-26-China-TW](https://docs.google.com/presentation/d/e/2PACX-1vS8rZIWhsZJ2Mu-fF7ywqR2WzqsgoU1mtfGMGIvhqcUOMn0yDQFjzTwsTt6KTXPmITaHhQc2YOBGE-4/pub?start=false&loop=false&delayms=3000) with Prof. Tse-Min Lin and Chuan-Shien Chang @ NTU, [events sheet](https://drive.google.com/open?id=1MHarPtq5er0CefSnRsylucPvnSoJsmEd6jMxHj1fsTQ)
-* [2018-06-27-UserXper](https://docs.google.com/presentation/d/e/2PACX-1vS0HWUqB_6sM-mqcZJRXO3pcdIrMbfIC9dBZ6vppBeo_bqWDvibynE6uA0KvzWg2kIPKJZ1svIGH8MO/pub?start=false&loop=false&delayms=3000)
-* [2018-07-13 R4CSS teaching plan](https://docs.google.com/presentation/d/e/2PACX-1vQNE8CV6t1NJM2hMwjh2xBnbXypB8GjeHoR8ygMA3cH651YNb9KH9eXfDHsll14ORtJqCZtUt_HkI0y/pub?start=false&loop=false&delayms=3000)
-
+---
 # Tutorials
 * [20200507 Qualitative research method](https://paper.dropbox.com/doc/--Azeo1Updn09nI2mY0nw8O6wyAg-mhBata9sL4wMRgIe1RaaL): How to use 漢珍新聞智慧網 to survey news
 
 # Tools
 * [jsLDA + jieba.js for online topic modeling in Chinese](https://jirlong.github.io/jsLDA/jslda.html)
 
-# Project report: UFO 20200715, 0716
+
+---
+# Short talks for meetings and courses
+
+## Intro. to be a master student
+* [2019-10-18 Thesis Intro to MS](https://docs.google.com/presentation/d/e/2PACX-1vSFQNGmM_A5a78LRgQDPYXBq_37qOY3CJFY1zPJE6sRhMYT5bJHveYVH6VZQg8aLGgwlED_60k1555E/pub?start=false&loop=false&delayms=3000)
+
+
+## Meetings
+
+* [2018-06-26-China-TW](https://docs.google.com/presentation/d/e/2PACX-1vS8rZIWhsZJ2Mu-fF7ywqR2WzqsgoU1mtfGMGIvhqcUOMn0yDQFjzTwsTt6KTXPmITaHhQc2YOBGE-4/pub?start=false&loop=false&delayms=3000) with Prof. Tse-Min Lin and Chuan-Shien Chang @ NTU, [events sheet](https://drive.google.com/open?id=1MHarPtq5er0CefSnRsylucPvnSoJsmEd6jMxHj1fsTQ)
+* [2018-06-27-UserXper](https://docs.google.com/presentation/d/e/2PACX-1vS0HWUqB_6sM-mqcZJRXO3pcdIrMbfIC9dBZ6vppBeo_bqWDvibynE6uA0KvzWg2kIPKJZ1svIGH8MO/pub?start=false&loop=false&delayms=3000)
+* [2018-07-13 R4CSS teaching plan](https://docs.google.com/presentation/d/e/2PACX-1vQNE8CV6t1NJM2hMwjh2xBnbXypB8GjeHoR8ygMA3cH651YNb9KH9eXfDHsll14ORtJqCZtUt_HkI0y/pub?start=false&loop=false&delayms=3000)
+
+## Courses
+* [2019-09-14 DSSI1081](https://docs.google.com/presentation/d/e/2PACX-1vTSSfrUAnwy-mlcA7I3YBj1NeCTZY6z8b--cuyOqtg-p7-GbMmF11JejhGb6sOoogBbaSKMxpYSLcem/pub?start=false&loop=false&delayms=3000)
+* [20190912 Web and storytelling: overview](https://docs.google.com/presentation/d/e/2PACX-1vSn4136pWlNea1Kn79F73lE4UU7zpbFRatmnwG7LsLrxsqK71zlC8L7J9iT8cct5aavfONB3IoFqN7K/pub?start=false&loop=false&delayms=3000)
+* [2019-02-24 R1072](https://docs.google.com/presentation/d/e/2PACX-1vQ-zTp75r_vQ2n1mKP249OOna8QKBsAPMEijdQ5-B_E7yFW-Q-_uXpsLQMNDLj-0WY3nX3eU3KmCb-v/pub?start=false&loop=false&delayms=3000)
+
+
+---
+# Project report
+
+## UFO Y1 
+
+* [2019-10-18 UFO-In-Short](https://docs.google.com/presentation/d/e/2PACX-1vQiu3ypFlvAWbE89pFb5iWw_6TcFpaG2ftj7LxWYB2LA6EBusLWVq4gjNvmG1j-_ounVpCZjZZXHekq/pub?start=false&loop=false&delayms=3000)
+* [2019-10-24 UFO Y1](https://docs.google.com/presentation/d/e/2PACX-1vRIozyyLFvfQ_Gp6iWVvavgVoVr4MV8I0B6-XzTam8jLH28fcCXYnRz4E79zFHuU7UAFNVv7S2S-68_/pub?start=false&loop=false&delayms=3000)
+
+## UFO Y1 Final (20200715, 0716)
 [pptdownload](https://drive.google.com/drive/folders/1AIJ3NsO4YfxGIslSi0mQal0JI2_NgOPi?usp=sharing)
 * [Session 1. Architecture by Jilung](https://docs.google.com/presentation/d/e/2PACX-1vS0Ktb6kV6tiHC8issQ27P3BjCmuQ38MRjrhdKMJ6UsTurg7Q7t0Bs0hcU3gAqFK89bXLSXzYMXBNOk/pub?start=false&loop=false&delayms=3000)
 * [Session 2. Industry-Academia Cooperation by Jilung and ShuKai](https://docs.google.com/presentation/d/e/2PACX-1vR5P12_ZAg2OEqDSvo2XetxePq8188YLdeBwd9r4UEAosu9A0jZUhEW4GnP_l43B7K7Ekmu9sM61ikD/pub?start=false&loop=false&delayms=3000)
