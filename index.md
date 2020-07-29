@@ -1,5 +1,3 @@
-# Hackathon
-- 20200729 Discussion https://paper.dropbox.com/doc/Meeting-LawTech-Hackathon--A4rtSWtQ1gMMMHzMbpuYaoF7AQ-cEP5DNbcu6kE6439jzuqS
 # UFO 20200715, 0716
 [pttdownload](https://drive.google.com/drive/folders/1AIJ3NsO4YfxGIslSi0mQal0JI2_NgOPi?usp=sharing)
 * [Session 1. Architecture by Jilung](https://docs.google.com/presentation/d/e/2PACX-1vS0Ktb6kV6tiHC8issQ27P3BjCmuQ38MRjrhdKMJ6UsTurg7Q7t0Bs0hcU3gAqFK89bXLSXzYMXBNOk/pub?start=false&loop=false&delayms=3000)
