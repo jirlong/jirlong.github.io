@@ -40,6 +40,7 @@
 
 # Tools
 * [jsLDA + jieba.js for online topic modeling in Chinese](https://jirlong.github.io/jsLDA/jslda.html)
+* [Topic modeling intro.](https://docs.google.com/presentation/d/e/2PACX-1vRTSSO_8JuLTK_1OyM9eDrogA-K2fhXQwlKxh1PpRvNavkurCCcKBNftv9MpKGYM6EDXtNnqZvPDdKy/pub?start=false&loop=false&delayms=3000)
 
 
 ---
