@@ -1,9 +1,10 @@
-# Legal-Tech
-* [2020-09-11 legal-tech](https://docs.google.com/presentation/d/e/2PACX-1vQg2gF7skxZ91cFwcA1b-POc4AXCW0O0at7xM7yXdi0JL2WZiOPzVgFqHD38--JWQvY_jwSuN8hB7Gx/pub?start=false&loop=false&delayms=3000)
-# UFO-Y2
-* [2020-09-01 期初交流](https://docs.google.com/presentation/d/e/2PACX-1vT7zYHaLTaMjXs2dhjaFbsAL8jXcWQ73K_Oy3zcpMQKAtG2GMDeeKRrCJ8CCjLsN8bPyWgs3jGMuDiu/pub?start=false&loop=false&delayms=3000)
+# 2020
+* [2020-09-01 UFO-Y2 期初交流](https://docs.google.com/presentation/d/e/2PACX-1vT7zYHaLTaMjXs2dhjaFbsAL8jXcWQ73K_Oy3zcpMQKAtG2GMDeeKRrCJ8CCjLsN8bPyWgs3jGMuDiu/pub?start=false&loop=false&delayms=3000)
+* [2020-09-11 Legal-tech Hackathon](https://docs.google.com/presentation/d/e/2PACX-1vQg2gF7skxZ91cFwcA1b-POc4AXCW0O0at7xM7yXdi0JL2WZiOPzVgFqHD38--JWQvY_jwSuN8hB7Gx/pub?start=false&loop=false&delayms=3000)
+* [2019-09-18 CoSS News and Digital Storytelling](https://docs.google.com/presentation/d/e/2PACX-1vQEe0auY-6DVJl5NCrJbip0QaNJFP4SsjcoefK7QQ2b5s6pk1azKvo2m63ZXI53iCpN_BZH4lZ8cT01/pub?start=false&loop=false&delayms=3000)
 
-# Talks
+
+# Past talks
 
 * [2018-06-05 中研院社會所-網絡研究](https://docs.google.com/presentation/d/e/2PACX-1vT9z-10g1mL8bRxgvVWcg-g_UYEr_Sa2W0hkQtQuK28jfaoGPeDS6YbeQM34zAbfvmvEmEcUbdrJhF-/pub?start=false&loop=false&delayms=3000): Social Networks and Visualization
 * [2018-06-08 中研院人社中心-社群媒介](https://docs.google.com/presentation/d/e/2PACX-1vQlM-S9WEV6L-pAS_G4l-6ZbH60-x1VEqtP8_YnDTgpCSsCwn2vyy9RdBD2XLraL75FLRb2jGwdOXN3/pub?start=false&loop=false&delayms=3000): Social Surveillance.. Material: [newsdiff(fork)](http://140.112.153.64:8000/news_meta_list)
