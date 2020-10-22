@@ -1,5 +1,5 @@
 # 2020-Sep
-* [2020-10-23 FHK](https://docs.google.com/presentation/d/e/2PACX-1vTU21cemjIbU_piJ6CVMFNnDcZG9MbDTgS2KpmhNVaUD1Yhus-NYSliqzjN4PDS2fVFaw59ch9m_FVg/pub?start=false&loop=false&delayms=3000)
+* [2020-10-23 FHK: Social Science x Data Science](https://docs.google.com/presentation/d/e/2PACX-1vTU21cemjIbU_piJ6CVMFNnDcZG9MbDTgS2KpmhNVaUD1Yhus-NYSliqzjN4PDS2fVFaw59ch9m_FVg/pub?start=false&loop=false&delayms=3000)
 * [2020-10-20 Discussion on Computational communication](https://paper.dropbox.com/doc/--A90bKpulOg0EUMTPujMCNMMaAg-72xaEhf9KJMQkGTeG6cXX)
 * [2020-09-11 Legal-tech Hackathon](https://docs.google.com/presentation/d/e/2PACX-1vQg2gF7skxZ91cFwcA1b-POc4AXCW0O0at7xM7yXdi0JL2WZiOPzVgFqHD38--JWQvY_jwSuN8hB7Gx/pub?start=false&loop=false&delayms=3000)
 * [2020-09-18 CoSS News and Digital Storytelling: 新聞所跨域專長](https://docs.google.com/presentation/d/e/2PACX-1vQEe0auY-6DVJl5NCrJbip0QaNJFP4SsjcoefK7QQ2b5s6pk1azKvo2m63ZXI53iCpN_BZH4lZ8cT01/pub?start=false&loop=false&delayms=3000)
