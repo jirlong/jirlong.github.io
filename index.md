@@ -2,8 +2,6 @@
 * [2020-09-01 UFO-Y2 期初交流](https://docs.google.com/presentation/d/e/2PACX-1vT7zYHaLTaMjXs2dhjaFbsAL8jXcWQ73K_Oy3zcpMQKAtG2GMDeeKRrCJ8CCjLsN8bPyWgs3jGMuDiu/pub?start=false&loop=false&delayms=3000)
 * [2020-09-11 Legal-tech Hackathon](https://docs.google.com/presentation/d/e/2PACX-1vQg2gF7skxZ91cFwcA1b-POc4AXCW0O0at7xM7yXdi0JL2WZiOPzVgFqHD38--JWQvY_jwSuN8hB7Gx/pub?start=false&loop=false&delayms=3000)
 * [2020-09-18 CoSS News and Digital Storytelling](https://docs.google.com/presentation/d/e/2PACX-1vQEe0auY-6DVJl5NCrJbip0QaNJFP4SsjcoefK7QQ2b5s6pk1azKvo2m63ZXI53iCpN_BZH4lZ8cT01/pub?start=false&loop=false&delayms=3000)
-* [2020-10-08 Mobile sensing for FPG](https://docs.google.com/presentation/d/e/2PACX-1vTiexJiwJLXWT1Xe_qEiM8U5P7vzJ7qF1h48A6tnrK7H0Vhc7OsIo9Zu_s20aUnp1j-y8HFsnCSgt37/pub?start=false&loop=false&delayms=3000)
-* [2020-10-16 Mobile Sensing for FPG](https://docs.google.com/presentation/d/e/2PACX-1vSZVuzozp7zOu5_CwHoH5ywr8OKohcE1ceEB_f0ZuG84UGT-99xpJ_gEAWjxSFG6RhlaLsd4etRqykX/pub?start=false&loop=false&delayms=3000)
 * [2020-10-20 Discussion on Computational communication](https://paper.dropbox.com/doc/--A90bKpulOg0EUMTPujMCNMMaAg-72xaEhf9KJMQkGTeG6cXX)
 
 
@@ -88,4 +86,4 @@
 * [Session 6. Evaluation by ShuKai](https://docs.google.com/presentation/d/e/2PACX-1vTFUYdOcQaUdjoSpXwEQ6FtsbWfEDvcFemqJ4B-RUqz8CbZwKGSWaSl5kuAc9oLg6ZST6sfpDofpAz8/pub?start=false&loop=false&delayms=3000). Second day
 
 
-
+[Inner](presentation.md)
