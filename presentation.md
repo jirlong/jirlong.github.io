@@ -1,0 +1,2 @@
+* [2020-10-08 Mobile sensing for FPG](https://docs.google.com/presentation/d/e/2PACX-1vTiexJiwJLXWT1Xe_qEiM8U5P7vzJ7qF1h48A6tnrK7H0Vhc7OsIo9Zu_s20aUnp1j-y8HFsnCSgt37/pub?start=false&loop=false&delayms=3000)
+* [2020-10-16 Mobile Sensing for FPG](https://docs.google.com/presentation/d/e/2PACX-1vSZVuzozp7zOu5_CwHoH5ywr8OKohcE1ceEB_f0ZuG84UGT-99xpJ_gEAWjxSFG6RhlaLsd4etRqykX/pub?start=false&loop=false&delayms=3000)
