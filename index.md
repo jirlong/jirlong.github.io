@@ -1,6 +1,10 @@
+#2021-Jan
+* [2021-01-05 NTNU LIS: Disinformation](https://docs.google.com/presentation/d/e/2PACX-1vT2OpWkTOwn56oGSgnk7zpWETzpGF-juk00RaG9faUJ72-d99fwY3b3dhpp1GCauKQmQjpwY5BiriMO/pub?start=false&loop=false&delayms=3000)
+
 # 2020-Dec
 * [2020-12-22 UFO Visits](https://docs.google.com/presentation/d/e/2PACX-1vQJUST2u3lZrPzhwljUuvf-tRlEPbiqchfd05jFCaSyCKy1E5OaOJXFU0ldD2XZ0REW9UQ4nUVLkPP6/pub?start=false&loop=false&delayms=3000)
 * [2020-12-13 Legal judgement corpus and Regular expression]
+
 # 2020-Sep
 * [2020-10-23 FHK: Social Science x Data Science](https://docs.google.com/presentation/d/e/2PACX-1vTU21cemjIbU_piJ6CVMFNnDcZG9MbDTgS2KpmhNVaUD1Yhus-NYSliqzjN4PDS2fVFaw59ch9m_FVg/pub?start=false&loop=false&delayms=3000)
 * [2020-10-20 Discussion on Computational communication](https://paper.dropbox.com/doc/--A90bKpulOg0EUMTPujMCNMMaAg-72xaEhf9KJMQkGTeG6cXX)
@@ -28,6 +32,7 @@
 * [2019-09-21 KMU Referendum and social community of marriage-equality](https://docs.google.com/presentation/d/e/2PACX-1vS_9LoOt4YSA7YMkdxhGLfyHoBEO6t6raY0yoIucHDTZSD1KJTyIvCGTNVyQmklgEzm29WdSt8RP_4J/pub?start=false&loop=false&delayms=3000)
 * [2019-11-13 Digital Humanity](https://docs.google.com/presentation/d/e/2PACX-1vQgGylQCeeZ2OQP8Jnp5TcOlqELIVyOHrNIZwmLE3EWUeumXcuIHhLLiB11VSXbft3WRq3UL6nIzwtA/pub?start=false&loop=false&delayms=3000)
 * [2020-02-26 UFO Mid](https://docs.google.com/presentation/d/e/2PACX-1vQiu3ypFlvAWbE89pFb5iWw_6TcFpaG2ftj7LxWYB2LA6EBusLWVq4gjNvmG1j-_ounVpCZjZZXHekq/pub?start=false&loop=false&delayms=3000)
+* [2020-03-30 NCKU Law](https://docs.google.com/presentation/d/e/2PACX-1vT2OpWkTOwn56oGSgnk7zpWETzpGF-juk00RaG9faUJ72-d99fwY3b3dhpp1GCauKQmQjpwY5BiriMO/pub?start=false&loop=false&delayms=3000)
 * [2020-07-03 gvm](https://docs.google.com/presentation/d/e/2PACX-1vSXVxGS9LZsgvx9mN-3JbCEvM5aMYM675kbNozoK3y6EuUCKzHDpyZyALNYJalHU96aPLP7bOxRZWc0/pub?start=false&loop=false&delayms=3000)
 
 
