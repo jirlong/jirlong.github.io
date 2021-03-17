@@ -1,17 +1,18 @@
+# Useful resource for teaching
+& [useful_css.md](useful_css.md)
+
 # 2021-March
 * [2021-03-10 MoBagel sharing v2](https://docs.google.com/presentation/d/e/2PACX-1vQ4bpAtZ9KPs6rKay4YziGopW6woGa9PaSftnskti8ZsAmpxj3GFTJIOHKR1VBinQ1802DAGDX2V5S5/pub?start=false&loop=false&delayms=3000)
-* [2021-03-10 MoBagel sharing v1](https://docs.google.com/presentation/d/e/2PACX-1vQY_45iCKhorygumdnrX70iWX9uCEs020n3S5_lbdGQoGA0oGv6fbAk0r5XsS3hWfj2OsbZHRyD4CcH/pub?start=false&loop=false&delayms=3000)
 
 # 2021-Jan
 * [2021-01-20 UFO Workshop @Tainan](https://docs.google.com/presentation/d/e/2PACX-1vQJUST2u3lZrPzhwljUuvf-tRlEPbiqchfd05jFCaSyCKy1E5OaOJXFU0ldD2XZ0REW9UQ4nUVLkPP6/pub?start=false&loop=false&delayms=3000)
 * [2021-01-05 NTNU LIS: Disinformation](https://docs.google.com/presentation/d/e/2PACX-1vT2OpWkTOwn56oGSgnk7zpWETzpGF-juk00RaG9faUJ72-d99fwY3b3dhpp1GCauKQmQjpwY5BiriMO/pub?start=false&loop=false&delayms=3000)
 * [2021-01 領域專長](https://docs.google.com/presentation/d/e/2PACX-1vQRM3kS_NA5hryWTHdDDbTehTOkC5pO8P_BwQSxcRS3ILrRFIqtLGlIzOaSaYq8NQKE1YndWI0-5jV1/pub?start=false&loop=false&delayms=3000)
 
-# 2020-Dec
+# 2020
+
 * [2020-12-22 UFO Visits](https://docs.google.com/presentation/d/e/2PACX-1vQJUST2u3lZrPzhwljUuvf-tRlEPbiqchfd05jFCaSyCKy1E5OaOJXFU0ldD2XZ0REW9UQ4nUVLkPP6/pub?start=false&loop=false&delayms=3000)
 * [2020-12-13 Legal judgement corpus and Regular expression]
-
-# 2020-Sep
 * [2020-10-23 FHK: Social Science x Data Science](https://docs.google.com/presentation/d/e/2PACX-1vTU21cemjIbU_piJ6CVMFNnDcZG9MbDTgS2KpmhNVaUD1Yhus-NYSliqzjN4PDS2fVFaw59ch9m_FVg/pub?start=false&loop=false&delayms=3000)
 * [2020-10-20 Discussion on Computational communication](https://paper.dropbox.com/doc/--A90bKpulOg0EUMTPujMCNMMaAg-72xaEhf9KJMQkGTeG6cXX)
 * [2020-09-11 Legal-tech Hackathon](https://docs.google.com/presentation/d/e/2PACX-1vQg2gF7skxZ91cFwcA1b-POc4AXCW0O0at7xM7yXdi0JL2WZiOPzVgFqHD38--JWQvY_jwSuN8hB7Gx/pub?start=false&loop=false&delayms=3000)
