@@ -1,6 +1,3 @@
-# Useful resource for teaching
-* [useful_css.md](useful_css.md)
-
 # 2021-March
 * [2021-03-10 MoBagel sharing v2](https://docs.google.com/presentation/d/e/2PACX-1vQ4bpAtZ9KPs6rKay4YziGopW6woGa9PaSftnskti8ZsAmpxj3GFTJIOHKR1VBinQ1802DAGDX2V5S5/pub?start=false&loop=false&delayms=3000)
 
@@ -106,3 +103,6 @@
 
 
 [Inner](presentation.md)
+
+# Useful resource for teaching
+* [useful_css.md](useful_css.md)
