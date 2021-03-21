@@ -33,7 +33,12 @@
  .focused .markdown code, .focused .markdown pre{
    background-color:yellow;
    color:blue;
-
+ }
+ 
+  .toc-cell{
+   margin-top: 3px;
+   margin-bottom: 3px;
+   border-left:1px solid grey;
  }
 ```
 
