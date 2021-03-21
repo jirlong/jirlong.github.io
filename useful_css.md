@@ -36,3 +36,35 @@
 
  }
 ```
+
+# JupyterLab
+```
+h1{
+  color:royalblue;
+  font-weight:bold
+}
+
+h2{
+  color: dodgerblue;
+}
+h3{
+  color:deepskyblue
+}
+
+.jp-OutputArea-output pre{
+  color:darkgoldenrod;
+}
+
+.jp-mod-active .jp-Collapser-child{
+  background-color:gold;
+}
+
+.jp-mod-active .jp-CodeMirrorEditor, .jp-mod-active .jp-MarkdownOutput{
+  background-color:lightyellow;
+}
+
+.jp-mod-active .jp-InputPrompt{
+  background-color:yellow;
+}
+
+```
