@@ -52,7 +52,8 @@ h3{
 }
 
 .jp-OutputArea-output pre{
-  color:darkgoldenrod;
+  color:darkgrey;;
+  font-size:medium;
 }
 
 .jp-mod-active .jp-Collapser-child{
@@ -66,5 +67,10 @@ h3{
 .jp-mod-active .jp-InputPrompt{
   background-color:yellow;
 }
+
+.jp-CodeMirrorEditor{
+  border:1px solid slategrey
+}
+
 
 ```
