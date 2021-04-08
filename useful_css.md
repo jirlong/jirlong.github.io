@@ -111,3 +111,23 @@ h3{
  background-color:gold;
 }
 ```
+
+# google doc
+```
+.navigation-item{
+  height:24px;
+}
+.navigation-item-level-0{
+  color:black;
+}
+
+.navigation-item-level-1{
+  padding-left: 16px;
+  color:crimson;
+}
+
+.navigation-item-level-2{
+  padding-left: 24px;
+  color:
+}
+```
