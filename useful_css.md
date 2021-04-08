@@ -56,8 +56,12 @@ h3{
   color:deepskyblue
 }
 
+.jp-OutputArea-output{
+  /* background-color:gei; */
+}
+
 .jp-OutputArea-output pre{
-  color:goldenrod;
+  color:olivedrab;
   font-size:small;
 }
 
@@ -65,7 +69,14 @@ h3{
   background-color:gold;
 }
 
-.jp-mod-active .jp-CodeMirrorEditor, .jp-mod-active .jp-MarkdownOutput{
+.jp-MarkdownOutput pre, .jp-MarkdownOutput code{
+  background-color:transparent;
+  color:olive;
+  
+}
+
+.jp-mod-active .jp-CodeMirrorEditor, 
+.jp-mod-active .jp-MarkdownOutput{
   background-color:lightyellow;
 }
 
@@ -85,18 +96,27 @@ h3{
 
 
 .toc-level-size-1{
-  padding-left:12px;
+  padding-left:0px;
   margin-top:5px;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .toc-level-size-2{
-  padding-left:30px;
+  padding-left:12px;
   color:dodgerblue;
+  /* text-overflow: ellipsis; */
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .toc-level-size-3{
-  padding-left:48px;
+  padding-left:24px;
   color:grey;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+
 }
 
 
@@ -110,6 +130,7 @@ h3{
 .jp-TableOfContents-content li:hover{
  background-color:gold;
 }
+
 ```
 
 # google doc
