@@ -51,6 +51,7 @@
 * [ideology and network (data provided by ECON NTU Prof. Chung-Fang Chiang and Prof. Min-Jen Lin)](html/fbpage_network_lv10.html)
 * [Hate-Girl on PTT (data provided by jenyiyu, Sociology, sinica)](html/mention.d3.html)
 * [Co-authoring of Gary King on Google Scholar](html/gking_coauthor_2.html)
+
 ![Keywords network by threejs (R Client)](figs/Jul-02-2021 21-34-55.gif "keyword network")
 
 
