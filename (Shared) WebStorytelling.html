@@ -1,0 +1,646 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>(Shared) WebStorytelling</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(145, 145, 142, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(187, 132, 108, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(215, 129, 58, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 148, 51, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(108, 155, 125, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(91, 151, 189, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(167, 130, 195, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(205, 116, 159, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(225, 111, 100, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(145, 145, 142, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(187, 132, 108, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(215, 129, 58, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 148, 51, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(108, 155, 125, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(91, 151, 189, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(167, 130, 195, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(205, 116, 159, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(225, 111, 100, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="9203ed23-0a27-40e1-921e-223285c9903d" class="page sans"><header><h1 class="page-title">(Shared) WebStorytelling</h1></header><div class="page-body"><nav id="8b10740a-41c6-4100-93b9-c9d6b29fd5b6" class="block-color-gray_background table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#ef7f2bad-8d45-42aa-b2e5-e47daad92298">1. Digital News Report</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#4e52db0c-1cb1-47ef-ab3e-f2c698d1ce1d">1.1 Data-driven news report</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#9e0e57e8-4c95-4d6f-be3d-225162db6738">1.2 Infographics </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#476d9b05-c0b4-4187-9860-4eb0dc69f1b3">1.3 <strong>Web storytelling</strong> </a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#d69ff493-62c1-4cd5-bec6-4c66714a51e5">2. Web storytelling for News</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#7d0bba72-c59c-4a01-83ce-70de13bedde3">3 Now: Media + Storytelling designs</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#d7c3d19d-6342-4d31-8371-7e196ed4c212">Media convergence</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#36cef95f-268b-423f-9bb7-aed5c3862e40">Design pattern of web storytelling</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#64160f5e-36c1-4ea0-af0d-71f6e316839e">Example: Web storytelling with videos </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#81c8c595-7b8d-4572-aeed-22b0d6d3ed08">Video as storytelling platform </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#887e734b-7714-4032-bca5-b27d38dd0d09">V<strong>ideo-centered web storytelling</strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#35c147ae-2c6a-4f6c-9b8a-c62155f826fa"><strong>Why short video? </strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#7adb846d-9f5c-454a-97d2-2881a5f42237"><strong>Wh not video? </strong></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#ac5176e4-2cc3-44ff-b0a7-ca9ee6898eaa">Research methods on web storytelling</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#2a9993b3-c622-4817-a1b6-ea51f4eb4b6b"><strong>Connecting storytelling to library science</strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#31a40e30-d1bd-4343-aa0c-5f1a5ae702b6">NOT <strong>Information architecture </strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#76622bc2-de64-4f08-8bb2-1b7d9477e7c8">More similar to s<strong>ervice design  and Curating</strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#23053ed3-e744-40ce-a1ce-fd60b13ee567">Curating </a></div></nav><h1 id="ef7f2bad-8d45-42aa-b2e5-e47daad92298" class="block-color-blue_background">1. Digital News Report</h1><h2 id="4e52db0c-1cb1-47ef-ab3e-f2c698d1ce1d" class="block-color-blue_background">1.1 Data-driven news report</h2><p id="5e89ade7-1e51-460d-9684-0c8726dd5573" class="">My favorite is <a href="https://pudding.cool/">The Pudding</a> </p><div id="1362db0d-263d-4046-81c8-f135ae9cdfa2" class="column-list"><div id="9737d4af-6860-4815-8125-fa4f483b548d" style="width:50%" class="column"><figure id="0ab8e9b7-9671-4843-aeb5-0b3fca08a6e6"><a href="https://pudding.cool/2018/02/stand-up/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">The Structure of Stand-Up Comedy</div><div class="bookmark-description">Here is every line from Ali Wong&#x27;s stand-up comedy special, Baby Cobra. We&#x27;re going to explain why her hour-long routine is so great.you can But first, know that tap on the right to skip forward. Try it! you can click on the right to skip forward. Or use the keyboard.</div></div><div class="bookmark-href">https://pudding.cool/2018/02/stand-up/</div></div><img src="https://pudding.cool/2018/02/stand-up/assets/social/social-facebook.jpg" class="bookmark-image"/></a></figure><figure id="9bef834d-1178-407f-9c56-d68f48f0c960" class="image"><a href="(Shared)%20WebStorytelling%209bef834d1178407f9c56d68f48f0c960/Untitled.png"><img style="width:1165px" src="(Shared)%20WebStorytelling%209bef834d1178407f9c56d68f48f0c960/Untitled.png"/></a><figcaption>標記脫口秀中停頓和笑聲大的位置</figcaption></figure><figure id="37b5eb29-284c-46f4-a694-7d72385a1a10" class="image"><a href="(Shared)%20WebStorytelling%209bef834d1178407f9c56d68f48f0c960/Untitled%201.png"><img style="width:816px" src="(Shared)%20WebStorytelling%209bef834d1178407f9c56d68f48f0c960/Untitled%201.png"/></a></figure><figure id="301abe16-d56e-4459-855e-9238a75465a8" class="image"><a href="(Shared)%20WebStorytelling%209bef834d1178407f9c56d68f48f0c960/Untitled%202.png"><img style="width:780px" src="(Shared)%20WebStorytelling%209bef834d1178407f9c56d68f48f0c960/Untitled%202.png"/></a><figcaption>近一步研究這些位置的內容特徵</figcaption></figure><figure id="76d85ac1-9861-4c0e-a87f-904750b3f3f5" class="image"><a href="(Shared)%20WebStorytelling%209bef834d1178407f9c56d68f48f0c960/Untitled%203.png"><img style="width:794px" src="(Shared)%20WebStorytelling%209bef834d1178407f9c56d68f48f0c960/Untitled%203.png"/></a></figure></div><div id="a4c232d2-1fd8-4022-8bdd-c7a6abfbce5e" style="width:50%" class="column"><figure id="55d042e5-71dc-4f0e-8dd8-f28892fd7204"><a href="https://pudding.cool/2021/01/cool/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Every time someone says cool in Community</div><div class="bookmark-description">Hi I&#x27;m Russell. After watching an early supercut of every time Abed says , I figured it was time to update and visualize. It turns out that the 412 cools make it the second most used adjective, just behind good. The data were made from Netflix captions.</div></div><div class="bookmark-href"><img src="https://pudding.cool/favicon.ico" class="icon bookmark-icon"/>https://pudding.cool/2021/01/cool/</div></div><img src="https://pudding.cool/2021/01/cool/assets/facebook.jpg" class="bookmark-image"/></a></figure><figure id="e3866e77-70a0-4284-9cd2-47ac71b48626" class="image"><a href="(Shared)%20WebStorytelling%209bef834d1178407f9c56d68f48f0c960/Untitled%204.png"><img style="width:1170px" src="(Shared)%20WebStorytelling%209bef834d1178407f9c56d68f48f0c960/Untitled%204.png"/></a></figure><figure id="00e0a118-31e9-44c1-bc84-3b2f0263ccef"><a href="https://pudding.cool/2019/08/register/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Are Men Singing Higher in Pop Music?</div><div class="bookmark-description">Here is average register for the past 50 years. 2019 doesn&#x27;t look that impressive compared to the &#x27;80s, And I wasn&#x27;t expecting to see such a clear trend: rising register until the early &#x27;90s and then a drop-off. Let&#x27;s look at 1984 a bit more.</div></div><div class="bookmark-href"><img src="https://pudding.cool/favicon-16x16.png" class="icon bookmark-icon"/>https://pudding.cool/2019/08/register/</div></div><img src="https://pudding.cool/2019/08/register/assets/social/facebook.png" class="bookmark-image"/></a></figure><figure id="758d79cb-6980-4cb3-860d-a58f89ae7128" class="image"><a href="(Shared)%20WebStorytelling%209bef834d1178407f9c56d68f48f0c960/Untitled%205.png"><img style="width:621px" src="(Shared)%20WebStorytelling%209bef834d1178407f9c56d68f48f0c960/Untitled%205.png"/></a></figure><figure id="0824517e-0fc7-451c-b714-8cdb491f51ef"><a href="https://pudding.cool/2020/10/kpop/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Why are K-pop groups so big?</div><div class="bookmark-description">The 1st generation began with the debut of a 3-member group that is credited with inspiring K-pop as we know it today: Seo Taiji and Boys. They synthesized Korean music, fashion style, and dance with Western influences like hip-hop, new jack swing, and rock to capture the imagination of Korean youth.</div></div><div class="bookmark-href"><img src="https://pudding.cool/favicon-16x16.png" class="icon bookmark-icon"/>https://pudding.cool/2020/10/kpop/</div></div><img src="https://pudding.cool/2020/10/kpop/assets/social/social-facebook-2.jpg" class="bookmark-image"/></a></figure><figure id="68398322-3319-48da-a2f5-dcf2a82f4bf2" class="image"><a href="(Shared)%20WebStorytelling%209bef834d1178407f9c56d68f48f0c960/Untitled%206.png"><img style="width:1239px" src="(Shared)%20WebStorytelling%209bef834d1178407f9c56d68f48f0c960/Untitled%206.png"/></a></figure></div></div><hr id="bfe80485-395e-4093-bdaa-813ebeea1df3"/><h2 id="9e0e57e8-4c95-4d6f-be3d-225162db6738" class="block-color-blue_background">1.2 Infographics </h2><div id="2e0fbd08-9854-4e00-8f64-2a389c384e31" class="column-list"><div id="5a4a064d-b53c-434a-8788-f1814afae43d" style="width:50%" class="column"><figure id="34016dc9-783b-44b7-930a-8c6283deb9f5" class="image"><a href="(Shared)%20WebStorytelling%209bef834d1178407f9c56d68f48f0c960/Untitled%207.png"><img style="width:1164px" src="(Shared)%20WebStorytelling%209bef834d1178407f9c56d68f48f0c960/Untitled%207.png"/></a></figure></div><div id="e0c5ef57-01f6-451b-b922-c265cad3adf2" style="width:50%" class="column"><figure id="94179e49-a2f9-4af2-a773-072269eff9c0"><a href="https://www.scmp.com/infographic/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">South China Morning Post Graphics</div><div class="bookmark-description">The Collection of graphics made by The South China Morning Post via @SCMPgraphics</div></div><div class="bookmark-href"><img src="https://multimedia.scmp.com/2018/data/favicon.ico" class="icon bookmark-icon"/>https://www.scmp.com/infographic/</div></div><img src="http://www.scmp.com/infographic/img/cover.jpg" class="bookmark-image"/></a></figure><figure id="e3dc56fa-2af8-4fac-854b-c10a47d9ddab"><a href="https://multimedia.scmp.com/culture/article/SCMP-printed-graphics-memory/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">SCMP printed graphics memory</div><div class="bookmark-description">The South China Morning Post has been dedicated to bringing our readers the finest visual journalism for print and online since 2011. Here are some of our favourite full-page infographics as they appeared in the newspaper Ⓒ 2020 South China Morning Post Immerse yourself into some of our multimedia projects: This site has some features that may not be compatlibe with your browser.</div></div><div class="bookmark-href"><img src="https://multimedia.scmp.com/2018/data/favicon.ico" class="icon bookmark-icon"/>https://multimedia.scmp.com/culture/article/SCMP-printed-graphics-memory/</div></div><img src="https://multimedia.scmp.com/culture/article/SCMP-printed-graphics-memory/img/cover.jpg" class="bookmark-image"/></a></figure><figure id="6f170f4a-2ec0-4960-8cc4-e8018db6f1da"><a href="https://www.nytimes.com/interactive/2020/12/30/us/2020-year-in-graphics.html" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">2020: The Year in Visual Stories and Graphics</div><div class="bookmark-description">In a year with so many world-shaking moments, our strongest visual stories covered impeachment, outbreak, caucuses, primaries, donations, dele­gates, shutdown, jobs, deaths, coughing, hos­pitals, test­ing, George Floyd, protests, tear gas, dreams, nursing homes, po­licing, the election, stimulus, symptoms, Beirut, power, the Supreme Court, ballots, wildfires, Trump&#x27;s taxes, turn­out, swing states, masks, re­sults, A.I., voter shifts, I.C.U.s, pollut­ion and vaccines.</div></div><div class="bookmark-href"><img src="https://www.nytimes.com/favicon.ico" class="icon bookmark-icon"/>https://www.nytimes.com/interactive/2020/12/30/us/2020-year-in-graphics.html</div></div><img src="https://static01.nyt.com/images/2020/12/30/multimedia/2020-yearingraphics-promo/2020-yearingraphics-promo-facebookJumbo.png" class="bookmark-image"/></a></figure></div></div><hr id="f65d4e9c-a6de-47cb-8d93-f2121290f327"/><h2 id="476d9b05-c0b4-4187-9860-4eb0dc69f1b3" class="block-color-blue_background">1.3 <strong>Web storytelling</strong> </h2><div id="1f2ff622-b24b-4870-a6bd-c3ddfa5b3b2f" class="column-list"><div id="d8d41fd8-1ace-4dfe-a986-b6b1e705b887" style="width:50%" class="column"><figure id="f551636e-e1ab-4ac4-8e92-c65cfa6756b0"><a href="https://www.nytimes.com/projects/2012/snow-fall/index.html#/?part=tunnel-creek" class="block-color-yellow_background bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Snow Fall: The Avalanche at Tunnel Creek</div><div class="bookmark-description">After a few minutes, the small talk faded. Worries went unexpressed. &quot;When you&#x27;re up on top of a peak like that, it&#x27;s usually hang out for a second, and then it&#x27;s momentum,&quot; Castillo said. &quot;You just kind of feel it. Everyone&#x27;s like: &#x27;O.K., we&#x27;re not here to hang out.</div></div><div class="bookmark-href"><img src="https://www.nytimes.com/favicon.ico" class="icon bookmark-icon"/>https://www.nytimes.com/projects/2012/snow-fall/index.html#/?part=tunnel-creek</div></div><img src="https://static01.nyt.com/packages/images/multimedia/bundles/projects/2012/AvalancheDeploy/chapter2_flat.jpg" class="bookmark-image"/></a></figure></div><div id="a3bea145-fba4-4da0-8a22-4d5a913d9ced" style="width:50%" class="column"><figure id="520c6b9c-8ed5-4829-b023-dd8954b4c16f" class="image"><a href="(Shared)%20WebStorytelling%209bef834d1178407f9c56d68f48f0c960/Oct-07-2021_10-01-25.gif"><img style="width:640px" src="(Shared)%20WebStorytelling%209bef834d1178407f9c56d68f48f0c960/Oct-07-2021_10-01-25.gif"/></a></figure></div></div><h1 id="d69ff493-62c1-4cd5-bec6-4c66714a51e5" class="block-color-blue_background">2. Web storytelling for News</h1><div id="11c05260-6e2d-4aa4-a3fb-1eec4ce01adc" class="column-list"><div id="4c428e95-3ea1-4986-9d84-999c152e636c" style="width:50%" class="column"><ul id="b24d8943-fa9d-4c90-a6ce-bddd7ab65ef6" class="bulleted-list"><li style="list-style-type:disc">Compared with just putting all materials (links, videos, figs, text) to the web</li></ul><ul id="f0243a03-86f6-4493-864d-94dfb0cdd203" class="bulleted-list"><li style="list-style-type:disc">An one-time experience, more similar to watch a video clip, </li></ul></div><div id="68021f40-53de-4922-836f-53ae69a7de80" style="width:50%" class="column"><figure class="block-color-blue_background callout" style="white-space:pre-wrap;display:flex" id="5c9b9cc8-50e8-4906-a789-2af16668f4d4"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><strong>What is web storytelling for news? </strong></div></figure></div></div><h1 id="7d0bba72-c59c-4a01-83ce-70de13bedde3" class="block-color-blue_background">3 Now: Media + Storytelling designs</h1><div id="3b872456-854f-40fd-aae3-9b5d6ed45cbb" class="column-list"><div id="c0ca2b69-6ead-49b8-b46b-d77dac9c4be6" style="width:50%" class="column"><h3 id="d7c3d19d-6342-4d31-8371-7e196ed4c212" class="block-color-blue_background">Media convergence</h3><ul id="bf6e9dec-5df6-4dbf-a031-ffed3c789575" class="bulleted-list"><li style="list-style-type:disc">Video, long or short</li></ul><ul id="186caf56-187f-40e1-a577-a40e933d9d59" class="bulleted-list"><li style="list-style-type:disc">Satellite images</li></ul><ul id="85d0c795-0c87-4167-9921-bc80894d1c4d" class="bulleted-list"><li style="list-style-type:disc">Geographic Information System</li></ul><ul id="b26f0467-d1ed-4c87-93aa-aefd5c163df6" class="bulleted-list"><li style="list-style-type:disc">AR/VR</li></ul><ul id="36d37a4d-4f04-474d-9471-654e597c04b8" class="bulleted-list"><li style="list-style-type:disc">3D Modeling</li></ul><ul id="51e6e239-4545-4535-ae08-1a659ca38721" class="bulleted-list"><li style="list-style-type:disc">Text presentation</li></ul></div><div id="355da780-f0e5-4b68-a8c5-ed514b0d17f4" style="width:50%" class="column"><h3 id="36cef95f-268b-423f-9bb7-aed5c3862e40" class="block-color-blue_background">Design pattern of web storytelling</h3></div></div><h1 id="64160f5e-36c1-4ea0-af0d-71f6e316839e" class="block-color-blue_background">Example: Web storytelling with videos </h1><ol type="1" id="143092ce-c13f-4072-9734-f639e506374b" class="numbered-list" start="1"><li>Videos as storytelling platform: 以影像為平台、後製、文字擺放在影像中</li></ol><ol type="1" id="40e8b164-22b9-4107-bc41-100e7d3d0c6a" class="numbered-list" start="2"><li>Videos-central web storytelling: 以網頁為平台，以影像為主要敘事媒介，但用捲軸來同步文字以說明影像。</li></ol><ol type="1" id="4c0322e3-3d0c-444f-9c2d-7ed1e85d36a3" class="numbered-list" start="3"><li>(Short and silent) Videos just used for describing mechanism or creating immersion 僅用短影片來呈現一種立體感、現場感、或提供對某個機制或事件的動態解釋。</li></ol><ol type="1" id="909ab390-36ad-4aca-9dc6-f3d332721f15" class="numbered-list" start="4"><li>Videos or animation plays synchronized with scrolling (But why not video?) 直接用捲動來控制影像播放，捲多少播放多少。</li></ol><h3 id="81c8c595-7b8d-4572-aeed-22b0d6d3ed08" class="block-color-blue_background">Video as storytelling platform </h3><div id="8e7c0581-26f8-4bee-bad3-a04b6050ef5c" class="column-list"><div id="a0183f2e-f62c-4e82-9b92-5debb51d0e56" style="width:50%" class="column"><figure id="f17e493f-920d-4b43-a523-4e0c6a2f384f"><a href="https://archive.nytimes.com/www.nytimes.com/interactive/2012/10/02/us/politics/what-romney-and-obamas-body-language-says-to-voters.html" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">What Romney and Obama&#x27;s Body Language Says to Voters</div><div class="bookmark-description">After the first televised presidential debate, held between John F. Kennedy and Richard M. Nixon 52 years ago, campaigns have been acutely aware that voters may judge candidates in such encounters as much by their appearance and gestures as by their words.</div></div><div class="bookmark-href"><img src="https://archive.nytimes.com/favicon.ico" class="icon bookmark-icon"/>https://archive.nytimes.com/www.nytimes.com/interactive/2012/10/02/us/politics/what-romney-and-obamas-body-language-says-to-voters.html</div></div><img src="https://static01.nyt.com/images/2012/10/02/us/politics/body-language-promo-190.png" class="bookmark-image"/></a></figure><figure id="e07bab2f-8f60-4b6c-92f3-06b6295ee6e2" class="image"><a href="(Shared)%20WebStorytelling%209bef834d1178407f9c56d68f48f0c960/Untitled%208.png"><img style="width:1140px" src="(Shared)%20WebStorytelling%209bef834d1178407f9c56d68f48f0c960/Untitled%208.png"/></a></figure><figure id="b686a8c6-089d-4d30-b02a-fff587a68cef"><div class="source"><a href="https://static01.nyt.com/packages/video/newsgraphics/2012/1002-mocap/obama_gestures.mp4">https://static01.nyt.com/packages/video/newsgraphics/2012/1002-mocap/obama_gestures.mp4</a></div></figure><figure id="1c88c6e1-0688-43b5-b127-405d975d58cc" class="image"><a href="(Shared)%20WebStorytelling%209bef834d1178407f9c56d68f48f0c960/Untitled%209.png"><img style="width:1204px" src="(Shared)%20WebStorytelling%209bef834d1178407f9c56d68f48f0c960/Untitled%209.png"/></a></figure></div><div id="27bb3375-7181-4f14-934d-92cbffb8a8c8" style="width:50%" class="column"><figure id="177ec352-1602-47ed-b407-277734b9667f"><a href="http://archive.nytimes.com/www.nytimes.com/interactive/2012/08/05/sports/olympics/the-100-meter-dash-one-race-every-medalist-ever.html" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">One Race, Every Medalist Ever</div><div class="bookmark-description">Usain Bolt vs. 116 years of Olympic sprinters Based on the athletes&#x27; average speeds, if every Olympic medalist raced each other, Usain Bolt (the London version) would win, with a wide distribution of Olympians behind him. Below, where each sprinter would be when Bolt finishes his race.</div></div><div class="bookmark-href"><img src="http://archive.nytimes.com/favicon.ico" class="icon bookmark-icon"/>http://archive.nytimes.com/www.nytimes.com/interactive/2012/08/05/sports/olympics/the-100-meter-dash-one-race-every-medalist-ever.html</div></div><img src="https://static01.nyt.com/images/2012/08/06/sports/olympics/06sprint-interactive/06sprint-interactive-thumbStandard.jpg" class="bookmark-image"/></a></figure><figure id="cf183793-c6f6-40cf-aa63-50713c1c4e3e" class="image"><a href="(Shared)%20WebStorytelling%209bef834d1178407f9c56d68f48f0c960/Untitled%2010.png"><img style="width:988px" src="(Shared)%20WebStorytelling%209bef834d1178407f9c56d68f48f0c960/Untitled%2010.png"/></a></figure></div></div><h3 id="887e734b-7714-4032-bca5-b27d38dd0d09" class="block-color-blue_background">V<strong>ideo-centered web storytelling</strong></h3><div id="b5058e5c-7031-4ce0-9923-b9e94e4a1491" class="column-list"><div id="eea9330e-38bb-432c-b5c3-b161ed47e67c" style="width:50%" class="column"><figure id="d05e1efe-5ee0-4767-a325-78ea8ecac7a8"><a href="https://www.washingtonpost.com/graphics/world/border-barriers/us-mexico-border-crossing/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Concrete divisions: A new age of walls</div><div class="bookmark-description">This browser is not fully supported. Please update for the best experience. Scroll down to continue. Presentation includes sound. A debate over extending the wall on the U.S.-Mexico border has been a noisy centerpiece of this year&#x27;s presidential election.</div></div><div class="bookmark-href"><img src="https://img.washingtonpost.com/favicon.ico" class="icon bookmark-icon"/>https://www.washingtonpost.com/graphics/world/border-barriers/us-mexico-border-crossing/</div></div><img src="https://www.washingtonpost.com/graphics/world/border-barriers/us-mexico-border-crossing/img/promo03-bw.jpg" class="bookmark-image"/></a></figure><p id="a27c0829-1748-4511-9954-6f7e7872a8e1" class="">使用網頁作為主要平台（前者的主要平台為影像），但內容呈現主要以影像為核心而非文字。使用Scrolling來同步文字和影像，但卻沒有要求讀者必須把每一片影片看完。</p><p id="1f621702-4c1f-4641-af16-fa2df8f562c9" class="">受內容影響的數位敘事（video first）。大量影片的快剪，每段文字都很簡短，但背後影片時間顯然比文字捲動的長度要長。如果想要知道背後發生什麼事情，就必須要駐足欣賞。</p></div><div id="97b9afcd-00b5-4aa2-b07e-69d112e093a0" style="width:50%" class="column"><figure id="2e163fc4-1070-4903-a6cf-cdfa233fecd0"><div class="source"><a href="https://d21rhj7n383afu.cloudfront.net/washpost-production/TWP/20161001/57efe827e4b0bc3a464cd99a/57fb002be4b037a240c7b2ab_1439399835595-cf9g26_t_1476067411708_1280_720_2000.mp4">https://d21rhj7n383afu.cloudfront.net/washpost-production/TWP/20161001/57efe827e4b0bc3a464cd99a/57fb002be4b037a240c7b2ab_1439399835595-cf9g26_t_1476067411708_1280_720_2000.mp4</a></div></figure></div></div><p id="e1943807-54a9-4b05-a37e-8b5e4aa3c60d" class="">
+</p><h3 id="35c147ae-2c6a-4f6c-9b8a-c62155f826fa" class="block-color-blue_background"><strong>Why short video? </strong></h3><p id="4d2f6660-ca30-4974-8af8-8727606fc361" class="">Compared with long video, why short-video？<a href="https://www.nytimes.com/interactive/2015/04/19/arts/artsspecial/new-whitney-museum.html">A New Whitney</a> (nyitmes, 2015-04-19) </p><figure id="3d6533c2-d8a4-4bfe-a8dd-3b86db288e40"><a href="https://www.nytimes.com/interactive/2015/04/19/arts/artsspecial/new-whitney-museum.html" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">A New Whitney (Published 2015)</div><div class="bookmark-description">Produced by Jeremy Ashkenas and Alicia DeSantis Graphics by Mika Gröndahl, Yuliya Parshina-Kottas and Graham Roberts From the west, along the Hudson River, it looks ungainly and a little odd, vaguely nautical, bulging where the shoreline jogs, a ship on blocks perhaps, alluding to one of New York&#x27;s bedrock industries from long ago.</div></div><div class="bookmark-href"><img src="https://www.nytimes.com/vi-assets/static-assets/favicon-d2483f10ef688e6f89e23806b9700298.ico" class="icon bookmark-icon"/>https://www.nytimes.com/interactive/2015/04/19/arts/artsspecial/new-whitney-museum.html</div></div><img src="https://static01.nyt.com/images/2015/04/19/arts/artsspecial/new-whitney-museum-1429305877154/new-whitney-museum-1429305877154-facebookJumbo-v4.jpg?year=2015&amp;h=549&amp;w=1050&amp;s=95440aa6adee6c210e30b57c4e244818bdaf9aa05c0ca4bc610dd2e12a659901&amp;k=ZQJBKqZ0VN" class="bookmark-image"/></a></figure><div id="d2b43675-aa2f-41c2-8bf8-e927d551f22e" class="column-list"><div id="f3125279-7aa3-466e-88e8-d81add18bf7d" style="width:50%" class="column"><figure id="839bbd73-a266-4b8b-b62a-d6bb9e73bfa4"><div class="source"><a href="https://static01.nyt.com/newsgraphics/2015/03/20/whitney-sketch/assets/videos/location.mp4">https://static01.nyt.com/newsgraphics/2015/03/20/whitney-sketch/assets/videos/location.mp4</a></div></figure></div><div id="cf490716-d6d9-4711-9dd9-3323469d6133" style="width:50%" class="column"><figure id="4493f885-4a22-4eb3-9fba-27a4b5e50b89"><div class="source"><a href="https://www.notion.so/084012ac42e249e6999c784ee304e67d">https://s3-us-west-2.amazonaws.com/secure.notion-static.com/084012ac-42e2-49e6-999c-784ee304e67d/5thfloor.mp4</a></div></figure></div></div><h3 id="7adb846d-9f5c-454a-97d2-2881a5f42237" class="block-color-blue_background"><strong>Wh not video? </strong></h3><div id="ce113383-2205-4833-8678-ee1f5997904f" class="column-list"><div id="bb698347-4224-47af-9696-fe3a9dad7951" style="width:50%" class="column"><figure id="160efa40-58e1-47df-8796-1835f7b3a92f"><a href="https://www.sbs.com.au/theboat/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">The Boat | SBS</div><div class="bookmark-description">&#x27;The Boat&#x27;, an interactive graphic novel about escape after the Vietnam War. Based on the story by Nam Le, adapted by Matt Huynh.​</div></div><div class="bookmark-href"><img src="https://www.sbs.com.au/theboat/favicon.ico" class="icon bookmark-icon"/>https://www.sbs.com.au/theboat/</div></div><img src="http://www.sbs.com.au/theboat/images/fb-image.jpg" class="bookmark-image"/></a></figure><figure id="106152b4-7b5b-47a7-ac7c-41866e27ea82" class="image"><a href="(Shared)%20WebStorytelling%209bef834d1178407f9c56d68f48f0c960/Untitled%2011.png"><img style="width:1265px" src="(Shared)%20WebStorytelling%209bef834d1178407f9c56d68f48f0c960/Untitled%2011.png"/></a></figure><figure id="2a6571a9-6f7b-493e-9f75-13e12131548d"><div class="source"><a href="https://www.notion.so/1822a77bd0e6464e98d86d5be407a2ff">https://www.loom.com/share/1822a77bd0e6464e98d86d5be407a2ff</a></div></figure></div><div id="cce22ef4-28f0-4a64-92c9-fd340e04551d" style="width:50%" class="column"><p id="54f648bc-6138-4fd0-9a58-ea26f9d72750" class="">如果將「<a href="https://web.cw.com.tw/tra-train-crash/index.html">天下：不能遺忘的49條生命</a>」改為Video來呈現，該如何呈現？</p><figure id="79320056-2460-4db8-a598-07b53aa45db1"><div class="source"><a href="https://www.notion.so/1a2f1af9b79d43eba9cf9d4b165ad0f6">https://s3-us-west-2.amazonaws.com/secure.notion-static.com/1a2f1af9-b79d-43eb-a9cf-9d4b165ad0f6/train_animation.mp4</a></div></figure><p id="473cd033-7eee-4d88-a60a-072eceea4faa" class="">如果將「窩窩：餵養錯了嗎？<a href="https://feed.wuo-wuo.com/">https://feed.wuo-wuo.com/</a>」改為動畫，那會是什麼樣的情形？</p><figure id="fcf43603-af9e-4a56-9de3-c2fdeb36c506"><div class="source"><a href="https://www.notion.so/febb1d34b0b242dea792d3b5348e4552">https://www.loom.com/share/febb1d34b0b242dea792d3b5348e4552?sharedAppSource=personal_library</a></div></figure></div></div><h1 id="ac5176e4-2cc3-44ff-b0a7-ca9ee6898eaa" class="block-color-blue_background">Research methods on web storytelling</h1><ul id="8661f26f-b0e8-47d6-b34b-c77e5774700b" class="bulleted-list"><li style="list-style-type:disc">Measured by physiological meters and tools</li></ul><ul id="3564da41-c5ee-4f7d-82af-d3e583feaa71" class="bulleted-list"><li style="list-style-type:disc">Designed, reviewed and evaluated by service design tools</li></ul><div id="870665c1-5621-438f-8205-e9b3f8963784" class="column-list"><div id="c54579b6-fa22-4936-a473-b6e40ab69f63" style="width:50%" class="column"><figure id="0b021eab-e0e2-4030-8617-dd27b00542ea" class="image"><a href="(Shared)%20WebStorytelling%209bef834d1178407f9c56d68f48f0c960/Untitled%2012.png"><img style="width:1664px" src="(Shared)%20WebStorytelling%209bef834d1178407f9c56d68f48f0c960/Untitled%2012.png"/></a></figure></div><div id="9e9e013e-c32a-4794-87e3-9d3e7520b90d" style="width:50%" class="column"><figure id="2fb3e9c4-8776-4c86-8ec6-871c267c6f78" class="image"><a href="(Shared)%20WebStorytelling%209bef834d1178407f9c56d68f48f0c960/Untitled%2013.png"><img style="width:1202px" src="(Shared)%20WebStorytelling%209bef834d1178407f9c56d68f48f0c960/Untitled%2013.png"/></a></figure></div></div><div id="48c087cf-dcec-4158-8c2d-836eda491571" class="column-list"><div id="7a94db38-f980-4f57-94ed-00e3ae2cfe2f" style="width:50%" class="column"><figure id="8f2076cb-0a9a-4785-ab11-3f47681a6c1a" class="image"><a href="(Shared)%20WebStorytelling%209bef834d1178407f9c56d68f48f0c960/Untitled%2014.png"><img style="width:1282px" src="(Shared)%20WebStorytelling%209bef834d1178407f9c56d68f48f0c960/Untitled%2014.png"/></a></figure></div><div id="97a20e6d-00f8-4b6c-9ac5-90a10a818e19" style="width:50%" class="column"><figure id="598db614-0c29-407a-be77-2aa8b2a81f67" class="image"><a href="(Shared)%20WebStorytelling%209bef834d1178407f9c56d68f48f0c960/Untitled%2015.png"><img style="width:1096px" src="(Shared)%20WebStorytelling%209bef834d1178407f9c56d68f48f0c960/Untitled%2015.png"/></a></figure></div></div><h1 id="2a9993b3-c622-4817-a1b6-ea51f4eb4b6b" class="block-color-blue_background"><strong>Connecting storytelling to library science</strong></h1><div id="7b36115d-b3c5-4ef5-b027-3b875f1aa592" class="column-list"><div id="eee50b60-feac-4266-a68f-fa0a63dc9a4e" style="width:50%" class="column"><figure class="block-color-blue_background callout" style="white-space:pre-wrap;display:flex" id="a1978554-80f5-4c03-aa77-ed6c2718378b"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><strong>What is web storytelling for news? </strong></div></figure><h3 id="31a40e30-d1bd-4343-aa0c-5f1a5ae702b6" class="block-color-blue_background">NOT <strong>Information architecture </strong></h3><p id="46e03659-fb53-477b-bc71-0669307f25e4" class="block-color-blue_background"><strong>NOT Information visualization</strong>: Understanding the fact inside data</p><p id="71c58580-618a-468b-8389-95e738939bb5" class="block-color-blue_background"><strong>NOT Infographics</strong>: using illustration to tell story behind events or data</p><figure id="cc558147-8015-456a-b23b-10a35860e906" class="image"><a href="(Shared)%20WebStorytelling%209bef834d1178407f9c56d68f48f0c960/Untitled%2016.png"><img style="width:1200px" src="(Shared)%20WebStorytelling%209bef834d1178407f9c56d68f48f0c960/Untitled%2016.png"/></a></figure><figure id="87adb3fa-e80a-43c1-811b-336f3c5027f2" class="image"><a href="(Shared)%20WebStorytelling%209bef834d1178407f9c56d68f48f0c960/Untitled%2017.png"><img style="width:1239px" src="(Shared)%20WebStorytelling%209bef834d1178407f9c56d68f48f0c960/Untitled%2017.png"/></a></figure></div><div id="cf7c6095-b4b2-4071-a45d-0176b2105de6" style="width:50%" class="column"><h3 id="76622bc2-de64-4f08-8bb2-1b7d9477e7c8" class="block-color-blue_background">More similar to s<strong>ervice design  and Curating</strong></h3><blockquote id="d9f5d196-5fe2-457f-902b-22c2b7020425" class="">WU, Yue (2017) &quot;It&#x27;s My Library&quot;: An Immersive, Empathic and Collaborative Approach to Online Storytelling Design. Paper presented at: IFLA WLIC 2017 – Wrocław, Poland – Libraries. Solidarity. Society. in Session 207 - Library Buildings and Equipment with Management and Marketing. <a href="http://library.ifla.org/id/eprint/1755/">http://library.ifla.org/id/eprint/1755/</a></blockquote><figure id="27c84e5b-bcbb-4e07-93b8-6f23efcb9ed3" class="image"><a href="(Shared)%20WebStorytelling%209bef834d1178407f9c56d68f48f0c960/Untitled%2018.png"><img style="width:700px" src="(Shared)%20WebStorytelling%209bef834d1178407f9c56d68f48f0c960/Untitled%2018.png"/></a><figcaption><a href="https://medium.com/ditl/%E5%89%B5%E6%96%B0%E6%9C%8D%E5%8B%99%E9%AB%94%E9%A9%97%E6%8F%90%E6%A1%88-%E8%B7%AF%E6%98%93%E8%8E%8E%E5%92%96%E5%95%A1%E5%A6%82%E4%BD%95%E8%83%BD%E5%89%B5%E9%80%A0%E6%9C%89%E5%B9%B8%E7%A6%8F%E6%84%9F%E7%9A%84%E6%9C%8D%E5%8B%99%E9%AB%94%E9%A9%97-975d2e590d59">https://medium.com/ditl/創新服務體驗提案-路易莎咖啡如何能創造有幸福感的服務體驗-975d2e590d59</a></figcaption></figure><figure id="cc113066-a86b-4d96-af39-8d83f631ed57"><a href="https://www.inside.com.tw/article/16649-say-hello-to-journey-maps" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">【Martech導航】忘記行銷漏斗吧！如何設計「顧客旅程地圖」成為潛在顧客的最佳指南</div><div class="bookmark-description">在不久之前，行銷和銷售人員仍廣泛地使用行銷漏斗 (Funnel)，來瞭解行銷如何運作：潛在顧客進入漏斗頂端，最後轉化成交易。透過最大化漏斗頂端的數量，並降低流失率，企業就能增加實際的成交或轉換數。 接著，我們迎接了大數據熱潮。雖然漏斗仍然具有作為內容策略工具的價值，但現在行銷人員對顧客旅程 (Customer Journey) ...</div></div><div class="bookmark-href"><img src="https://www.inside.com.tw/favicon.ico" class="icon bookmark-icon"/>https://www.inside.com.tw/article/16649-say-hello-to-journey-maps</div></div><img src="https://inside-assets1.inside.com.tw/2019/6/5qlkaalkdr3u2y6xwr6jsprfl5ffzy.jpg?w=1200&amp;h=630&amp;fit=crop&amp;q=80" class="bookmark-image"/></a></figure><figure id="eb2ee42d-f5c1-4844-ad6a-a650f58f610a" class="image"><a href="(Shared)%20WebStorytelling%209bef834d1178407f9c56d68f48f0c960/Untitled%2019.png"><img style="width:730px" src="(Shared)%20WebStorytelling%209bef834d1178407f9c56d68f48f0c960/Untitled%2019.png"/></a></figure><figure id="4a3eecb9-c819-4b82-8c40-37eda5c943b8" class="image"><a href="(Shared)%20WebStorytelling%209bef834d1178407f9c56d68f48f0c960/Untitled%2020.png"><img style="width:2000px" src="(Shared)%20WebStorytelling%209bef834d1178407f9c56d68f48f0c960/Untitled%2020.png"/></a></figure><h3 id="23053ed3-e744-40ce-a1ce-fd60b13ee567" class="block-color-blue_background">Curating </h3><figure id="6d2c51e6-e2d5-4cbb-81a6-3ab271186622"><a href="https://www.theaudienceagency.org/services/visitor-journey-mapping" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Visitor Journey Mapping</div><div class="bookmark-description">When responsibilities are divided across an organisation and your offer develops in different ways over time, a visitor&#x27;s experience can become fragmented. It&#x27;s easy to lose sight of how patrons experience organisations holistically, across each touchpoint - from content and curation to parking and loos.</div></div><div class="bookmark-href"><img src="https://www.theaudienceagency.org/vendor/boomcms/themes/taa/favicon.ico" class="icon bookmark-icon"/>https://www.theaudienceagency.org/services/visitor-journey-mapping</div></div><img src="https://www.theaudienceagency.org/asset/1881/view/200?1567180808" class="bookmark-image"/></a></figure><figure id="016e3283-0fa5-4c9a-ac98-3ed642351a18" class="image"><a href="(Shared)%20WebStorytelling%209bef834d1178407f9c56d68f48f0c960/Untitled%2021.png"><img style="width:1162px" src="(Shared)%20WebStorytelling%209bef834d1178407f9c56d68f48f0c960/Untitled%2021.png"/></a></figure></div></div></div></article></body></html>
