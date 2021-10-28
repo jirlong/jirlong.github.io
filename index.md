@@ -1,8 +1,9 @@
 # 2021-Oct
 - [2021-11-01 NTNU Web Story Telling](WebStorytelling.html)
+- 
 # 2021-May
 - [2021-05-03 UFOY3](https://docs.google.com/presentation/d/e/2PACX-1vQXlMTwqaNRXJR9iqoJTlgw4igVmpETBzqL3CZDjOClpzMnxwjhwdXpANH6Sc05AqGfX0s1Img2zBRS/pub?start=false&loop=false&delayms=3000)
-- 
+
 # 2021-March
 * [2021-03-10 MoBagel sharing v2](https://docs.google.com/presentation/d/e/2PACX-1vQ4bpAtZ9KPs6rKay4YziGopW6woGa9PaSftnskti8ZsAmpxj3GFTJIOHKR1VBinQ1802DAGDX2V5S5/pub?start=false&loop=false&delayms=3000)
 
