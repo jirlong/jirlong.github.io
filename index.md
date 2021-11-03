@@ -1,6 +1,8 @@
-# 2021-Oct
+# 2021-Nov
+- [2021-11-03 UFO TALK](https://docs.google.com/presentation/d/e/2PACX-1vT6cABrtYAqHtN6dkMYYvworaC7vb-y9Nu5s49DYiFSxC1KYkW0GW5OO0xLmtPrBcZzaI_PdIjJFNeX/pub?start=false&loop=false&delayms=3000)
+- [2021-11-03 UFO Y2->Y3 Cross](https://docs.google.com/presentation/d/e/2PACX-1vR7nQ49Rid5plO4FTAnzGITdzGs6EfYKrR2Ye7aZVXlb-q5xq1cQzYglqzmGcXP0KD0tqXxyEj1rphe/pub?start=false&loop=false&delayms=3000)
 - [2021-11-01 NTNU Web Story Telling](WebStorytelling.html)
-- 
+
 # 2021-May
 - [2021-05-03 UFOY3](https://docs.google.com/presentation/d/e/2PACX-1vQXlMTwqaNRXJR9iqoJTlgw4igVmpETBzqL3CZDjOClpzMnxwjhwdXpANH6Sc05AqGfX0s1Img2zBRS/pub?start=false&loop=false&delayms=3000)
 
