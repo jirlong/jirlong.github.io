@@ -1,3 +1,6 @@
+# 2021-Dec
+- [2021-12-03 LegalTech](https://docs.google.com/presentation/d/1GjjTw6mEuT25ANKNQR1kOwWZoh4xpUe9xMfKbV_WASg/edit?usp=sharing)
+
 # 2021-Nov
 - [2021-11-03 UFO TALK](https://docs.google.com/presentation/d/e/2PACX-1vT6cABrtYAqHtN6dkMYYvworaC7vb-y9Nu5s49DYiFSxC1KYkW0GW5OO0xLmtPrBcZzaI_PdIjJFNeX/pub?start=false&loop=false&delayms=3000)
 - [2021-11-03 UFO Y2->Y3 Cross](https://docs.google.com/presentation/d/e/2PACX-1vR7nQ49Rid5plO4FTAnzGITdzGs6EfYKrR2Ye7aZVXlb-q5xq1cQzYglqzmGcXP0KD0tqXxyEj1rphe/pub?start=false&loop=false&delayms=3000)
