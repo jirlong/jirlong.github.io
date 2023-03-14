@@ -1,8 +1,9 @@
+# 2023
+- [2023-03-15 Text Mining in Political Science](https://docs.google.com/presentation/d/1X8JWQZA1qtxesCaQqT15ZOK1ZWZlVaFAdl-zQdZ69Ks/edit?usp=sharing)
+
 # 2022
 - [2022-07-27 UFOY3 Final](https://docs.google.com/presentation/d/e/2PACX-1vSgZgSUGBsUxQ_SsasUV1wvdF9Oxe5t8gDNjbSV33PAHfUQH6RoRFLMdeHvDA8UFRzywToB43OcGrm4/pub?start=false&loop=false&delayms=3000)
 - [2022-03-16 領域專長](https://docs.google.com/presentation/d/1lO80VwBFuNRKoIC9gX1t-sZOGI9n735cgvq5o5IU1_I/edit?usp=sharing)
-
-# 2021
 - [2021-12-03 LegalTech](https://docs.google.com/presentation/d/1GjjTw6mEuT25ANKNQR1kOwWZoh4xpUe9xMfKbV_WASg/edit?usp=sharing)
 - [2021-11-03 UFO TALK](https://docs.google.com/presentation/d/e/2PACX-1vT6cABrtYAqHtN6dkMYYvworaC7vb-y9Nu5s49DYiFSxC1KYkW0GW5OO0xLmtPrBcZzaI_PdIjJFNeX/pub?start=false&loop=false&delayms=3000)
 - [2021-11-03 UFO Y2->Y3 Cross](https://docs.google.com/presentation/d/e/2PACX-1vR7nQ49Rid5plO4FTAnzGITdzGs6EfYKrR2Ye7aZVXlb-q5xq1cQzYglqzmGcXP0KD0tqXxyEj1rphe/pub?start=false&loop=false&delayms=3000)
@@ -12,9 +13,6 @@
 * [2021-01-20 UFO Workshop @Tainan](https://docs.google.com/presentation/d/e/2PACX-1vQJUST2u3lZrPzhwljUuvf-tRlEPbiqchfd05jFCaSyCKy1E5OaOJXFU0ldD2XZ0REW9UQ4nUVLkPP6/pub?start=false&loop=false&delayms=3000)
 * [2021-01-05 NTNU LIS: Disinformation](https://docs.google.com/presentation/d/e/2PACX-1vT2OpWkTOwn56oGSgnk7zpWETzpGF-juk00RaG9faUJ72-d99fwY3b3dhpp1GCauKQmQjpwY5BiriMO/pub?start=false&loop=false&delayms=3000)
 * [2021-01 領域專長](https://docs.google.com/presentation/d/e/2PACX-1vQRM3kS_NA5hryWTHdDDbTehTOkC5pO8P_BwQSxcRS3ILrRFIqtLGlIzOaSaYq8NQKE1YndWI0-5jV1/pub?start=false&loop=false&delayms=3000)
-
-# 2020
-
 * [2020-12-22 UFO Visits](https://docs.google.com/presentation/d/e/2PACX-1vQJUST2u3lZrPzhwljUuvf-tRlEPbiqchfd05jFCaSyCKy1E5OaOJXFU0ldD2XZ0REW9UQ4nUVLkPP6/pub?start=false&loop=false&delayms=3000)
 * [2020-12-13 Legal judgement corpus and Regular expression]
 * [2020-10-23 FHK: Social Science x Data Science](https://docs.google.com/presentation/d/e/2PACX-1vTU21cemjIbU_piJ6CVMFNnDcZG9MbDTgS2KpmhNVaUD1Yhus-NYSliqzjN4PDS2fVFaw59ch9m_FVg/pub?start=false&loop=false&delayms=3000)
