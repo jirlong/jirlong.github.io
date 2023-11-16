@@ -1,4 +1,5 @@
 # 2023
+- [2023-11-07] ["You're fake news" as a social discourse](https://docs.google.com/presentation/d/1FhxgcXmuwv7gwQ58zQ6oBqGIt7RxoHoA3qqUZDsULAM/edit?usp=sharing)
 - [2023-03-15 Text Mining in Political Science](https://docs.google.com/presentation/d/1X8JWQZA1qtxesCaQqT15ZOK1ZWZlVaFAdl-zQdZ69Ks/edit?usp=sharing)
 
 # 2022
