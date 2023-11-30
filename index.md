@@ -1,4 +1,8 @@
 # 2023
+- [2023-12-01 David](https://docs.google.com/presentation/d/1fFiz8XIlpiIWBDUQu9_x-nQevLgVI5m09GB7yU43Gm8/edit#slide=id.g29c643a1ac1_0_2)
+- [2023-12-01 HHHuang]()
+- [2023-12-01 Ko](https://docs.google.com/presentation/d/1abzCJudPDA4AkldQPYHG2mMEG-jlpn-zwJ6j0ENHMo8/edit?usp=sharing)
+- [2023-12-01 Hsieh](https://docs.google.com/presentation/d/1yPR6aZiBAYHc8xOh-eGMtBDTnp5huJlY5Aw-I1Ktmr8/edit?usp=sharing)
 - [2023-11-07] ["You're fake news" as a social discourse](https://docs.google.com/presentation/d/1FhxgcXmuwv7gwQ58zQ6oBqGIt7RxoHoA3qqUZDsULAM/edit?usp=sharing)
 - [2023-03-15 Text Mining in Political Science](https://docs.google.com/presentation/d/1X8JWQZA1qtxesCaQqT15ZOK1ZWZlVaFAdl-zQdZ69Ks/edit?usp=sharing)
 
