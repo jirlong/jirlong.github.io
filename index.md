@@ -5,6 +5,7 @@
 - [2023-12-01 Hsieh](https://docs.google.com/presentation/d/1yPR6aZiBAYHc8xOh-eGMtBDTnp5huJlY5Aw-I1Ktmr8/edit?usp=sharing)
 
 # 2023
+- [2023-12-21 poscast?!](https://docs.google.com/presentation/d/e/2PACX-1vQcEqPI6J_5zjg-w6CGPEdX9Iu2_rwiwfGSAHDV-XBpSTsGGRX2ORv5XWJvxmxwI1OQnYCKbSNle74V/pub?start=false&loop=false&delayms=3000)
 - [2023-12-07 Curriculum designs](https://docs.google.com/presentation/d/1Iuo-FbV2Zy9DXQuAri3rNpwdgjKD6dGFAxLfx72YTA0/edit?usp=sharing)
 - [2023-11-07] ["You're fake news" as a social discourse](https://docs.google.com/presentation/d/1FhxgcXmuwv7gwQ58zQ6oBqGIt7RxoHoA3qqUZDsULAM/edit?usp=sharing)
 - [2023-03-15 Text Mining in Political Science](https://docs.google.com/presentation/d/1X8JWQZA1qtxesCaQqT15ZOK1ZWZlVaFAdl-zQdZ69Ks/edit?usp=sharing)
