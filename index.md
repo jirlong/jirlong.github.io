@@ -1,5 +1,6 @@
 # 2024
 - [SMOA112-syllabus](https://docs.google.com/document/d/1lo769gan9enHsRPy-K1_zIvDU9eD0KItgqg-_KQNpXM/edit?usp=sharing)
+
 # 2023-12-01 AI and Social Resilience Forum 
 - [2023-12-01 David](https://docs.google.com/presentation/d/1fFiz8XIlpiIWBDUQu9_x-nQevLgVI5m09GB7yU43Gm8/edit?usp=sharing)
 - [2023-12-01 HHHuang](https://docs.google.com/presentation/d/1xcmCZ18btRcfFPJ_BUgHJbmQk1wUcAEEHrO0cDbXy3A/edit?usp=sharing)
