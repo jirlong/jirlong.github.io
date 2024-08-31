@@ -1,17 +1,19 @@
 # 2024
+- [NTUJOUR to M1 0901](https://docs.google.com/presentation/d/1fWg-X1qFkM6TM32KTVh4seqBosn2NJFigeSpHC-JVjI/pub?start=false&loop=false&delayms=3000)
 - [MOE Final Report 0827](https://docs.google.com/presentation/d/1YFt0Lh080Mf_w0YMg1POzWbsqKoeHbMsZvcOfx6DH9A/edit?usp=sharing)
 - [Youth Representation 0616](https://docs.google.com/presentation/d/1H2HCB07gZ9eOmrQsQ5dnYi4-pgtzn86mXjJKIY5BK_4/edit?usp=sharing)
 - [NTU Journalism 0603](https://docs.google.com/presentation/d/1FK2Q71AO9DiQeXe3bcqEJHxFfkgNiSuQDkXdDIOXH20/edit?usp=sharing)
 - [Netizen](https://docs.google.com/presentation/d/1E-dg2aSJU_1E9Sd3o8nK5c4K_vPNyWDfpfZ9aKNfdU4/edit?usp=sharing)
 - [Web113-syllabus](https://docs.google.com/document/d/15Wbha4cWBWXKrfmkw2Lpkl5lebcuU2MPR83m9HU2ynY/edit?usp=sharing)
 
-# 2023-12-01 AI and Social Resilience Forum 
-- [2023-12-01 David](https://docs.google.com/presentation/d/1fFiz8XIlpiIWBDUQu9_x-nQevLgVI5m09GB7yU43Gm8/edit?usp=sharing)
-- [2023-12-01 HHHuang](https://docs.google.com/presentation/d/1xcmCZ18btRcfFPJ_BUgHJbmQk1wUcAEEHrO0cDbXy3A/edit?usp=sharing)
-- [2023-12-01 Ko](https://docs.google.com/presentation/d/1abzCJudPDA4AkldQPYHG2mMEG-jlpn-zwJ6j0ENHMo8/edit?usp=sharing)
-- [2023-12-01 Hsieh](https://docs.google.com/presentation/d/1yPR6aZiBAYHc8xOh-eGMtBDTnp5huJlY5Aw-I1Ktmr8/edit?usp=sharing)
+# 2023-12-01 
 
 # 2023
+- AI and Social Resilience Forum
+  - [2023-12-01 David](https://docs.google.com/presentation/d/1fFiz8XIlpiIWBDUQu9_x-nQevLgVI5m09GB7yU43Gm8/edit?usp=sharing)
+  - [2023-12-01 HHHuang](https://docs.google.com/presentation/d/1xcmCZ18btRcfFPJ_BUgHJbmQk1wUcAEEHrO0cDbXy3A/edit?usp=sharing)
+  - [2023-12-01 Ko](https://docs.google.com/presentation/d/1abzCJudPDA4AkldQPYHG2mMEG-jlpn-zwJ6j0ENHMo8/edit?usp=sharing)
+  - [2023-12-01 Hsieh](https://docs.google.com/presentation/d/1yPR6aZiBAYHc8xOh-eGMtBDTnp5huJlY5Aw-I1Ktmr8/edit?usp=sharing)
 - [2023-12-21 poscast?!](https://docs.google.com/presentation/d/e/2PACX-1vQcEqPI6J_5zjg-w6CGPEdX9Iu2_rwiwfGSAHDV-XBpSTsGGRX2ORv5XWJvxmxwI1OQnYCKbSNle74V/pub?start=false&loop=false&delayms=3000)
 - [2023-12-07 Curriculum designs](https://docs.google.com/presentation/d/1Iuo-FbV2Zy9DXQuAri3rNpwdgjKD6dGFAxLfx72YTA0/edit?usp=sharing)
 - [2023-11-07] ["You're fake news" as a social discourse](https://docs.google.com/presentation/d/1FhxgcXmuwv7gwQ58zQ6oBqGIt7RxoHoA3qqUZDsULAM/edit?usp=sharing)
