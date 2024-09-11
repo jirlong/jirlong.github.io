@@ -1,6 +1,4 @@
 # 2024
-- [NTU JOUR OFFICE 0904](https://docs.google.com/presentation/d/1FK2Q71AO9DiQeXe3bcqEJHxFfkgNiSuQDkXdDIOXH20/edit?usp=sharing)
-- [NTUJOUR to M1 0901](https://docs.google.com/presentation/d/1fWg-X1qFkM6TM32KTVh4seqBosn2NJFigeSpHC-JVjI/pub?start=false&loop=false&delayms=3000)
 - [MOE Final Report 0827](https://docs.google.com/presentation/d/1YFt0Lh080Mf_w0YMg1POzWbsqKoeHbMsZvcOfx6DH9A/edit?usp=sharing)
 - [Youth Representation 0616](https://docs.google.com/presentation/d/1H2HCB07gZ9eOmrQsQ5dnYi4-pgtzn86mXjJKIY5BK_4/edit?usp=sharing)
 - [NTU Journalism 0603](https://docs.google.com/presentation/d/1FK2Q71AO9DiQeXe3bcqEJHxFfkgNiSuQDkXdDIOXH20/edit?usp=sharing)
