@@ -1,1 +1,2 @@
 - [NTUJOUR 0912](https://docs.google.com/presentation/d/1FK2Q71AO9DiQeXe3bcqEJHxFfkgNiSuQDkXdDIOXH20/edit?usp=sharing)
+- [新聘會文件0912](https://docs.google.com/document/d/1xz4ulod92Ca88n6SZbxCrgSg4eOp_RXCCc0OyGXFp_I/edit?usp=sharing)
