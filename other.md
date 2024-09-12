@@ -1,0 +1,1 @@
+- [NTUJOUR 0912](https://docs.google.com/presentation/d/1FK2Q71AO9DiQeXe3bcqEJHxFfkgNiSuQDkXdDIOXH20/edit?usp=sharing)
