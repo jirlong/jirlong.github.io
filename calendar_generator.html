@@ -3,20 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>月曆顯示</title>
+    <title>全年月曆顯示</title>
     <style>
-        #calendar table {
+        .calendar-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .month-container {
+            width: 30%;
+            border: 1px solid #ddd;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        .month-container h2 {
+            text-align: center;
+            margin: 0;
+        }
+
+        table {
             width: 100%;
             border-collapse: collapse;
+            margin-top: 10px;
         }
 
-        #calendar th, #calendar td {
+        th, td {
             border: 1px solid #ddd;
             text-align: center;
-            padding: 8px;
+            padding: 5px;
         }
 
-        #calendar th {
+        th {
             background-color: #f2f2f2;
         }
 
@@ -26,19 +45,15 @@
     </style>
 </head>
 <body>
-    <h1>月曆顯示</h1>
+    <h1>全年月曆顯示</h1>
     <label for="year">年份:</label>
     <select id="year"></select>
 
-    <label for="month">月份:</label>
-    <select id="month"></select>
-
-    <div id="calendar"></div>
+    <div id="calendar" class="calendar-container"></div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const yearSelect = document.getElementById('year');
-            const monthSelect = document.getElementById('month');
             const calendarDiv = document.getElementById('calendar');
 
             // 填充年份選單
@@ -50,73 +65,70 @@
                 yearSelect.appendChild(option);
             }
 
-            // 填充月份選單
-            const months = [
-                "1月", "2月", "3月", "4月", "5月", 
-                "6月", "7月", "8月", "9月", "10月", 
-                "11月", "12月"
-            ];
-            months.forEach((month, index) => {
-                const option = document.createElement('option');
-                option.value = index;
-                option.textContent = month;
-                monthSelect.appendChild(option);
-            });
+            // 當年份更改時生成全年月曆
+            yearSelect.addEventListener('change', generateYearlyCalendar);
 
-            // 當年份或月份更改時生成月曆
-            yearSelect.addEventListener('change', generateCalendar);
-            monthSelect.addEventListener('change', generateCalendar);
-
-            function generateCalendar() {
+            function generateYearlyCalendar() {
                 const year = parseInt(yearSelect.value);
-                const month = parseInt(monthSelect.value);
-                if (!year || isNaN(month)) return;
-
-                const firstDay = new Date(year, month, 1).getDay();
-                const daysInMonth = new Date(year, month + 1, 0).getDate();
+                if (!year) return;
 
                 // 清除先前的月曆
                 calendarDiv.innerHTML = '';
 
-                // 建立月曆表格
-                const table = document.createElement('table');
-                const headerRow = document.createElement('tr');
-                const daysOfWeek = ["日", "一", "二", "三", "四", "五", "六"];
-                daysOfWeek.forEach(day => {
-                    const th = document.createElement('th');
-                    th.textContent = day;
-                    headerRow.appendChild(th);
+                const months = [
+                    "1月", "2月", "3月", "4月", "5月", 
+                    "6月", "7月", "8月", "9月", "10月", 
+                    "11月", "12月"
+                ];
+
+                // 為每個月份生成月曆
+                months.forEach((monthName, month) => {
+                    const monthContainer = document.createElement('div');
+                    monthContainer.classList.add('month-container');
+
+                    const monthTitle = document.createElement('h2');
+                    monthTitle.textContent = `${year}年 ${monthName}`;
+                    monthContainer.appendChild(monthTitle);
+
+                    const table = document.createElement('table');
+                    const headerRow = document.createElement('tr');
+                    const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+                    daysOfWeek.forEach(day => {
+                        const th = document.createElement('th');
+                        th.textContent = day;
+                        headerRow.appendChild(th);
+                    });
+                    table.appendChild(headerRow);
+
+                    const firstDay = new Date(year, month, 1).getDay();
+                    const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+                    let row = document.createElement('tr');
+                    for (let i = 0; i < firstDay; i++) {
+                        row.appendChild(document.createElement('td'));
+                    }
+
+                    for (let day = 1; day <= daysInMonth; day++) {
+                        const cell = document.createElement('td');
+                        cell.textContent = day;
+                        if ((firstDay + day - 1) % 7 === 0 || (firstDay + day - 1) % 7 === 6) {
+                            cell.classList.add('weekend');
+                        }
+                        row.appendChild(cell);
+                        if ((firstDay + day) % 7 === 0) {
+                            table.appendChild(row);
+                            row = document.createElement('tr');
+                        }
+                    }
+                    table.appendChild(row);
+                    monthContainer.appendChild(table);
+                    calendarDiv.appendChild(monthContainer);
                 });
-                table.appendChild(headerRow);
-
-                // 填充日期
-                let row = document.createElement('tr');
-                for (let i = 0; i < firstDay; i++) {
-                    row.appendChild(document.createElement('td'));
-                }
-
-                for (let day = 1; day <= daysInMonth; day++) {
-                    const cell = document.createElement('td');
-                    cell.textContent = day;
-                    // 如果是週末，設置淺藍色
-                    if ((firstDay + day - 1) % 7 === 0 || (firstDay + day - 1) % 7 === 6) {
-                        cell.classList.add('weekend');
-                    }
-                    row.appendChild(cell);
-                    if ((firstDay + day) % 7 === 0) {
-                        table.appendChild(row);
-                        row = document.createElement('tr');
-                    }
-                }
-
-                table.appendChild(row);
-                calendarDiv.appendChild(table);
             }
 
-            // 預設為當前月份
+            // 預設為當前年份
             yearSelect.value = currentYear;
-            monthSelect.value = new Date().getMonth();
-            generateCalendar();
+            generateYearlyCalendar();
         });
     </script>
 </body>
