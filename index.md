@@ -3,6 +3,7 @@
 - [Booking jilung](https://calendar.app.google/mpHGC3EpuvnNZ8GAA)
 
 # 2024
+- [Resiliencer Center Sub5 Report 1110](https://docs.google.com/presentation/d/106AEWFyIHRG4Mh-BP2JcE9H34LTEMyNSuknBe-uxnvI/edit?usp=sharing)
 - [MOE Final Report 0827](https://docs.google.com/presentation/d/1YFt0Lh080Mf_w0YMg1POzWbsqKoeHbMsZvcOfx6DH9A/edit?usp=sharing)
 - [Youth Representation 0616](https://docs.google.com/presentation/d/1H2HCB07gZ9eOmrQsQ5dnYi4-pgtzn86mXjJKIY5BK_4/edit?usp=sharing)
 - [NTU Journalism 0603](https://docs.google.com/presentation/d/1FK2Q71AO9DiQeXe3bcqEJHxFfkgNiSuQDkXdDIOXH20/edit?usp=sharing)
