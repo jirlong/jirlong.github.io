@@ -1,3 +1,8 @@
+# NTUJOUR
+- [About NTU Journalism (Slide)](https://docs.google.com/presentation/d/1uPqvLjCajTps5gQQjx6Ck1SF8u7k4RXfLQPUEpjL1C0/edit?usp=sharing)
+- [NTU Journalism for studends (Google sites)](https://sites.google.com/view/ntujour/tour-start)
+- [Pre-release](https://drive.google.com/file/d/1mgd7cc998r2B-Rb1LS_2TI1cwU0I7Dn6/view)
+
 # Tools
 - [Montely Calendar Generator](calendar_generator.html)
 - [Booking jilung](https://calendar.app.google/mpHGC3EpuvnNZ8GAA)
