@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>網絡編輯器</title>
+    <style>
+        /* 之前的 CSS 保持不變 */
+        .container {
+            display: flex;
+            gap: 20px;
+            padding: 20px;
+            min-height: 100vh;
+            background: #f5f5f5;
+        }
+
+        .editor-panel {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .visualization-panel {
+            flex: 2;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        textarea {
+            width: 100%;
+            height: 500px;
+            font-family: monospace;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .error {
+            color: #dc2626;
+            background: #fef2f2;
+            padding: 10px;
+            border-radius: 4px;
+            display: none;
+        }
+
+        .legend {
+            padding: 15px;
+            border-top: 1px solid #eee;
+        }
+
+        .format-info {
+            font-size: 12px;
+            color: #666;
+            margin-top: 10px;
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="editor-panel">
+            <div>
+                <h3>網絡數據 (JSON格式)</h3>
+                <textarea id="networkInput" placeholder="請輸入完整的網絡數據..."></textarea>
+                <div class="format-info">
+                    <strong>數據格式說明：</strong><br>
+                    {<br>
+                    &nbsp;&nbsp;"nodes": [{ "id": "節點名稱", "type": "節點類型" }],<br>
+                    &nbsp;&nbsp;"edges": [{ "source": "來源節點", "target": "目標節點", "weight": 數值 }],<br>
+                    &nbsp;&nbsp;"types": { "類型名稱": { "name": "顯示名稱", "color": "顏色代碼" }}<br>
+                    }
+                </div>
+                <div id="error" class="error"></div>
+            </div>
+        </div>
+        <div class="visualization-panel">
+            <div id="network"></div>
+            <div id="legend" class="legend"></div>
+        </div>
+    </div>
+
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script>
+        // 預設數據 - 移除了 x, y 座標
+        const defaultData = {
+            nodes: [
+                { id: "假訊息", type: "core" },
+                { id: "錯假訊息", type: "core" },
+                { id: "中國", type: "source" },
+                { id: "政府", type: "source" },
+                { id: "平台", type: "source" },
+                { id: "打擊", type: "action" },
+                { id: "防範", type: "action" },
+                { id: "攻擊", type: "threat" }
+            ],
+            edges: [
+                { source: "假訊息", target: "錯假訊息", weight: 5 },
+                { source: "中國", target: "假訊息", weight: 2 },
+                { source: "政府", target: "打擊", weight: 3 },
+                { source: "假訊息", target: "防範", weight: 2 },
+                { source: "中國", target: "攻擊", weight: 2 }
+            ],
+            types: {
+                core: { name: "核心議題", color: "#4A90E2" },
+                source: { name: "來源主體", color: "#F5A623" },
+                action: { name: "行動", color: "#7ED321" },
+                threat: { name: "威脅", color: "#D0021B" }
+            }
+        };
+
+        // 初始化編輯器
+        document.getElementById('networkInput').value = JSON.stringify(defaultData, null, 2);
+
+        // 初始化視覺化
+        const width = document.querySelector('.visualization-panel').clientWidth;
+        const height = 600;
+
+        const svg = d3.select('#network')
+            .append('svg')
+            .attr('width', width)
+            .attr('height', height);
+
+        // 創建力導向模擬
+        let simulation = d3.forceSimulation()
+            .force('link', d3.forceLink().id(d => d.id)
+                .distance(d => 100 / (d.weight || 1))) // 根據權重調整連接距離
+            .force('charge', d3.forceManyBody()
+                .strength(d => d.type === 'core' ? -200 : -100)) // 核心節點有更強的排斥力
+            .force('center', d3.forceCenter(width / 2, height / 2))
+            .force('collision', d3.forceCollide().radius(40)); // 防止節點重疊
+
+        // 更新網絡圖
+        function updateNetwork() {
+            try {
+                const data = JSON.parse(document.getElementById('networkInput').value);
+                const { nodes, edges, types } = data;
+
+                // 清除現有的圖形
+                svg.selectAll('*').remove();
+
+                // 創建箭頭標記
+                svg.append('defs').selectAll('marker')
+                    .data(['end'])
+                    .enter()
+                    .append('marker')
+                    .attr('id', 'arrow')
+                    .attr('viewBox', '0 -5 10 10')
+                    .attr('refX', 20)
+                    .attr('refY', 0)
+                    .attr('markerWidth', 6)
+                    .attr('markerHeight', 6)
+                    .attr('orient', 'auto')
+                    .append('path')
+                    .attr('d', 'M0,-5L10,0L0,5')
+                    .attr('fill', '#999');
+
+                // 創建連接線
+                const link = svg.append('g')
+                    .selectAll('line')
+                    .data(edges)
+                    .enter()
+                    .append('line')
+                    .style('stroke', '#999')
+                    .style('stroke-opacity', 0.6)
+                    .style('stroke-width', d => Math.sqrt(d.weight || 1))
+                    .attr('marker-end', 'url(#arrow)');
+
+                // 創建節點組
+                const node = svg.append('g')
+                    .selectAll('g')
+                    .data(nodes)
+                    .enter()
+                    .append('g')
+                    .call(d3.drag()
+                        .on('start', dragstarted)
+                        .on('drag', dragged)
+                        .on('end', dragended))
+                    .on('mouseover', highlightConnections)
+                    .on('mouseout', resetHighlight);
+
+                // 節點圓圈
+                node.append('circle')
+                    .attr('r', d => d.type === 'core' ? 8 : 6)
+                    .style('fill', d => types[d.type]?.color || '#999')
+                    .style('stroke', '#fff')
+                    .style('stroke-width', 1.5);
+
+                // 節點標籤
+                node.append('text')
+                    .attr('x', 12)
+                    .attr('y', 4)
+                    .text(d => d.id)
+                    .style('font-size', '12px')
+                    .style('fill', '#333');
+
+                // 更新力導向模擬
+                simulation
+                    .nodes(nodes)
+                    .force('link').links(edges);
+
+                simulation.alpha(1).restart();
+
+                simulation.on('tick', () => {
+                    link
+                        .attr('x1', d => d.source.x)
+                        .attr('y1', d => d.source.y)
+                        .attr('x2', d => d.target.x)
+                        .attr('y2', d => d.target.y);
+
+                    node
+                        .attr('transform', d => `translate(${d.x},${d.y})`);
+                });
+
+                // 更新圖例
+                updateLegend(types);
+
+                // 隱藏錯誤訊息
+                document.getElementById('error').style.display = 'none';
+
+                // 高亮相關連接
+                function highlightConnections(event, d) {
+                    link.style('stroke', l => 
+                        l.source === d || l.target === d ? '#000' : '#999')
+                        .style('stroke-opacity', l => 
+                            l.source === d || l.target === d ? 1 : 0.2);
+                    
+                    node.style('opacity', n => 
+                        n === d || edges.some(l => 
+                            (l.source === d && l.target === n) || 
+                            (l.target === d && l.source === n)
+                        ) ? 1 : 0.2);
+                }
+
+                function resetHighlight() {
+                    link.style('stroke', '#999')
+                        .style('stroke-opacity', 0.6);
+                    node.style('opacity', 1);
+                }
+
+            } catch (err) {
+                document.getElementById('error').textContent = `錯誤：${err.message}`;
+                document.getElementById('error').style.display = 'block';
+            }
+        }
+
+        function dragstarted(event, d) {
+            if (!event.active) simulation.alphaTarget(0.3).restart();
+            d.fx = d.x;
+            d.fy = d.y;
+        }
+
+        function dragged(event, d) {
+            d.fx = event.x;
+            d.fy = event.y;
+        }
+
+        function dragended(event, d) {
+            if (!event.active) simulation.alphaTarget(0);
+            d.fx = null;
+            d.fy = null;
+        }
+
+        function updateLegend(types) {
+            const legend = d3.select('#legend')
+                .html('')
+                .append('div')
+                .style('display', 'grid')
+                .style('grid-template-columns', 'repeat(auto-fill, minmax(150px, 1fr))');
+
+            Object.entries(types).forEach(([type, info]) => {
+                const item = legend.append('div')
+                    .attr('class', 'legend-item');
+
+                item.append('div')
+                    .attr('class', 'legend-color')
+                    .style('background-color', info.color);
+
+                item.append('span')
+                    .text(info.name);
+            });
+        }
+
+        // 監聽輸入變化
+        document.getElementById('networkInput').addEventListener('input', updateNetwork);
+
+        // 初始化視覺化
+        updateNetwork();
+    </script>
+</body>
+</html>
