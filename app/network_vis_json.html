@@ -4,7 +4,6 @@
     <meta charset="utf-8">
     <title>網絡編輯器</title>
     <style>
-        /* 之前的 CSS 保持不變 */
         .container {
             display: flex;
             gap: 20px;
@@ -58,6 +57,25 @@
             padding: 10px;
             border-radius: 4px;
         }
+
+        .update-button {
+            padding: 10px 20px;
+            background-color: #4A90E2;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+
+        .update-button:hover {
+            background-color: #357ABD;
+        }
+
+        .update-button:active {
+            background-color: #2A609A;
+        }
     </style>
 </head>
 <body>
@@ -66,6 +84,7 @@
             <div>
                 <h3>網絡數據 (JSON格式)</h3>
                 <textarea id="networkInput" placeholder="請輸入完整的網絡數據..."></textarea>
+                <button id="updateButton" class="update-button">更新視覺化</button>
                 <div class="format-info">
                     <strong>數據格式說明：</strong><br>
                     {<br>
@@ -127,11 +146,11 @@
         // 創建力導向模擬
         let simulation = d3.forceSimulation()
             .force('link', d3.forceLink().id(d => d.id)
-                .distance(d => 100 / (d.weight || 1))) // 根據權重調整連接距離
+                .distance(d => 100 / (d.weight || 1)))
             .force('charge', d3.forceManyBody()
-                .strength(d => d.type === 'core' ? -200 : -100)) // 核心節點有更強的排斥力
+                .strength(d => d.type === 'core' ? -200 : -100))
             .force('center', d3.forceCenter(width / 2, height / 2))
-            .force('collision', d3.forceCollide().radius(40)); // 防止節點重疊
+            .force('collision', d3.forceCollide().radius(40));
 
         // 更新網絡圖
         function updateNetwork() {
@@ -141,6 +160,9 @@
 
                 // 清除現有的圖形
                 svg.selectAll('*').remove();
+
+                // 停止現有的模擬
+                simulation.stop();
 
                 // 創建箭頭標記
                 svg.append('defs').selectAll('marker')
@@ -197,12 +219,14 @@
                     .style('font-size', '12px')
                     .style('fill', '#333');
 
-                // 更新力導向模擬
-                simulation
-                    .nodes(nodes)
-                    .force('link').links(edges);
-
-                simulation.alpha(1).restart();
+                // 重新初始化模擬
+                simulation = d3.forceSimulation(nodes)
+                    .force('link', d3.forceLink(edges).id(d => d.id)
+                        .distance(d => 100 / (d.weight || 1)))
+                    .force('charge', d3.forceManyBody()
+                        .strength(d => d.type === 'core' ? -200 : -100))
+                    .force('center', d3.forceCenter(width / 2, height / 2))
+                    .force('collision', d3.forceCollide().radius(40));
 
                 simulation.on('tick', () => {
                     link
@@ -273,10 +297,15 @@
 
             Object.entries(types).forEach(([type, info]) => {
                 const item = legend.append('div')
-                    .attr('class', 'legend-item');
+                    .style('display', 'flex')
+                    .style('align-items', 'center')
+                    .style('gap', '8px')
+                    .style('padding', '4px');
 
                 item.append('div')
-                    .attr('class', 'legend-color')
+                    .style('width', '12px')
+                    .style('height', '12px')
+                    .style('border-radius', '50%')
                     .style('background-color', info.color);
 
                 item.append('span')
@@ -284,8 +313,8 @@
             });
         }
 
-        // 監聽輸入變化
-        document.getElementById('networkInput').addEventListener('input', updateNetwork);
+        // 綁定更新按鈕事件
+        document.getElementById('updateButton').addEventListener('click', updateNetwork);
 
         // 初始化視覺化
         updateNetwork();
