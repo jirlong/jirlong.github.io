@@ -1,3 +1,5 @@
+
+
 # NTUJOUR
 - [About NTU Journalism (Slide)](https://docs.google.com/presentation/d/1uPqvLjCajTps5gQQjx6Ck1SF8u7k4RXfLQPUEpjL1C0/edit?usp=sharing)
 - [NTU Journalism for students (Google sites)](https://sites.google.com/view/ntujour/tour-start)
@@ -6,6 +8,9 @@
 # Tools
 - [Montely Calendar Generator](calendar_generator.html)
 - [Booking jilung](https://calendar.app.google/mpHGC3EpuvnNZ8GAA)
+* [jsLDA + jieba.js for online topic modeling in Chinese](https://jirlong.github.io/jsLDA/jslda.html)
+* [Topic modeling intro.](https://docs.google.com/presentation/d/e/2PACX-1vRTSSO_8JuLTK_1OyM9eDrogA-K2fhXQwlKxh1PpRvNavkurCCcKBNftv9MpKGYM6EDXtNnqZvPDdKy/pub?start=false&loop=false&delayms=3000)
+* [Network Visualizer](/app/neteork_vis_json.html)
 
 # 2024
 - [Resiliencer Center Sub5 Report 1110](https://docs.google.com/presentation/d/106AEWFyIHRG4Mh-BP2JcE9H34LTEMyNSuknBe-uxnvI/edit?usp=sharing)
@@ -90,9 +95,6 @@
 # Tutorials
 * [20200507 Qualitative research method](https://paper.dropbox.com/doc/--Azeo1Updn09nI2mY0nw8O6wyAg-mhBata9sL4wMRgIe1RaaL): How to use 漢珍新聞智慧網 to survey news
 
-# Tools
-* [jsLDA + jieba.js for online topic modeling in Chinese](https://jirlong.github.io/jsLDA/jslda.html)
-* [Topic modeling intro.](https://docs.google.com/presentation/d/e/2PACX-1vRTSSO_8JuLTK_1OyM9eDrogA-K2fhXQwlKxh1PpRvNavkurCCcKBNftv9MpKGYM6EDXtNnqZvPDdKy/pub?start=false&loop=false&delayms=3000)
 
 
 ---
