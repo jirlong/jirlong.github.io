@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>祝楊德涵口試順利</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #111; /* 更改為黑色背景 */
+            overflow: hidden;
+            font-family: "Microsoft JhengHei", Arial, sans-serif;
+        }
+
+        .container {
+            position: relative;
+            width: 600px;
+            height: 600px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .message {
+            position: absolute;
+            z-index: 10;
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #fff; /* 文字顏色改為白色 */
+            text-align: center;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.7), 0 0 20px rgba(255, 255, 255, 0.5); /* 添加發光效果 */
+        }
+
+        .flower-unit {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            transform-origin: center;
+        }
+
+        .flower-center {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: #fff;
+            border-radius: 50%;
+            top: 20px;
+            left: 20px;
+            z-index: 5;
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.8); /* 添加發光效果 */
+        }
+
+        .flower-petal {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            z-index: 4;
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.5); /* 添加發光效果 */
+        }
+        
+        .wreath-base {
+            position: absolute;
+            width: 520px;
+            height: 520px;
+            border-radius: 50%;
+            background-color: rgba(20, 80, 20, 0.15); /* 淺綠色半透明 */
+            z-index: 2;
+            box-shadow: inset 0 0 50px rgba(0, 60, 0, 0.3); /* 內陰影效果 */
+        }
+        
+        .wreath-stand {
+            position: absolute;
+            background-color: #8B4513; /* 棕色 */
+            z-index: 1;
+            box-shadow: 0 0 5px rgba(139, 69, 19, 0.5); /* 棒棒的陰影 */
+        }
+        
+        .stand-left {
+            width: 15px;
+            height: 120px;
+            transform: rotate(30deg);
+            bottom: -70px;
+            left: 200px;
+        }
+        
+        .stand-right {
+            width: 15px;
+            height: 120px;
+            transform: rotate(-30deg);
+            bottom: -70px;
+            right: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="wreath-base"></div>
+        <div class="wreath-stand stand-left"></div>
+        <div class="wreath-stand stand-right"></div>
+        <div class="message">祝楊德涵口試順利</div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const container = document.querySelector('.container');
+            const numFlowersOuterRing = 20; // 外圈花朵數量
+            const numFlowersInnerRing = 15; // 內圈花朵數量
+            const outerRadius = 250; // 外圈半徑
+            const innerRadius = 190; // 內圈半徑
+            // 更亮的顏色，適合黑色背景
+            const colors = [
+                '#FF6B6B', '#FFD93D', '#6BCB77', '#4D96FF', 
+                '#FF9A8B', '#FFB480', '#FFC47E', '#FFCF96',
+                '#F6FDC3', '#CDFAD5', '#B4E4FF', '#95BDFF',
+                '#FF5555', '#FFFF00', '#00FF00', '#00FFFF', 
+                '#FF00FF', '#FF3399', '#33FF99', '#9933FF'
+            ];
+            
+            // 建立外圈花朵元素
+            for (let i = 0; i < numFlowersOuterRing; i++) {
+                createFlower(i, numFlowersOuterRing, outerRadius);
+            }
+            
+            // 建立內圈花朵元素
+            for (let i = 0; i < numFlowersInnerRing; i++) {
+                createFlower(i, numFlowersInnerRing, innerRadius);
+            }
+            
+            // 創建花朵的函數
+            function createFlower(i, totalFlowers, radius) {
+                const flowerUnit = document.createElement('div');
+                flowerUnit.className = 'flower-unit';
+                
+                // 設定花朵初始位置
+                const angle = (i / totalFlowers) * 2 * Math.PI;
+                const x = radius * Math.cos(angle);
+                const y = radius * Math.sin(angle);
+                
+                flowerUnit.style.left = `${300 + x - 30}px`;
+                flowerUnit.style.top = `${300 + y - 30}px`;
+                
+                // 儲存動畫參數
+                flowerUnit.dataset.angle = angle;
+                flowerUnit.dataset.radius = radius;
+                flowerUnit.dataset.speed = 0.3 + Math.random() * 0.3;
+                flowerUnit.dataset.rotationSpeed = 0.005 + Math.random() * 0.01;
+                flowerUnit.dataset.rotationAngle = 0;
+                
+                // 花朵中心
+                const flowerCenter = document.createElement('div');
+                flowerCenter.className = 'flower-center';
+                flowerCenter.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                flowerUnit.appendChild(flowerCenter);
+                
+                // 花瓣 (5個圍繞中心的小圓)
+                const petalColors = colors[i % colors.length];
+                for (let j = 0; j < 5; j++) {
+                    const petal = document.createElement('div');
+                    petal.className = 'flower-petal';
+                    
+                    const petalAngle = (j / 5) * 2 * Math.PI;
+                    const petalRadius = 22; // 花瓣到中心的距離
+                    const petalX = petalRadius * Math.cos(petalAngle);
+                    const petalY = petalRadius * Math.sin(petalAngle);
+                    
+                    petal.style.left = `${30 + petalX - 7.5}px`;
+                    petal.style.top = `${30 + petalY - 7.5}px`;
+                    petal.style.backgroundColor = petalColors;
+                    
+                    // 儲存花瓣相對位置
+                    petal.dataset.relativeAngle = petalAngle;
+                    petal.dataset.colorIndex = i % colors.length;
+                    petal.dataset.colorChangeSpeed = 0.01 + Math.random() * 0.02;
+                    
+                    flowerUnit.appendChild(petal);
+                }
+                
+                container.appendChild(flowerUnit);
+            }
+            
+            // 動畫迴圈
+            function animate() {
+                const flowerUnits = document.querySelectorAll('.flower-unit');
+                
+                flowerUnits.forEach(flowerUnit => {
+                    // 更新花朵位置 (旋轉整個花環)
+                    let angle = parseFloat(flowerUnit.dataset.angle);
+                    const speed = parseFloat(flowerUnit.dataset.speed);
+                    angle += speed * 0.01;
+                    flowerUnit.dataset.angle = angle;
+                    
+                    const radius = parseFloat(flowerUnit.dataset.radius);
+                    const x = radius * Math.cos(angle);
+                    const y = radius * Math.sin(angle);
+                    
+                    flowerUnit.style.left = `${300 + x - 30}px`;
+                    flowerUnit.style.top = `${300 + y - 30}px`;
+                    
+                    // 花朵自轉
+                    let rotationAngle = parseFloat(flowerUnit.dataset.rotationAngle);
+                    const rotationSpeed = parseFloat(flowerUnit.dataset.rotationSpeed);
+                    rotationAngle += rotationSpeed;
+                    flowerUnit.dataset.rotationAngle = rotationAngle;
+                    flowerUnit.style.transform = `rotate(${rotationAngle}rad)`;
+                    
+                    // 更新花瓣顏色
+                    const petals = flowerUnit.querySelectorAll('.flower-petal');
+                    petals.forEach(petal => {
+                        let colorIndex = parseFloat(petal.dataset.colorIndex);
+                        const colorChangeSpeed = parseFloat(petal.dataset.colorChangeSpeed);
+                        colorIndex += colorChangeSpeed;
+                        if (colorIndex >= colors.length) {
+                            colorIndex = 0;
+                        }
+                        petal.dataset.colorIndex = colorIndex;
+                        
+                        const colorIndexInt = Math.floor(colorIndex);
+                        const nextColorIndex = (colorIndexInt + 1) % colors.length;
+                        const ratio = colorIndex - colorIndexInt;
+                        
+                        // 顏色漸變
+                        const currentColor = hexToRgb(colors[colorIndexInt]);
+                        const nextColor = hexToRgb(colors[nextColorIndex]);
+                        
+                        const r = Math.floor(currentColor.r * (1 - ratio) + nextColor.r * ratio);
+                        const g = Math.floor(currentColor.g * (1 - ratio) + nextColor.g * ratio);
+                        const b = Math.floor(currentColor.b * (1 - ratio) + nextColor.b * ratio);
+                        
+                        petal.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+                        // 更新陰影顏色以匹配花瓣顏色
+                        petal.style.boxShadow = `0 0 8px rgba(${r}, ${g}, ${b}, 0.8)`;
+                        
+                        // 花瓣輕微縮放
+                        const scale = 0.9 + Math.sin(angle * 5) * 0.2;
+                        petal.style.transform = `scale(${scale})`;
+                    });
+                    
+                    // 花朵中心也變色
+                    const flowerCenter = flowerUnit.querySelector('.flower-center');
+                    const centerColorIndex = (parseFloat(flowerUnit.dataset.angle) * 2) % colors.length;
+                    const centerColorIndexInt = Math.floor(centerColorIndex);
+                    const nextCenterColorIndex = (centerColorIndexInt + 1) % colors.length;
+                    const centerRatio = centerColorIndex - centerColorIndexInt;
+                    
+                    const currentCenterColor = hexToRgb(colors[centerColorIndexInt]);
+                    const nextCenterColor = hexToRgb(colors[nextCenterColorIndex]);
+                    
+                    const cr = Math.floor(currentCenterColor.r * (1 - centerRatio) + nextCenterColor.r * centerRatio);
+                    const cg = Math.floor(currentCenterColor.g * (1 - centerRatio) + nextCenterColor.g * centerRatio);
+                    const cb = Math.floor(currentCenterColor.b * (1 - centerRatio) + nextCenterColor.b * centerRatio);
+                    
+                    flowerCenter.style.backgroundColor = `rgb(${cr}, ${cg}, ${cb})`;
+                    // 更新陰影顏色以匹配中心顏色
+                    flowerCenter.style.boxShadow = `0 0 8px rgba(${cr}, ${cg}, ${cb}, 0.8)`;
+                });
+                
+                requestAnimationFrame(animate);
+            }
+            
+            // 顏色轉換輔助函數
+            function hexToRgb(hex) {
+                const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+                return result ? {
+                    r: parseInt(result[1], 16),
+                    g: parseInt(result[2], 16),
+                    b: parseInt(result[3], 16)
+                } : { r: 0, g: 0, b: 0 };
+            }
+            
+            // 啟動動畫
+            animate();
+        });
+    </script>
+</body>
+</html>
