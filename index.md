@@ -7,6 +7,7 @@
 - [About NTU Journalism (Slide)](https://docs.google.com/presentation/d/1uPqvLjCajTps5gQQjx6Ck1SF8u7k4RXfLQPUEpjL1C0/edit?usp=sharing)
 - [NTU Journalism for students (Google sites)](https://sites.google.com/view/ntujour/tour-start)
 - [Pre-release](https://drive.google.com/file/d/1mgd7cc998r2B-Rb1LS_2TI1cwU0I7Dn6/view)
+- [2025/08/30 For New M1](https://docs.google.com/presentation/d/1fWg-X1qFkM6TM32KTVh4seqBosn2NJFigeSpHC-JVjI/edit?usp=sharing)
 
 # Tools
 - [Montely Calendar Generator](calendar_generator.html)
