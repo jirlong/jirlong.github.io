@@ -3,6 +3,7 @@
 # NTU
 - [PSC Speech](https://gamma.app/docs/AI-for-Social-Science-85egw20apom0w3f)
 - [2025 InfoSociety](https://docs.google.com/presentation/d/1xfofMv4EOoioEXzLTtMyfpaYtTAS40A9cANBK4qVvGc/edit?usp=sharing)
+- [2025 Teaching wiht AI](https://gamma.app/docs/Teaching-with-AI-fayag8mx835blak)
 
 # NTUJOUR
 - [About NTU Journalism (Slide)](https://docs.google.com/presentation/d/1uPqvLjCajTps5gQQjx6Ck1SF8u7k4RXfLQPUEpjL1C0/edit?usp=sharing)
