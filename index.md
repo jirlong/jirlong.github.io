@@ -3,6 +3,9 @@
 # COURSE
 - [Courses](https://p4css.github.io)
 
+# NTUPSC
+- [psc-web-remodel](https://docs.google.com/presentation/d/1he3y0Ix3vGIr-v4EImveULP2W40CauiBVDg6mzokEyM/edit?usp=sharing)
+
 # NTU
 - [PSC Speech](https://gamma.app/docs/AI-for-Social-Science-85egw20apom0w3f)
 - [2025 InfoSociety](https://docs.google.com/presentation/d/1xfofMv4EOoioEXzLTtMyfpaYtTAS40A9cANBK4qVvGc/edit?usp=sharing)
