@@ -5,7 +5,8 @@
 
 # NTUPSC
 - [2026-05-07-CoSS-AI-Education-Discussion](https://docs.google.com/presentation/d/1Lor8u9JsfMROfZiyekXtAWR9tviHF-Fx8hloJ9UNaH0/edit?usp=sharing)
-- [20260506-Population Problem and Studies](https://docs.google.com/presentation/d/1otbWw0hyLNk0JApCwKhDPGzs7g7eVFPBOAt3jIau_1E/edit?usp=sharing)
+- 
+👍 [20260506-Population Problem and Studies](https://docs.google.com/presentation/d/1otbWw0hyLNk0JApCwKhDPGzs7g7eVFPBOAt3jIau_1E/edit?usp=sharing)
 - [psc-web-remodel](https://docs.google.com/presentation/d/1he3y0Ix3vGIr-v4EImveULP2W40CauiBVDg6mzokEyM/edit?usp=sharing)
 - [PSC Speech](https://gamma.app/docs/AI-for-Social-Science-85egw20apom0w3f)
 
@@ -13,7 +14,8 @@
 # NTU
 - [2025 InfoSociety](https://docs.google.com/presentation/d/1xfofMv4EOoioEXzLTtMyfpaYtTAS40A9cANBK4qVvGc/edit?usp=sharing)
 - [2025 Teaching wiht AI](https://gamma.app/docs/Teaching-with-AI-fayag8mx835blak)
-- [2025 Teaching with AI DADH 2025](https://docs.google.com/presentation/d/1Bdidnq2naAqOr-VlvwD2hhL4ktzOIWq0fyC5BWHCtaM/edit?usp=sharing)
+- 
+👍 [2025 Teaching with AI DADH 2025](https://docs.google.com/presentation/d/1Bdidnq2naAqOr-VlvwD2hhL4ktzOIWq0fyC5BWHCtaM/edit?usp=sharing) 
 
 # College
 - [2026-0428-NTU-CoSS-領域專長](https://docs.google.com/presentation/d/1EQ2xjerkY6v8oSqlFIAQnHEOM4p_z4vsHIGSQwJhZ48/edit?usp=sharing)
