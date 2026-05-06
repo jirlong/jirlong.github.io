@@ -4,6 +4,7 @@
 - [Courses](https://p4css.github.io)
 
 # NTUPSC
+- [2026-05-07-CoSS-AI-Education-Discussion](https://docs.google.com/presentation/d/1Lor8u9JsfMROfZiyekXtAWR9tviHF-Fx8hloJ9UNaH0/edit?usp=sharing)
 - [20260506-Population Problem and Studies](https://docs.google.com/presentation/d/1otbWw0hyLNk0JApCwKhDPGzs7g7eVFPBOAt3jIau_1E/edit?usp=sharing)
 - [psc-web-remodel](https://docs.google.com/presentation/d/1he3y0Ix3vGIr-v4EImveULP2W40CauiBVDg6mzokEyM/edit?usp=sharing)
 - [PSC Speech](https://gamma.app/docs/AI-for-Social-Science-85egw20apom0w3f)
