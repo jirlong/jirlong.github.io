@@ -3,6 +3,13 @@
 # COURSE
 - [Courses](https://p4css.github.io)
 
+# College
+- [20260507-CoSS-AI-Education-Discussion](https://docs.google.com/presentation/d/1Lor8u9JsfMROfZiyekXtAWR9tviHF-Fx8hloJ9UNaH0/edit?usp=sharing)
+  - [20260507-Docs](https://docs.google.com/document/d/1f5L7ku9Z-rXJ5xxri4tMr61GLYGpP4zrpAb1v6-n-ak/edit?usp=sharing)
+  - 👉 [2025 Teaching with AI DADH 2025](https://docs.google.com/presentation/d/1Bdidnq2naAqOr-VlvwD2hhL4ktzOIWq0fyC5BWHCtaM/edit?usp=sharing) 
+- 👉 [2026-0428-NTU-CoSS-領域專長](https://docs.google.com/presentation/d/1EQ2xjerkY6v8oSqlFIAQnHEOM4p_z4vsHIGSQwJhZ48/edit?usp=sharing)
+
+
 # NTUPSC
 - 👉 [20260506-Doing Generative AI for Social Science: Population Studies](https://docs.google.com/presentation/d/1otbWw0hyLNk0JApCwKhDPGzs7g7eVFPBOAt3jIau_1E/edit?usp=sharing)
 - [psc-web-remodel](https://docs.google.com/presentation/d/1he3y0Ix3vGIr-v4EImveULP2W40CauiBVDg6mzokEyM/edit?usp=sharing)
@@ -14,9 +21,6 @@
 - [2025 Teaching wiht AI](https://gamma.app/docs/Teaching-with-AI-fayag8mx835blak)
 - 👉 [2025 Teaching with AI DADH 2025](https://docs.google.com/presentation/d/1Bdidnq2naAqOr-VlvwD2hhL4ktzOIWq0fyC5BWHCtaM/edit?usp=sharing) 
 
-# College
-- [2026-05-07-CoSS-AI-Education-Discussion](https://docs.google.com/presentation/d/1Lor8u9JsfMROfZiyekXtAWR9tviHF-Fx8hloJ9UNaH0/edit?usp=sharing)
-- 👉 [2026-0428-NTU-CoSS-領域專長](https://docs.google.com/presentation/d/1EQ2xjerkY6v8oSqlFIAQnHEOM4p_z4vsHIGSQwJhZ48/edit?usp=sharing)
 
 # NTUJOUR
 - [About NTU Journalism (Slide)](https://docs.google.com/presentation/d/1uPqvLjCajTps5gQQjx6Ck1SF8u7k4RXfLQPUEpjL1C0/edit?usp=sharing)
