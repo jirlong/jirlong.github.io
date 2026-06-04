@@ -1,0 +1,3121 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>跨學科 AI 與資料科學課程地圖</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- D3.js Library -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    
+    <!-- Lucide Icons for UI -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        :root {
+            /* 極簡極淺色系變數 */
+            --bg-color: #f8fafc;             /* 極淺底色 */
+            --panel-bg: rgba(255, 255, 255, 0.9); /* 高透明純白面板 */
+            --panel-border: rgba(15, 23, 42, 0.06); /* 極細邊框 */
+            --text-primary: #0f172a;         /* 深標題色 */
+            --text-secondary: #475569;       /* 中 Slate 內文 */
+            --text-muted: #94a3b8;           /* 淺灰 */
+            --card-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.03); /* 極輕陰影 */
+            --link-default: rgba(148, 163, 184, 0.12);
+            --link-flow: rgba(37, 99, 235, 0.65);      /* 修課路徑藍線 - 加深 */
+            --link-substitute: rgba(56, 189, 248, 0.5); /* 替代課程淡藍色半透明線 (兩倍粗，不使用虛線) */
+            --link-extension: rgba(244, 63, 94, 0.55);  /* 延伸路徑淺紅色虛線 */
+            --grid-color: rgba(15, 23, 42, 0.012);      /* 極淡網點 */
+            
+            /* 依能力性質定義的柔和粉彩色系 */
+            --color-intro: #0284c7;       /* 基礎能力 - 天空藍 */
+            --fill-intro: #e0f2fe;
+            
+            --color-sts: #0d9488;         /* AI素養 - 翡翠綠/松石綠 */
+            --fill-sts: #ccfbf1;
+            
+            --color-aicore: #4f46e5;      /* AI 核心 - 皇家靛藍/皇家紫 */
+            --fill-aicore: #e0e7ff;
+            
+            --color-advanced: #d97706;    /* 進階應用 - 琥珀黃 */
+            --fill-advanced: #fef3c7;
+            
+            --color-capstone: #e11d48;    /* 總整課程 - 玫瑰紅 */
+            --fill-capstone: #ffe4e6;
+
+            /* 外圍/非核心能力 */
+            --color-peripheral: #64748b;  /* 外圍課程 - 鋼鐵灰 */
+            --fill-peripheral: #f1f5f9;
+
+            /* 系所專屬純色 (僅用於小標籤) */
+            --color-sociology: #f43f5e;
+            --color-economics: #0284c7;
+            --color-journalism: #8b5cf6;
+            --color-socialwork: #10b981;
+            --color-politics: #f59e0b;
+            --color-general: #64748b;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Outfit', 'Noto Sans TC', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* 滿版畫布 */
+        #visualization-container {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        #network-svg {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        /* 玻璃擬態/極簡懸浮 UI */
+        .glass-panel {
+            background: var(--panel-bg);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid var(--panel-border);
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            z-index: 10;
+            position: absolute;
+        }
+
+        /* 左下方圖例 */
+        .legend-panel {
+            bottom: 20px;
+            left: 20px;
+            padding: 14px 18px;
+            width: 280px;
+        }
+
+        .legend-title {
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .legend-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        .legend-color {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .legend-shape {
+            width: 12px;
+            height: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .legend-shape.capstone {
+            border: 1.5px solid var(--color-capstone);
+            border-radius: 50%;
+            width: 10px;
+            height: 10px;
+            outline: 1.5px dashed var(--color-capstone);
+            outline-offset: 2px;
+        }
+
+        .legend-shape.normal {
+            border: 1.5px solid var(--text-muted);
+            border-radius: 50%;
+            width: 8px;
+            height: 8px;
+        }
+
+        .legend-flow-line {
+            width: 24px;
+            height: 2px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        /* 右側詳細資訊與篩選 */
+        .sidebar-panel {
+            top: 20px;
+            right: 20px;
+            bottom: 20px;
+            width: 350px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            overflow-y: auto;
+            max-height: calc(100vh - 40px);
+        }
+
+        .search-container {
+            position: relative;
+            width: 100%;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 8px 12px 8px 36px;
+            border-radius: 8px;
+            border: 1px solid var(--panel-border);
+            background: rgba(15, 23, 42, 0.02);
+            color: var(--text-primary);
+            font-size: 0.85rem;
+            outline: none;
+            transition: all 0.15s ease;
+        }
+
+        .search-input:focus {
+            border-color: #3b82f6;
+            background: #ffffff;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            width: 14px;
+            height: 14px;
+        }
+
+        /* 篩選群組 */
+        .filter-section {
+            border-bottom: 1px solid var(--panel-border);
+            padding-bottom: 12px;
+        }
+
+        .filter-title {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .filter-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+
+        .filter-btn {
+            background: rgba(15, 23, 42, 0.02);
+            border: 1px solid var(--panel-border);
+            color: var(--text-secondary);
+            padding: 4px 8px;
+            border-radius: 5px;
+            font-size: 0.7rem;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .filter-btn:hover {
+            background: rgba(15, 23, 42, 0.05);
+            color: var(--text-primary);
+        }
+
+        .filter-btn.active {
+            background: rgba(59, 130, 246, 0.08);
+            border-color: rgba(59, 130, 246, 0.25);
+            color: #2563eb;
+            font-weight: 500;
+        }
+
+        /* 詳細資訊內容 */
+        .detail-section {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .detail-placeholder {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            margin: auto 0;
+            padding: 30px 15px;
+            border: 1px dashed var(--panel-border);
+            border-radius: 8px;
+        }
+
+        .detail-placeholder i {
+            font-size: 1.5rem;
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .detail-card {
+            animation: fadeIn 0.2s ease-out;
+        }
+
+        .detail-header {
+            margin-bottom: 10px;
+        }
+
+        .detail-dept-badge {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 6px;
+        }
+
+        .detail-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            line-height: 1.25;
+            margin-bottom: 4px;
+        }
+
+        .detail-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            margin-bottom: 12px;
+        }
+
+        .meta-pill {
+            background: rgba(15, 23, 42, 0.03);
+            border: 1px solid var(--panel-border);
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 3px;
+        }
+
+        .meta-pill.tech {
+            background: rgba(59, 130, 246, 0.05);
+            color: #2563eb;
+            border-color: rgba(59, 130, 246, 0.1);
+        }
+
+        .detail-desc {
+            font-size: 0.8rem;
+            line-height: 1.5;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            white-space: pre-line;
+        }
+
+        .detail-connections-title {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            border-top: 1px solid var(--panel-border);
+            padding-top: 12px;
+            margin-bottom: 8px;
+        }
+
+        .conn-list {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .conn-item {
+            background: rgba(15, 23, 42, 0.01);
+            border: 1px solid var(--panel-border);
+            padding: 6px 10px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .conn-item:hover {
+            background: rgba(15, 23, 42, 0.03);
+            transform: translateX(2px);
+        }
+
+        .conn-name {
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .conn-relation {
+            font-size: 0.65rem;
+            padding: 1px 4px;
+            border-radius: 3px;
+            background: rgba(15, 23, 42, 0.04);
+            color: var(--text-secondary);
+        }
+
+        /* 懸浮控制按鈕組 */
+        .controls-panel {
+            bottom: 20px;
+            right: 390px;
+            display: flex;
+            gap: 6px;
+            padding: 6px;
+            border-radius: 8px;
+        }
+
+        .control-btn {
+            background: rgba(15, 23, 42, 0.02);
+            border: 1px solid var(--panel-border);
+            color: var(--text-primary);
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .control-btn:hover {
+            background: rgba(15, 23, 42, 0.05);
+            transform: translateY(-1px);
+        }
+
+        .control-btn i {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* D3 樣式 */
+        .node {
+            cursor: pointer;
+        }
+
+        .node-shape {
+            stroke-width: 1.5px;
+            transition: stroke-width 0.15s, fill 0.15s;
+        }
+
+        .node:hover .node-shape,
+        .node.selected .node-shape {
+            stroke-width: 2.5px;
+        }
+
+        .node-shape-outer {
+            fill: none;
+            stroke-width: 1px;
+            stroke-dasharray: 2 2;
+        }
+
+        /* 清晰文字 Halo 遮罩 (文字要清楚) */
+        .node-label {
+            font-size: 13px !important;
+            font-weight: 500;
+            fill: var(--text-primary);
+            pointer-events: none;
+            text-anchor: middle;
+            paint-order: stroke;
+            stroke: var(--bg-color);
+            stroke-width: 4px;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            transition: opacity 0.2s, font-weight 0.2s;
+        }
+
+        .node-label tspan {
+            font-size: inherit !important;
+        }
+
+        .node.selected .node-label {
+            font-weight: 700;
+        }
+
+        .node.cat-aicore .node-label {
+            font-size: 15px !important;
+            font-weight: 700;
+        }
+
+        /* 項目分組底層匡線樣式 (AI素養) */
+        .sts-bounding-group rect {
+            transition: stroke-opacity 0.2s, fill-opacity 0.2s, stroke 0.2s, fill 0.2s;
+        }
+
+        .group-label {
+            pointer-events: none;
+            font-family: 'Outfit', 'Noto Sans TC', sans-serif;
+            text-shadow: 0 1px 2px rgba(255, 255, 255, 0.9);
+            paint-order: stroke;
+            stroke: var(--bg-color);
+            stroke-width: 3px;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            opacity: 0.85;
+            transition: opacity 0.2s, fill 0.2s;
+        }
+
+        /* 學習進程流向背景線與動畫小球 */
+        .link {
+            fill: none;
+            stroke-linecap: round;
+            transition: stroke-opacity 0.2s, stroke-width 0.2s;
+        }
+
+        .flow-dot {
+            fill: #3b82f6;
+            filter: drop-shadow(0 1px 1px rgba(59, 130, 246, 0.3));
+        }
+
+        /* 連線文字標籤樣式 */
+        .link-label {
+            font-size: 9px;
+            fill: var(--text-secondary);
+            pointer-events: none;
+            text-anchor: middle;
+            paint-order: stroke;
+            stroke: var(--bg-color);
+            stroke-width: 3px;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            font-weight: 500;
+        }
+
+        #link-labels-group {
+            display: none;
+        }
+
+        body.show-link-labels #link-labels-group {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 滾動條 */
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--panel-border);
+            border-radius: 2px;
+        }
+
+
+    </style>
+</head>
+<body>
+
+    <!-- D3 滿版網絡圖容器 -->
+    <div id="visualization-container">
+        <svg id="network-svg">
+            <rect width="100%" height="100%" fill="transparent" />
+            <!-- 背景網格 -->
+            <g class="bg-grid-group"></g>
+            <!-- 視角縮放內容組 -->
+            <g id="zoom-g">
+                <g id="groups-group"></g>
+                <g id="links-group"></g>
+                <g id="link-labels-group"></g>
+                <g id="dots-group"></g>
+                <g id="nodes-group"></g>
+            </g>
+        </svg>
+    </div>
+
+    <!-- 右側詳細資訊與篩選 -->
+    <div class="glass-panel sidebar-panel">
+        <!-- 精簡圖例說明 -->
+        <div class="sidebar-legend" style="border-bottom: 1px solid var(--panel-border); padding-bottom: 12px; display: flex; flex-direction: column; gap: 8px;">
+            <div style="font-size: 0.65rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; display: flex; align-items: center; gap: 4px;">
+                <i data-lucide="info" style="width:12px;height:12px;"></i>
+                圖例說明
+            </div>
+            <!-- 第一排 -->
+            <div style="display: flex; gap: 12px; font-size: 0.72rem; color: var(--text-secondary); flex-wrap: wrap;">
+                <div style="display: flex; align-items: center; gap: 4px;">
+                    <span style="width: 8px; height: 8px; border-radius: 50%; background-color: var(--color-aicore); border: 1px solid #fff; box-shadow: 0 0 0 1px var(--color-aicore); display: inline-block;"></span>
+                    <span style="font-weight: 600;">AI 核心</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 4px;">
+                    <span style="width: 8px; height: 8px; border-radius: 50%; background-color: var(--color-sts); display: inline-block;"></span>
+                    <span>AI素養</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 4px;">
+                    <span style="width: 8px; height: 8px; border-radius: 50%; background-color: var(--color-intro); display: inline-block;"></span>
+                    <span>基礎能力</span>
+                </div>
+            </div>
+            <!-- 第二排 -->
+            <div style="display: flex; gap: 12px; font-size: 0.72rem; color: var(--text-secondary); flex-wrap: wrap; margin-top: -2px;">
+                <div style="display: flex; align-items: center; gap: 4px;">
+                    <span style="width: 8px; height: 8px; border-radius: 50%; background-color: var(--color-advanced); display: inline-block;"></span>
+                    <span>進階應用</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 4px;">
+                    <span style="width: 8px; height: 8px; border-radius: 50%; background-color: var(--color-capstone); display: inline-block;"></span>
+                    <span>總整課程</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 4px;">
+                    <span style="width: 8px; height: 8px; border-radius: 50%; background-color: var(--color-peripheral); display: inline-block;"></span>
+                    <span>相關課程</span>
+                </div>
+            </div>
+            <!-- 連線圖例 -->
+            <div style="display: flex; gap: 12px; font-size: 0.68rem; color: var(--text-muted); border-top: 1px dashed var(--panel-border); padding-top: 6px; margin-top: 2px; flex-wrap: wrap;">
+                <div style="display: flex; align-items: center; gap: 4px;">
+                    <div style="width: 14px; border-top: 1.8px solid var(--link-flow);"></div>
+                    <span>路徑</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 4px;">
+                    <div style="width: 14px; border-top: 3.6px solid var(--link-substitute);"></div>
+                    <span>替代</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 4px;">
+                    <div style="width: 14px; border-top: 1.5px dashed var(--link-extension);"></div>
+                    <span>延伸</span>
+                </div>
+            </div>
+        </div>
+        <!-- 側邊欄分頁標籤 -->
+        <div class="sidebar-tabs" style="display: flex; gap: 4px; margin-bottom: 12px; border-bottom: 1px solid var(--panel-border); padding-bottom: 8px;">
+            <button class="sidebar-tab-btn active" id="tab-info" style="flex: 1; padding: 6px 12px; border-radius: 6px; border: 1px solid var(--panel-border); background: var(--panel-bg); cursor: pointer; font-size: 0.75rem; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 4px; color: var(--text-primary); outline: none;">
+                <i data-lucide="info" style="width:12px;height:12px;"></i>
+                課程資訊
+            </button>
+            <button class="sidebar-tab-btn" id="tab-edit" style="flex: 1; padding: 6px 12px; border-radius: 6px; border: 1px solid transparent; background: transparent; cursor: pointer; font-size: 0.75rem; font-weight: 500; display: flex; align-items: center; justify-content: center; gap: 4px; color: var(--text-secondary); outline: none;">
+                <i data-lucide="edit" style="width:12px;height:12px;"></i>
+                地圖編輯
+            </button>
+        </div>
+
+        <!-- 課程資訊頁籤內容 -->
+        <div id="sidebar-info-content" class="tab-content">
+            <!-- 搜尋 -->
+            <div class="search-container">
+                <i data-lucide="search" class="search-icon"></i>
+                <input type="text" id="course-search" class="search-input" placeholder="搜尋課程名稱、描述或關鍵字..." autocomplete="off">
+            </div>
+
+            <!-- 類別篩選 -->
+            <div class="filter-section">
+                <div class="filter-title">
+                    <i data-lucide="filter" style="width:12px;height:12px;"></i>
+                    按學習性質篩選 (Zone)
+                </div>
+                <div class="filter-tags">
+                    <button class="filter-btn active" data-filter="all">全部</button>
+                    <button class="filter-btn" data-filter="intro">基礎能力</button>
+                    <button class="filter-btn" data-filter="aicore">AI 核心</button>
+                    <button class="filter-btn" data-filter="sts">AI素養</button>
+                    <button class="filter-btn" data-filter="advanced">進階應用</button>
+                    <button class="filter-btn" data-filter="capstone">總整課程</button>
+                </div>
+            </div>
+
+            <!-- 開課領域篩選 -->
+            <div class="filter-section">
+                <div class="filter-title">
+                    <i data-lucide="building" style="width:12px;height:12px;"></i>
+                    依開課學科篩選
+                </div>
+                <div class="filter-tags" id="dept-filter-tags">
+                    <button class="filter-btn active" data-dept="all">全部學科</button>
+                    <button class="filter-btn" data-dept="社會">社會</button>
+                    <button class="filter-btn" data-dept="經濟">經濟</button>
+                    <button class="filter-btn" data-dept="新聞">新聞</button>
+                    <button class="filter-btn" data-dept="社工">社工</button>
+                    <button class="filter-btn" data-dept="政治">政治</button>
+                </div>
+            </div>
+
+            <!-- 詳細資訊 -->
+            <div class="detail-section" id="detail-panel">
+                <div class="detail-placeholder">
+                    <i data-lucide="info"></i>
+                    <p>請點擊網絡圖中的課程節點<br>查看詳細學習途徑與開課資訊</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 地圖編輯頁籤內容 -->
+        <div id="sidebar-edit-content" class="tab-content" style="display: none; flex-direction: column; gap: 14px; padding-bottom: 20px;">
+            <!-- 區段一：新增/編輯課程 -->
+            <div style="border-bottom: 1px solid var(--panel-border); padding-bottom: 12px;">
+                <div id="node-form-title" style="font-size: 0.75rem; font-weight: 700; color: var(--text-secondary); margin-bottom: 8px; display: flex; align-items: center; gap: 4px;">
+                    <i data-lucide="plus-circle" style="width:12px;height:12px;color:#2563eb;"></i>
+                    <span id="node-form-mode-text">新增課程節點</span>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 6px;">
+                    <input type="text" id="edit-node-name" placeholder="課程名稱 (例如: 新社群媒體)" style="width:100%; padding: 6px; font-size: 0.75rem; border: 1px solid var(--panel-border); border-radius: 4px; background: rgba(15,23,42,0.01); color: var(--text-primary); outline: none;">
+                    <div style="display: flex; gap: 4px;">
+                        <select id="edit-node-dept" style="flex: 1; padding: 6px; font-size: 0.75rem; border: 1px solid var(--panel-border); border-radius: 4px; background: rgba(15,23,42,0.01); color: var(--text-primary); outline: none;">
+                            <option value="">選科系...</option>
+                            <option value="社會">社會</option>
+                            <option value="經濟">經濟</option>
+                            <option value="新聞">新聞</option>
+                            <option value="社工">社工</option>
+                            <option value="政治">政治</option>
+                            <option value="跨學科">跨學科</option>
+                        </select>
+                        <select id="edit-node-cat" style="flex: 1; padding: 6px; font-size: 0.75rem; border: 1px solid var(--panel-border); border-radius: 4px; background: rgba(15,23,42,0.01); color: var(--text-primary); outline: none;">
+                            <option value="">選性質...</option>
+                            <option value="intro">基礎能力</option>
+                            <option value="aicore">AI 核心</option>
+                            <option value="sts">AI素養</option>
+                            <option value="advanced">進階應用</option>
+                            <option value="capstone">總整課程</option>
+                        </select>
+                    </div>
+                    <div style="display: flex; gap: 4px;">
+                        <input type="text" id="edit-node-tech" placeholder="關鍵技術 (例如: Python)" style="flex: 1; padding: 6px; font-size: 0.75rem; border: 1px solid var(--panel-border); border-radius: 4px; background: rgba(15,23,42,0.01); color: var(--text-primary); outline: none;">
+                        <input type="text" id="edit-node-note" placeholder="備註 (例如: 替代課程)" style="flex: 1; padding: 6px; font-size: 0.75rem; border: 1px solid var(--panel-border); border-radius: 4px; background: rgba(15,23,42,0.01); color: var(--text-primary); outline: none;">
+                    </div>
+                    <textarea id="edit-node-desc" placeholder="課程簡介描述..." rows="2" style="width:100%; padding: 6px; font-size: 0.75rem; border: 1px solid var(--panel-border); border-radius: 4px; background: rgba(15,23,42,0.01); color: var(--text-primary); resize: vertical; outline: none; font-family: inherit;"></textarea>
+                    
+                    <div id="node-form-buttons" style="width: 100%;">
+                        <button id="btn-add-node" onclick="addNodeFromForm()" style="width:100%; padding: 6px; border-radius: 4px; background: #2563eb; color: #fff; font-size: 0.75rem; font-weight: 600; cursor: pointer; border: none; display: flex; align-items: center; justify-content: center; gap: 4px;">
+                            <i data-lucide="plus" style="width:12px;height:12px;"></i>新增此課程
+                        </button>
+                        <div id="edit-node-actions" style="display: none; gap: 4px; width: 100%;">
+                            <button onclick="saveNodeFromForm()" style="flex: 2; padding: 6px; border-radius: 4px; background: #2563eb; color: #fff; font-size: 0.75rem; font-weight: 600; cursor: pointer; border: none; display: flex; align-items: center; justify-content: center; gap: 4px;">
+                                <i data-lucide="check" style="width:12px;height:12px;"></i>儲存修改
+                            </button>
+                            <button onclick="cancelNodeEdit()" style="flex: 1; padding: 6px; border-radius: 4px; background: rgba(15,23,42,0.08); color: var(--text-secondary); border: 1px solid var(--panel-border); font-size: 0.75rem; cursor: pointer; display: flex; align-items: center; justify-content: center;">
+                                取消
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 區段二：新增連線 -->
+            <div style="border-bottom: 1px solid var(--panel-border); padding-bottom: 12px;">
+                <div style="font-size: 0.75rem; font-weight: 700; color: var(--text-secondary); margin-bottom: 8px; display: flex; align-items: center; gap: 4px;">
+                    <i data-lucide="git-commit" style="width:12px;height:12px;color:#10b981;"></i>
+                    新增課程連線
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 6px;">
+                    <select id="edit-link-source" style="width:100%; padding: 6px; font-size: 0.75rem; border: 1px solid var(--panel-border); border-radius: 4px; background: rgba(15,23,42,0.01); color: var(--text-primary); outline: none;">
+                        <option value="">選擇起點課程...</option>
+                    </select>
+                    <select id="edit-link-target" style="width:100%; padding: 6px; font-size: 0.75rem; border: 1px solid var(--panel-border); border-radius: 4px; background: rgba(15,23,42,0.01); color: var(--text-primary); outline: none;">
+                        <option value="">選擇終點課程...</option>
+                    </select>
+                    <select id="edit-link-type" style="width:100%; padding: 6px; font-size: 0.75rem; border: 1px solid var(--panel-border); border-radius: 4px; background: rgba(15,23,42,0.01); color: var(--text-primary); outline: none;">
+                        <option value="flow">修課路徑 (Flow)</option>
+                        <option value="substitute">替代 (Alternative)</option>
+                        <option value="extension">延伸 (Extension)</option>
+                    </select>
+                    <input type="text" id="edit-link-label" placeholder="關係特性 (選填，例如: 推薦、擋修)" style="width:100%; padding: 6px; font-size: 0.75rem; border: 1px solid var(--panel-border); border-radius: 4px; background: rgba(15,23,42,0.01); color: var(--text-primary); outline: none;">
+                    <button onclick="addLinkFromForm()" style="width:100%; padding: 6px; border-radius: 4px; background: #10b981; color: #fff; font-size: 0.75rem; font-weight: 600; cursor: pointer; border: none; display: flex; align-items: center; justify-content: center; gap: 4px;">
+                        <i data-lucide="link" style="width:12px;height:12px;"></i>新增此連線
+                    </button>
+                    <div style="font-size: 0.65rem; color: var(--text-muted); margin-top: 4px; line-height: 1.3;">
+                        💡 提示：開啟編輯模式下，點擊圖中節點可快速填入起點與終點
+                    </div>
+                </div>
+            </div>
+
+            <!-- 區段三：存檔與匯出網頁 -->
+            <div style="border-bottom: 1px solid var(--panel-border); padding-bottom: 12px; display: flex; flex-direction: column; gap: 8px;">
+                <div style="font-size: 0.75rem; font-weight: 700; color: var(--text-secondary); display: flex; align-items: center; gap: 4px;">
+                    <i data-lucide="download" style="width:12px;height:12px;color:#2563eb;"></i>
+                    儲存與匯出網頁
+                </div>
+                
+                <button onclick="saveToLocalStorage()" style="width:100%; padding: 8px; border-radius: 6px; background: #2563eb; color: #fff; font-size: 0.75rem; font-weight: 600; cursor: pointer; border: none; display: flex; align-items: center; justify-content: center; gap: 6px; box-shadow: 0 2px 4px rgba(37,99,235,0.1);">
+                    <i data-lucide="save" style="width:14px;height:14px;"></i>儲存變更 (存於瀏覽器)
+                </button>
+
+                <button onclick="exportHtml(false)" style="width:100%; padding: 8px; border-radius: 6px; background: rgba(37,99,235,0.08); color: #2563eb; font-size: 0.75rem; font-weight: 600; cursor: pointer; border: 1px solid rgba(37,99,235,0.15); display: flex; align-items: center; justify-content: center; gap: 6px;">
+                    <i data-lucide="download" style="width:14px;height:14px;"></i>下載網頁檔 (包含編輯器)
+                </button>
+                
+                <button onclick="exportHtml(true)" style="width:100%; padding: 8px; border-radius: 6px; background: #10b981; color: #fff; font-size: 0.75rem; font-weight: 600; cursor: pointer; border: none; display: flex; align-items: center; justify-content: center; gap: 6px; box-shadow: 0 2px 4px rgba(16,185,129,0.1);">
+                    <i data-lucide="external-link" style="width:14px;height:14px;"></i>下載乾淨圖表網頁 (無編輯器)
+                </button>
+
+                <button onclick="resetDefaultData()" style="width:100%; padding: 6px; border-radius: 6px; background: rgba(239,68,68,0.08); color: #ef4444; font-size: 0.72rem; font-weight: 500; cursor: pointer; border: 1px solid rgba(239,68,68,0.15); display: flex; align-items: center; justify-content: center; gap: 4px;">
+                    <i data-lucide="rotate-ccw" style="width:12px;height:12px;"></i>重置為預設資料 (清除瀏覽器存檔)
+                </button>
+                
+                <div style="font-size: 0.65rem; color: var(--text-muted); line-height:1.4;">
+                    💡 提示：
+                    <br>1. 您可以**拖曳節點**來手動調整位置，**雙擊節點**可解鎖並恢復自動排版。
+                    <br>2. 點擊「儲存變更 (存於瀏覽器)」即可將變更即時存於本地瀏覽器中，下次重新整理即可見到最新內容。
+                    <br>3. 若欲將變更永久寫入檔案或部署至 GitHub Pages，請點擊「下載網頁檔」，下載後覆蓋本地的 <code>course_network.html</code> 檔案即可。
+                </div>
+
+                <details style="cursor: pointer; margin-top: 4px;">
+                    <summary style="font-size: 0.7rem; color: var(--text-muted); outline: none;">檢視 / 編輯原始 JSON 資料</summary>
+                    <div style="margin-top: 6px;">
+                        <textarea id="edit-json-area" rows="6" style="width:100%; padding: 6px; font-size: 0.7rem; font-family: monospace; border: 1px solid var(--panel-border); border-radius: 4px; background: rgba(15,23,42,0.02); color: var(--text-primary); resize: vertical; margin-bottom: 4px; outline: none; white-space: pre; overflow-x: auto;"></textarea>
+                        <button onclick="applyJsonFromTextarea()" style="width:100%; padding: 4px; border-radius: 4px; background: #0f172a; color: #fff; font-size: 0.75rem; font-weight: 600; cursor: pointer; border: none;">套用 JSON 變更</button>
+                    </div>
+                </details>
+            </div>
+
+            <!-- 區段四：現有刪除清單 -->
+            <div>
+                <details style="cursor: pointer;">
+                    <summary style="font-size: 0.75rem; font-weight: 700; color: var(--text-secondary); outline: none;">
+                        🗑️ 管理/刪除現有項目
+                    </summary>
+                    <div style="margin-top: 8px; display: flex; flex-direction: column; gap: 8px; max-height: 200px; overflow-y: auto; padding-right: 2px;">
+                        <div style="font-size: 0.7rem; font-weight: 700; color: var(--text-muted);">現有課程：</div>
+                        <div id="edit-nodes-list" style="display: flex; flex-direction: column; gap: 4px;"></div>
+                        <div style="font-size: 0.7rem; font-weight: 700; color: var(--text-muted); margin-top: 6px;">現有連線：</div>
+                        <div id="edit-links-list" style="display: flex; flex-direction: column; gap: 4px;"></div>
+                    </div>
+                </details>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- 懸浮控制項 -->
+    <div class="glass-panel controls-panel">
+        <button class="control-btn" id="btn-layout-toggle" title="切換流向排版 (左右 / 上下)" style="width: auto; padding: 0 10px; font-size: 0.75rem; display: flex; gap: 4px; align-items: center;">
+            <span id="layout-icon-wrapper"><i data-lucide="arrow-right" style="width:14px; height:14px;"></i></span>
+            <span id="layout-text" style="font-weight: 500;">左右流向</span>
+        </button>
+        <button class="control-btn" id="btn-labels-toggle" title="顯示/隱藏連線文字標記" style="width: auto; padding: 0 10px; font-size: 0.75rem; display: flex; gap: 4px; align-items: center;">
+            <i data-lucide="tag" style="width:14px; height:14px;"></i>
+            <span id="labels-toggle-text" style="font-weight: 500;">隱藏連線文字</span>
+        </button>
+        <button class="control-btn" id="btn-zoom-in" title="放大"><i data-lucide="zoom-in"></i></button>
+        <button class="control-btn" id="btn-zoom-out" title="縮小"><i data-lucide="zoom-out"></i></button>
+        <button class="control-btn" id="btn-zoom-reset" title="重設視角"><i data-lucide="maximize"></i></button>
+    </div>
+
+    <script>
+        // 判定是否為匯出模式 (若為 true 則隱藏編輯器 UI)
+        const isExportMode = false;
+
+        if (isExportMode) {
+            const tabs = document.querySelector(".sidebar-tabs");
+            if (tabs) tabs.style.display = "none";
+            const editContent = document.getElementById("sidebar-edit-content");
+            if (editContent) editContent.style.display = "none";
+            const tabEdit = document.getElementById("tab-edit");
+            if (tabEdit) tabEdit.style.display = "none";
+            const infoContent = document.getElementById("sidebar-info-content");
+            if (infoContent) infoContent.style.display = "block";
+            const layoutToggle = document.getElementById("btn-layout-toggle");
+            if (layoutToggle) layoutToggle.style.display = "none";
+        }
+
+        // 初始化 Lucide 圖標
+        lucide.createIcons();
+
+        let graphData = null;
+
+        // 預設內嵌資料 (作為 CORS 阻擋時的 Fallback 備用資料)
+        const fallbackData = {
+          "nodes": [
+            {
+              "id": "course-計算社會學",
+              "label": "計算社會學 (社會)",
+              "category": "advanced",
+              "tech": "n8n 工作流",
+              "level": "進階應用",
+              "dept": "社會",
+              "size": 16,
+              "desc": "以自動化工作流工具 n8n 為主的基礎程式課程。著重於無程式碼 API 串接、工作流自動化與基本資料收集，專為社會學門零基礎學生設計。",
+              "x": -160,
+              "y": 60,
+              "fx": -160,
+              "fy": 60
+            },
+            {
+              "id": "course-資料科學與社會研究",
+              "label": "資料科學與社會研究 (經濟)",
+              "category": "aicore",
+              "tech": "Python",
+              "level": "AI 核心",
+              "dept": "經濟",
+              "size": 17,
+              "desc": "經濟領域的 Python 基礎程式設計與資料科學入門。作為 Level 1 基礎課程，教授基本語法、資料分析套件（Pandas、Numpy）與基礎敘述統計實作。",
+              "x": 20,
+              "y": -40,
+              "fx": 20,
+              "fy": -40
+            },
+            {
+              "id": "course-AI 的社會科學應用",
+              "label": "AI 的社會科學應用 (新聞)",
+              "category": "aicore",
+              "tech": "Python",
+              "level": "AI 核心",
+              "dept": "新聞",
+              "size": 17,
+              "note": "（原「社會科學程式設計」替代課程）",
+              "desc": "新聞傳播領域專長 Level 1 的 Python 基礎程式。結合資料處理基本邏輯，以及生成式 AI 在輔助新聞與社會科學研究中的應用基礎。",
+              "x": 360,
+              "y": -80,
+              "fx": 360,
+              "fy": -80
+            },
+            {
+              "id": "course-AI 實作入門",
+              "label": "AI 實作入門 (社會)",
+              "category": "aicore",
+              "tech": "Python / ML",
+              "level": "AI 核心",
+              "dept": "社會",
+              "size": 17,
+              "desc": "社會學領域專長的 AI 實作與資料科學入門。作為 Level 1 基礎課程，教授基本語法與機器學習實作應用。",
+              "x": -160,
+              "y": -80,
+              "fx": -160,
+              "fy": -80
+            },
+            {
+              "id": "course-人工智慧與文化政治",
+              "label": "人工智慧與文化政治 (新聞)",
+              "category": "sts",
+              "tech": "STS / 文化政治",
+              "level": "AI素養 (STS與治理)",
+              "dept": "新聞",
+              "size": 16,
+              "desc": "探討人工智慧與文化政治、社會結構變遷之間的關係。關注演算法歧視、數位文化霸權以及技術倫理，屬 STS（科學、技術與社會）研究領域。",
+              "x": 360,
+              "y": -320,
+              "fx": 360,
+              "fy": -320
+            },
+            {
+              "id": "course-人機互動視角下的AI倫理與法律",
+              "label": "人機互動視角下的AI倫理與法律 (社工)",
+              "category": "sts",
+              "tech": "STS / 倫理與法律",
+              "level": "AI素養 (STS與治理)",
+              "dept": "社工",
+              "size": 16,
+              "desc": "以人機互動（HCI）為視角切入，深度探討 AI 倫理、資料隱私與法制。特別關注社工福利系統中演算法決策對弱勢群體的社會影響。",
+              "x": 140,
+              "y": -320,
+              "fx": 140,
+              "fy": -320
+            },
+            {
+              "id": "course-數位治理與人工智慧專題",
+              "label": "數位治理與人工智慧專題 (政治)",
+              "category": "sts",
+              "tech": "在職專班 / STS治理",
+              "level": "AI素養 (在職專班)",
+              "dept": "政治",
+              "size": 16,
+              "desc": "政治系在職專班課程。從公共行政、政府數位決策與國家治理模式出發，探討數位時代的人工智慧監管法治與資料治理框架。",
+              "x": 260,
+              "y": -320,
+              "fx": 260,
+              "fy": -320
+            },
+            {
+              "id": "course-輿情分析與選舉研究專題",
+              "label": "輿情分析與選舉研究專題 (政治)",
+              "category": "advanced",
+              "tech": "輿情分析 / 選舉研究",
+              "level": "進階應用",
+              "dept": "政治",
+              "size": 18,
+              "desc": "結合政治學理論與大數據分析技術。探討社群媒體時代下的選情觀測、選民網路行為、輿情傳播與政治極化現象。",
+              "x": 260,
+              "y": 180,
+              "fx": 260,
+              "fy": 180
+            },
+            {
+              "id": "course-社會福利大數據分析",
+              "label": "社會福利大數據分析 (社工)",
+              "category": "advanced",
+              "tech": "大數據分析",
+              "level": "進階應用",
+              "dept": "社工",
+              "size": 18,
+              "desc": "應用大數據技術於社會福利政策評估。分析政府公開資料、福利體系數據，以優化福利資源輸送與弱勢群體扶助規劃。",
+              "x": 140,
+              "y": -140,
+              "fx": 140,
+              "fy": -140
+            },
+            {
+              "id": "course-機器學習與經濟計量",
+              "label": "機器學習與經濟計量 (經濟)",
+              "category": "advanced",
+              "tech": "機器學習 / 經濟計量",
+              "level": "進階應用 (研究所)",
+              "dept": "經濟",
+              "size": 19,
+              "desc": "研究所偏應用與技術進階之課程.強調機器學習方法（ML）與計量模型的結合，探討因果推論、高維度資料處理與經濟決策預測。",
+              "x": -40,
+              "y": 60,
+              "fx": -40,
+              "fy": 60
+            },
+            {
+              "id": "course-社群媒體與社會網絡分析",
+              "label": "社群媒體與社會網絡分析 (新聞)",
+              "category": "advanced",
+              "tech": "社會網絡 (SNA) / AI 設計",
+              "level": "進階應用 (研究所)",
+              "dept": "新聞",
+              "size": 19,
+              "desc": "研究所偏應用課程。以社會網絡分析（SNA）為核心，探討社群媒體資料運用與傳播網絡建模，並鼓勵在網絡研究設計中結合 AI 應用。",
+              "x": 420,
+              "y": 60,
+              "fx": 420,
+              "fy": 60
+            },
+            {
+              "id": "course-社群媒介輿論分析",
+              "label": "社群媒介輿論分析 (新聞)",
+              "category": "capstone",
+              "tech": "Python / 總整專案",
+              "level": "總整課程 (Capstone)",
+              "dept": "新聞",
+              "size": 21,
+              "isCapstone": true,
+              "desc": "新聞傳播領域專長的總整課程（Capstone）。實作社群媒體巨量資料爬取、自然語言處理、情感分析與網絡結構分析，並進行完整專案實作。",
+              "x": 360,
+              "y": 240,
+              "fx": 360,
+              "fy": 240
+            },
+            {
+              "id": "course-智慧社福與資料治理專題",
+              "label": "智慧社福與資料治理專題 (社工)",
+              "category": "capstone",
+              "tech": "資料治理 / 總整專案",
+              "level": "總整課程 (Capstone)",
+              "dept": "社工",
+              "size": 21,
+              "isCapstone": true,
+              "desc": "社工領域專長總整課程。深入結合智慧化福利系統設計與資料治理架構，反思社會服務資料在資訊安全、隱私保護與倫理治理的實務挑戰。",
+              "x": 140,
+              "y": 240,
+              "fx": 140,
+              "fy": 240
+            },
+            {
+              "id": "course-資料科學與社會研究總整課程",
+              "label": "資料科學與社會研究總整課程 (經濟)",
+              "category": "capstone",
+              "tech": "Python / 總整專案",
+              "level": "總整課程 (Capstone)",
+              "dept": "經濟",
+              "size": 21,
+              "isCapstone": true,
+              "desc": "經濟學領域專長的總整課程（Capstone）。學生將融會貫通 Python 資料科學技能與計量統計分析，針對特定經濟與社會政策進行完整的實證數據研究專案實作。",
+              "x": 20,
+              "y": 240,
+              "fx": 20,
+              "fy": 240
+            },
+            {
+              "id": "course-人工智慧在社會科學調查研究中的應用",
+              "label": "人工智慧在社會科學調查研究中的應用 (政治)",
+              "category": "advanced",
+              "tech": "Python",
+              "level": "進階應用",
+              "dept": "政治",
+              "size": 16,
+              "desc": "尚無描述。",
+              "x": 260,
+              "y": 60,
+              "fx": 260,
+              "fy": 60
+            },
+            {
+              "id": "course-AI 應用與社會",
+              "label": "AI 應用與社會 (社會)",
+              "category": "intro",
+              "tech": "n8n",
+              "level": "基礎能力 (程式基礎)",
+              "dept": "社會",
+              "size": 16,
+              "desc": "尚無描述。",
+              "x": -160,
+              "y": -200,
+              "fx": -160,
+              "fy": -200
+            }
+          ],
+          "links": [
+            {
+              "source": "course-資料科學與社會研究",
+              "target": "course-AI 的社會科學應用",
+              "type": "substitute"
+            },
+            {
+              "source": "course-AI 實作入門",
+              "target": "course-AI 的社會科學應用",
+              "type": "substitute"
+            },
+            {
+              "source": "course-AI 實作入門",
+              "target": "course-資料科學與社會研究",
+              "type": "substitute"
+            },
+            {
+              "source": "course-社會福利大數據分析",
+              "target": "course-智慧社福與資料治理專題",
+              "type": "flow",
+              "label": "總整"
+            },
+            {
+              "source": "course-社會福利大數據分析",
+              "target": "course-人機互動視角下的AI倫理與法律",
+              "type": "extension",
+              "label": "素養"
+            },
+            {
+              "source": "course-人工智慧在社會科學調查研究中的應用",
+              "target": "course-輿情分析與選舉研究專題",
+              "type": "flow",
+              "label": "進階"
+            },
+            {
+              "source": "course-AI 的社會科學應用",
+              "target": "course-輿情分析與選舉研究專題",
+              "type": "flow",
+              "label": "進階"
+            },
+            {
+              "source": "course-AI 的社會科學應用",
+              "target": "course-人工智慧在社會科學調查研究中的應用",
+              "type": "flow",
+              "label": "應用"
+            },
+            {
+              "source": "course-AI 實作入門",
+              "target": "course-計算社會學",
+              "type": "flow",
+              "label": "進階"
+            },
+            {
+              "source": "course-AI 應用與社會",
+              "target": "course-AI 實作入門",
+              "type": "flow",
+              "label": "進階"
+            },
+            {
+              "source": "course-AI 的社會科學應用",
+              "target": "course-人工智慧與文化政治",
+              "type": "extension",
+              "label": "素養"
+            },
+            {
+              "source": "course-社會福利大數據分析",
+              "target": "course-資料科學與社會研究",
+              "type": "flow",
+              "label": "程式與應用AI"
+            },
+            {
+              "source": "course-社會福利大數據分析",
+              "target": "course-AI 的社會科學應用",
+              "type": "flow",
+              "label": "應用AI"
+            },
+            {
+              "source": "course-AI 的社會科學應用",
+              "target": "course-社群媒介輿論分析",
+              "type": "flow",
+              "label": "總整"
+            },
+            {
+              "source": "course-AI 的社會科學應用",
+              "target": "course-社群媒體與社會網絡分析",
+              "type": "flow",
+              "label": "進階應用"
+            },
+            {
+              "source": "course-社群媒體與社會網絡分析",
+              "target": "course-社群媒介輿論分析",
+              "type": "flow",
+              "label": "總整"
+            },
+            {
+              "source": "course-資料科學與社會研究",
+              "target": "course-資料科學與社會研究總整課程",
+              "type": "flow",
+              "label": "總整"
+            },
+            {
+              "source": "course-資料科學與社會研究",
+              "target": "course-機器學習與經濟計量",
+              "type": "flow",
+              "label": "機器學習進階"
+            }
+          ]
+        };
+
+        // 性質分類樣式對照
+        function getCategoryColor(d) {
+            if (d.isPeripheral) return "var(--color-peripheral)";
+            return `var(--color-${d.category})`;
+        }
+        function getCategoryFill(d) {
+            if (d.isPeripheral) return "var(--fill-peripheral)";
+            return `var(--fill-${d.category})`;
+        }
+
+        // 智慧型中文字串分行拆分
+        function splitTitle(title) {
+            const maxLen = 8;
+            if (title.length <= maxLen) return [title];
+            
+            // 嘗試尋找理想的中文字串斷句關鍵字
+            const splitKeywords = ["與", "的", "及", "在", "和", "或", "專題", "課程", "科學", "研究", "分析"];
+            
+            for (let kw of splitKeywords) {
+                let idx = title.indexOf(kw);
+                if (idx !== -1) {
+                    let splitIdx = idx;
+                    // 在 "與", "及", "在", "和", "或" 之後換行，其他在之前換行
+                    if (["與", "及", "在", "和", "或"].includes(kw)) {
+                        splitIdx = idx + 1;
+                    }
+                    // 確保前半部斷句字數適中 (3 ~ 9 字)
+                    if (splitIdx >= 3 && splitIdx <= maxLen + 1) {
+                        return [title.substring(0, splitIdx), ...splitTitle(title.substring(splitIdx))];
+                    }
+                }
+            }
+            
+            // 若找不到合適斷句字，則在中間或第 7-8 字強制斷句
+            let splitIdx = 7;
+            if (title.length <= 10) {
+                splitIdx = Math.ceil(title.length / 2);
+            }
+            return [title.substring(0, splitIdx), ...splitTitle(title.substring(splitIdx))];
+        }
+        function getDeptLabelColor(dept) {
+            switch(dept) {
+                case "社會": return "var(--color-sociology)";
+                case "經濟": return "var(--color-economics)";
+                case "新聞": return "var(--color-journalism)";
+                case "社工": return "var(--color-socialwork)";
+                case "政治": return "var(--color-politics)";
+                default: return "var(--text-muted)";
+            }
+        }
+        function getDeptKey(deptName) {
+            switch(deptName) {
+                case "社會": return "sociology";
+                case "經濟": return "economics";
+                case "新聞": return "journalism";
+                case "社工": return "socialwork";
+                case "政治": return "politics";
+                default: return "default";
+            }
+        }
+
+        function getNodeDegree(nodeId) {
+            if (!graphData || !Array.isArray(graphData.links)) return 0;
+            return graphData.links.reduce((count, link) => {
+                const sourceId = typeof link.source === 'object' ? link.source.id : link.source;
+                const targetId = typeof link.target === 'object' ? link.target.id : link.target;
+                return count + ((sourceId === nodeId || targetId === nodeId) ? 1 : 0);
+            }, 0);
+        }
+
+        function isSingleNode(d) {
+            return getNodeDegree(d.id) <= 1;
+        }
+
+        // 宣告 D3 物理模擬與縮放相關的全域變數，供互動與事件呼叫
+        let simulation, link, linkLabel, flowDots, node, zoom;
+        const svg = d3.select("#network-svg");
+        const zoomG = d3.select("#zoom-g");
+        let defs = null;
+
+        // 初始化與渲染網絡圖
+        function initVisualization() {
+            if (simulation) {
+                simulation.stop();
+            }
+            d3.select("#groups-group").selectAll("*").remove();
+            d3.select("#links-group").selectAll("*").remove();
+            d3.select("#link-labels-group").selectAll("*").remove();
+            d3.select("#dots-group").selectAll("*").remove();
+            d3.select("#nodes-group").selectAll("*").remove();
+
+            // AI素養分組背景匡線 (STS Group Bounding Box)
+            const groupsG = d3.select("#groups-group");
+
+            // 30% 透明藍多邊形，凸顯三門替代課程的核心三角位置
+            const subPolygon = groupsG.append("polygon")
+                .attr("class", "substitute-polygon")
+                .attr("fill", "rgba(56, 189, 248, 0.3)") // 30% 透明藍
+                .attr("stroke", "rgba(56, 189, 248, 0.3)")
+                .attr("stroke-width", 1.5)
+                .attr("stroke-dasharray", "3 3")
+                .style("pointer-events", "none");
+
+            const stsGroup = groupsG.append("g")
+                .attr("class", "bounding-group sts-bounding-group")
+                .style("opacity", 1);
+                
+            const stsRect = stsGroup.append("rect")
+                .attr("fill", "var(--fill-sts)")
+                .attr("fill-opacity", 0.04)
+                .attr("stroke", "var(--color-sts)")
+                .attr("stroke-width", 1.5)
+                .attr("stroke-dasharray", "4 4")
+                .attr("rx", 16)
+                .attr("ry", 16);
+                
+            const stsLabel = stsGroup.append("text")
+                .attr("class", "group-label")
+                .attr("fill", "var(--color-sts)")
+                .style("font-size", "11px")
+                .style("font-weight", "700")
+                .style("letter-spacing", "1px")
+                .text("AI 素養");
+
+            // 為連線指定原始索引以利流動動畫連結
+            graphData.links.forEach((l, i) => {
+                l.originalIndex = i;
+            });
+
+            if (!defs) {
+                defs = svg.append("defs");
+
+                // 定義學習路徑的指向箭頭
+                defs.append("marker")
+                    .attr("id", "arrow-flow")
+                    .attr("viewBox", "0 -5 10 10")
+                    .attr("refX", 25) 
+                    .attr("refY", 0)
+                    .attr("markerWidth", 5)
+                    .attr("markerHeight", 5)
+                    .attr("orient", "auto")
+                    .append("path")
+                    .attr("d", "M0,-4 L10,0 L0,4")
+                    .attr("fill", "var(--text-muted)")
+                    .style("opacity", "0.4");
+
+                defs.append("marker")
+                    .attr("id", "arrow-flow-active")
+                    .attr("viewBox", "0 -5 10 10")
+                    .attr("refX", 25)
+                    .attr("refY", 0)
+                    .attr("markerWidth", 6)
+                    .attr("markerHeight", 6)
+                    .attr("orient", "auto")
+                    .append("path")
+                    .attr("d", "M0,-4 L10,0 L0,4")
+                    .attr("fill", "#2563eb");
+
+                // 定義延伸路徑的指向箭頭
+                defs.append("marker")
+                    .attr("id", "arrow-extension")
+                    .attr("viewBox", "0 -5 10 10")
+                    .attr("refX", 25) 
+                    .attr("refY", 0)
+                    .attr("markerWidth", 5)
+                    .attr("markerHeight", 5)
+                    .attr("orient", "auto")
+                    .append("path")
+                    .attr("d", "M0,-4 L10,0 L0,4")
+                    .attr("fill", "var(--link-extension)")
+                    .style("opacity", "0.7");
+
+                defs.append("marker")
+                    .attr("id", "arrow-extension-active")
+                    .attr("viewBox", "0 -5 10 10")
+                    .attr("refX", 25)
+                    .attr("refY", 0)
+                    .attr("markerWidth", 6)
+                    .attr("markerHeight", 6)
+                    .attr("orient", "auto")
+                    .append("path")
+                    .attr("d", "M0,-4 L10,0 L0,4")
+                    .attr("fill", "#e11d48");
+
+                // 20px 線狀網格背景
+                const pattern = defs.append("pattern")
+                    .attr("id", "grid-pattern")
+                    .attr("width", 20)
+                    .attr("height", 20)
+                    .attr("patternUnits", "userSpaceOnUse");
+
+                pattern.append("path")
+                    .attr("d", "M 20 0 L 0 0 0 20")
+                    .attr("fill", "none")
+                    .attr("stroke", "var(--text-primary)")
+                    .attr("stroke-width", 0.5)
+                    .style("opacity", "0.035");
+
+                d3.select(".bg-grid-group").selectAll("*").remove();
+                d3.select(".bg-grid-group")
+                    .append("rect")
+                    .attr("width", "100%")
+                    .attr("height", "100%")
+                    .attr("fill", "url(#grid-pattern)");
+            }
+
+            // 設置物理模擬引擎 (中心重心設為 0,0)
+            simulation = d3.forceSimulation(graphData.nodes)
+                .force("link", d3.forceLink(graphData.links)
+                    .id(d => d.id)
+                    .distance(d => {
+                        const isPeri = (d.source.isPeripheral || d.target.isPeripheral || 
+                                        (typeof d.source === 'object' && d.source.isPeripheral) || 
+                                        (typeof d.target === 'object' && d.target.isPeripheral) ||
+                                        d.source === "course-社會統計" || d.target === "course-社會統計");
+                        return isPeri ? 280 : (d.type === "flow" ? 110 : 130);
+                    })
+                    .strength(d => {
+                        const isPeri = (d.source.isPeripheral || d.target.isPeripheral || 
+                                        (typeof d.source === 'object' && d.source.isPeripheral) || 
+                                        (typeof d.target === 'object' && d.target.isPeripheral) ||
+                                        d.source === "course-社會統計" || d.target === "course-社會統計");
+                        return isPeri ? 0.02 : 0.3;
+                    })
+                )
+                .force("charge", d3.forceManyBody().strength(-200)) 
+                .force("collide", d3.forceCollide().radius(d => (d.isCapstone ? 13 : (d.category === "aicore" ? 12 : 9)) + 48).iterations(2)) 
+                .force("x", d3.forceX(d => {
+                    if (d.isPeripheral || d.id === "course-社會統計") return -360;
+                    if (d.category === "intro") return -220;
+                    if (d.category === "aicore") return -80;
+                    if (d.category === "sts") return 40;
+                    if (d.category === "advanced") return 170;
+                    if (d.category === "capstone") return 300;
+                    return 0;
+                }).strength(0.95))
+                .force("y", d3.forceY(d => {
+                    if (isSingleNode(d)) return -360;
+                    if (d.isPeripheral || d.id === "course-社會統計") return -220;
+                    switch (d.dept) {
+                        case "社工": return -160;
+                        case "社會": return -80;
+                        case "新聞": return 0;
+                        case "經濟": return 80;
+                        case "政治": return 160;
+                        default:
+                            let hash = 0;
+                            const deptStr = d.dept || "";
+                            for (let i = 0; i < deptStr.length; i++) {
+                                hash = deptStr.charCodeAt(i) + ((hash << 5) - hash);
+                            }
+                            return ((Math.abs(hash) % 5) - 2) * 80;
+                    }
+                }).strength(0.95));
+
+            // 繪製連線 Link (直線)
+            link = d3.select("#links-group")
+                .selectAll(".link")
+                .data(graphData.links)
+                .join("path")
+                .attr("class", d => `link link-${d.type}`)
+                .attr("id", (d, i) => `link-path-${i}`)
+                .style("stroke-dasharray", d => {
+                    if (d.type === "extension") return "3 3";
+                    return "none";
+                }) 
+                .style("stroke-width", d => {
+                    if (d.type === "flow") return 1.8;
+                    if (d.type === "substitute") return 3.6; // 兩倍粗 3.6px
+                    if (d.type === "extension") return 1.5;
+                    return 1.2;
+                })
+                .style("stroke", d => {
+                    if (d.type === "flow") return "var(--link-flow)";
+                    if (d.type === "substitute") return "var(--link-substitute)";
+                    if (d.type === "extension") return "var(--link-extension)";
+                    return "var(--link-default)";
+                })
+                .style("stroke-opacity", d => {
+                    if (d.type === "substitute") return 0.65; // 淡藍色半透明
+                    if (d.type === "extension") return 0.75;
+                    return 0.5;
+                })
+                .attr("marker-end", d => {
+                    if (d.type === "flow") return "url(#arrow-flow)";
+                    if (d.type === "extension") return "url(#arrow-extension)";
+                    return "none";
+                });
+
+            // 繪製連線文字標籤
+            linkLabel = d3.select("#link-labels-group")
+                .selectAll(".link-label")
+                .data(graphData.links)
+                .join("text")
+                .attr("class", "link-label")
+                .text(d => {
+                    if (d.label) return d.label;
+                    if (d.type === "flow") return "路徑";
+                    if (d.type === "substitute") return "替代";
+                    if (d.type === "extension") return "延伸";
+                    return "";
+                });
+
+            // 繪製學習流向的流動微粒 (僅 flow 類型)
+            flowDots = d3.select("#dots-group")
+                .selectAll(".flow-dot-container")
+                .data(graphData.links.filter(d => d.type === "flow"))
+                .join("g")
+                .attr("class", "flow-dot-container");
+
+            flowDots.append("circle")
+                .attr("r", 2.2)
+                .attr("class", "flow-dot")
+                .style("fill", "#2563eb");
+
+            // 繪製節點 Node 容器
+            node = d3.select("#nodes-group")
+                .selectAll(".node")
+                .data(graphData.nodes)
+                .join("g")
+                .attr("class", d => `node cat-${d.category} dept-${getDeptKey(d.dept)}`);
+
+            if (!isExportMode) {
+                node.call(d3.drag()
+                    .on("start", dragstarted)
+                    .on("drag", dragged)
+                    .on("end", dragended)
+                );
+            }
+
+            node.on("click", handleNodeClick)
+                .on("dblclick", handleNodeDblClick)
+                .on("mouseover", handleMouseOver)
+                .on("mousemove", handleMouseMove)
+                .on("mouseout", handleMouseOut);
+
+            // 節點主要圖形
+            node.each(function(d) {
+                const el = d3.select(this);
+                const isPinned = d.fx !== undefined && d.fx !== null;
+                const r = d.isCapstone ? 13 : (d.category === "aicore" ? 12 : 9);
+                
+                if (d.isCapstone) {
+                    el.append("circle")
+                        .attr("class", "node-shape-outer")
+                        .attr("r", r + 4)
+                        .attr("stroke", getCategoryColor(d))
+                        .style("stroke-opacity", 0.5);
+
+                    el.append("circle")
+                        .attr("class", "node-shape")
+                        .attr("r", r)
+                        .attr("fill", "#ffffff")
+                        .attr("stroke", getCategoryColor(d))
+                        .style("stroke-width", "2px")
+                        .style("stroke-dasharray", isPinned ? "3 2" : "none");
+
+                    el.append("circle")
+                        .attr("r", r - 4)
+                        .attr("fill", getCategoryColor(d))
+                        .attr("fill-opacity", 0.16)
+                        .attr("stroke", "none");
+                } else if (d.category === "aicore") {
+                    // AI 核心 - Solid color with high contrast outer ring (特別鮮明，非空心節點)
+                    el.append("circle")
+                        .attr("class", "node-shape-outer")
+                        .attr("r", r + 4)
+                        .attr("stroke", getCategoryColor(d))
+                        .style("stroke-opacity", 0.8)
+                        .style("stroke-width", "1.5px")
+                        .style("stroke-dasharray", "none"); // 實心外環
+
+                    el.append("circle")
+                        .attr("class", "node-shape")
+                        .attr("r", r)
+                        .attr("fill", getCategoryColor(d)) // 實心背景 (不填 #ffffff)
+                        .attr("stroke", "#ffffff") // 白色分界線
+                        .style("stroke-width", "1.5px")
+                        .style("stroke-dasharray", isPinned ? "3 2" : "none");
+
+                    el.append("circle")
+                        .attr("r", r - 4)
+                        .attr("fill", "#ffffff") // 內部白色圓形提供良好對比
+                        .attr("fill-opacity", 0.9)
+                        .attr("stroke", "none");
+                } else {
+                    // 一般節點 (包括 AI素養 sts, 基礎能力 intro, 進階應用 advanced)
+                    el.append("circle")
+                        .attr("class", "node-shape")
+                        .attr("r", r)
+                        .attr("fill", "#ffffff")
+                        .attr("stroke", getCategoryColor(d))
+                        .style("stroke-width", "1.5px")
+                        .style("stroke-dasharray", isPinned ? "3 2" : "none");
+
+                    el.append("circle")
+                        .attr("r", r - 3)
+                        .attr("fill", getCategoryFill(d))
+                        .attr("fill-opacity", 0.12)
+                        .attr("stroke", "none");
+                }
+            });
+
+            // 節點中心彩點
+            node.append("circle")
+                .attr("r", 2.2)
+                .attr("fill", d => d.category === "aicore" ? "#ffffff" : getCategoryColor(d))
+                .style("opacity", d => d.category === "aicore" ? 0.9 : 0.7);
+
+            // 節點文字標籤 (支援自動分行與粗細顏色搭配)
+            const labelGroup = node.append("text")
+                .attr("class", "node-label")
+                .attr("dy", "0px")
+                .style("text-anchor", "middle");
+
+            labelGroup.each(function(d) {
+                const textEl = d3.select(this);
+                const parts = d.label.split(" (");
+                const title = parts[0];
+                const dept = parts[1] ? "(" + parts[1] : "";
+                
+                const titleLines = splitTitle(title);
+                const lines = [...titleLines];
+                if (dept) lines.push(dept);
+                
+                const r = d.isCapstone ? 13 : (d.category === "aicore" ? 12 : 9);
+                const startOffset = r + 15;
+                const lineHeight = 15;
+                
+                lines.forEach((line, idx) => {
+                    textEl.append("tspan")
+                        .attr("x", 0)
+                        .attr("dy", idx === 0 ? `${startOffset}px` : `${lineHeight}px`)
+                        .text(line)
+                        .style("font-weight", (idx < titleLines.length) ? "600" : "400")
+                        .style("fill", (idx < titleLines.length) ? "var(--text-primary)" : getDeptLabelColor(d.dept));
+                });
+            });
+
+            // 物理模擬 Ticking 迴圈
+            simulation.on("tick", () => {
+                // 動態更新 AI素養 分組背景框的位置與寬高 (縮小外框、垂直置中文字節點)
+                const stsNodes = graphData.nodes.filter(n => n.category === "sts" && !n.isPeripheral);
+                if (stsNodes.length > 0) {
+                    const minX = d3.min(stsNodes, d => d.x);
+                    const maxX = d3.max(stsNodes, d => d.x);
+                    const minY = d3.min(stsNodes, d => d.y);
+                    const maxY = d3.max(stsNodes, d => d.y);
+                    
+                    const paddingX = 35; 
+                    const paddingYTop = 22; 
+                    const paddingYBottom = 82;
+                    
+                    const rx = minX - paddingX;
+                    const ry = minY - paddingYTop;
+                    const rw = (maxX - minX) + paddingX * 2;
+                    const rh = (maxY - minY) + paddingYTop + paddingYBottom;
+                    
+                    stsRect
+                        .attr("x", rx)
+                        .attr("y", ry)
+                        .attr("width", rw)
+                        .attr("height", rh);
+                        
+                    stsLabel
+                        .attr("x", rx + 12)
+                        .attr("y", ry - 6);
+                }
+
+                // 動態更新替代課程多邊形頂點
+                const subNodeIds = ["course-AI 實作入門", "course-資料科學與社會研究", "course-AI 的社會科學應用"];
+                const subNodes = graphData.nodes.filter(n => subNodeIds.includes(n.id));
+                if (subNodes.length === 3) {
+                    const points = subNodes.map(n => `${n.x},${n.y}`).join(" ");
+                    subPolygon
+                        .attr("points", points)
+                        .style("display", null);
+                } else {
+                    subPolygon.style("display", "none");
+                }
+
+                link.attr("d", d => {
+                    if (!d.source || !d.target || typeof d.source !== 'object' || typeof d.target !== 'object') {
+                        return "";
+                    }
+                    return `M${d.source.x},${d.source.y} L${d.target.x},${d.target.y}`;
+                });
+
+                if (linkLabel) {
+                    linkLabel
+                        .attr("x", d => (d.source.x + d.target.x) / 2)
+                        .attr("y", d => (d.source.y + d.target.y) / 2 + 3);
+                }
+
+                node.attr("transform", d => `translate(${d.x},${d.y})`);
+            });
+
+            simulation.on("end", () => {
+                updateDotMotionPaths();
+            });
+
+            // D3 Zoom 縮放綁定
+            zoom = d3.zoom()
+                .scaleExtent([0.65, 3])
+                .on("zoom", (event) => {
+                    zoomG.attr("transform", event.transform);
+                });
+
+            svg.call(zoom);
+
+            // 動態繫結粒子流向動畫
+            updateDotMotionPaths();
+        }
+
+        let currentLayout = "horizontal"; // "horizontal" or "vertical"
+
+        // 動態讀取視窗大小並置中
+        function resetZoom() {
+            const w = window.innerWidth || document.documentElement.clientWidth || 1024;
+            const h = window.innerHeight || document.documentElement.clientHeight || 768;
+            
+            // 由於左側圖例已移除，左側可視寬度為從 0 到 w - 370 (扣除右側側邊欄 350px 及 margins)
+            const visibleWidth = w - 370;
+            const k = currentLayout === "horizontal" ? 1.05 : 0.88; // 放大到最大可視區域
+            
+            const tx = visibleWidth / 2; // 置中於左側可視區域
+            const ty = currentLayout === "horizontal" ? (h / 2) : (h / 2 - 40);
+            
+            svg.transition()
+                .duration(750)
+                .call(zoom.transform, d3.zoomIdentity.translate(tx, ty).scale(k));
+        }
+
+        window.addEventListener("resize", resetZoom);
+
+        window.addEventListener("load", () => {
+            setTimeout(resetZoom, 150);
+        });
+        
+        setTimeout(resetZoom, 200);
+
+        // D3 拖曳處理
+        function dragstarted(event, d) {
+            if (!event.active) simulation.alphaTarget(0.3).restart();
+            d.fx = d.x;
+            d.fy = d.y;
+        }
+
+        function dragged(event, d) {
+            d.fx = Math.round(event.x / 20) * 20;
+            d.fy = Math.round(event.y / 20) * 20;
+        }
+
+        function dragended(event, d) {
+            if (!event.active) simulation.alphaTarget(0);
+            d.fx = Math.round(d.x / 20) * 20;
+            d.fy = Math.round(d.y / 20) * 20;
+            d.x = d.fx;
+            d.y = d.fy;
+            d3.select(this).select(".node-shape").style("stroke-dasharray", "3 2");
+            updateEditorPanel();
+            setTimeout(updateDotMotionPaths, 50);
+        }
+
+        function handleNodeDblClick(event, d) {
+            event.stopPropagation();
+            d.fx = null;
+            d.fy = null;
+            d3.select(this).select(".node-shape").style("stroke-dasharray", "none");
+            simulation.alpha(0.3).restart();
+            updateEditorPanel();
+            setTimeout(updateDotMotionPaths, 50);
+        }
+
+        // 建立浮動 Tooltip 元素
+        const tooltip = d3.select("body")
+            .append("div")
+            .attr("id", "tooltip")
+            .style("position", "absolute")
+            .style("display", "none")
+            .style("pointer-events", "none")
+            .style("padding", "6px 12px")
+            .style("border-radius", "6px")
+            .style("font-size", "0.75rem")
+            .style("z-index", "2000")
+            .style("box-shadow", "var(--card-shadow)")
+            .style("border", "1px solid var(--panel-border)")
+            .style("background", "var(--panel-bg)")
+            .style("color", "var(--text-secondary)")
+            .style("backdrop-filter", "blur(8px)")
+            .style("-webkit-backdrop-filter", "blur(8px)")
+            .style("transition", "opacity 0.15s ease");
+
+        function handleMouseOver(event, d) {
+            if (d.id === "course-AI 的社會科學應用") {
+                tooltip.html(`
+                    <div style="font-weight: 600; color: var(--text-primary); margin-bottom: 2px;">${d.label}</div>
+                    <div style="color: var(--color-intro); font-weight: 500; font-size: 0.7rem;">原「社會科學程式設計」替代課程</div>
+                `);
+                tooltip.style("display", "block").style("opacity", 1);
+            }
+        }
+
+        function handleMouseMove(event) {
+            tooltip.style("left", (event.pageX + 12) + "px")
+                   .style("top", (event.pageY + 12) + "px");
+        }
+
+        function handleMouseOut(event, d) {
+            tooltip.style("opacity", 0).style("display", "none");
+        }
+
+        // 點擊節點互動
+        let selectedNodeId = null;
+        let editingNodeId = null;
+
+        function handleNodeClick(event, d) {
+            event.stopPropagation();
+            
+            // 點擊節點時自動填入地圖編輯欄位，開啟編輯模式
+            populateNodeForm(d);
+            
+            // 如果當前在「地圖編輯」分頁，點擊節點可以輔助填入連線起終點
+            const editContent = document.getElementById("sidebar-edit-content");
+            if (editContent && editContent.style.display === "flex") {
+                const sourceSelect = document.getElementById("edit-link-source");
+                const targetSelect = document.getElementById("edit-link-target");
+
+                if (!sourceSelect.value) {
+                    sourceSelect.value = d.id;
+                } else if (!targetSelect.value && sourceSelect.value !== d.id) {
+                    targetSelect.value = d.id;
+                } else {
+                    sourceSelect.value = d.id;
+                    targetSelect.value = "";
+                }
+                
+                selectedNodeId = d.id;
+                d3.selectAll(".node").classed("selected", n => n.id === d.id);
+                highlightNetwork(d);
+                return;
+            }
+            
+            if (selectedNodeId === d.id) {
+                clearSelection();
+                return;
+            }
+
+            selectedNodeId = d.id;
+
+            d3.selectAll(".node").classed("selected", n => n.id === d.id);
+            highlightNetwork(d);
+            updateSidebar(d);
+            focusOnNode(d);
+        }
+
+        // 還原高亮
+        function clearSelection() {
+            selectedNodeId = null;
+            
+            // 取消編輯，切回新增模式
+            cancelNodeEdit();
+
+            d3.selectAll(".node").classed("selected", false).style("opacity", 1);
+            d3.selectAll(".link")
+                .style("stroke-opacity", l => {
+                    if (l.type === "substitute") return 0.65;
+                    if (l.type === "extension") return 0.75;
+                    return 0.5;
+                })
+                .style("stroke", l => {
+                    if (l.type === "flow") return "var(--link-flow)";
+                    if (l.type === "substitute") return "var(--link-substitute)";
+                    if (l.type === "extension") return "var(--link-extension)";
+                    return "var(--link-default)";
+                })
+                .attr("marker-end", l => {
+                    if (l.type === "flow") return "url(#arrow-flow)";
+                    if (l.type === "extension") return "url(#arrow-extension)";
+                    return "none";
+                });
+            
+            d3.selectAll(".node-label").style("opacity", 1);
+            d3.select(".sts-bounding-group").style("opacity", 1);
+
+            document.getElementById("detail-panel").innerHTML = `
+                <div class="detail-placeholder">
+                    <i data-lucide="info"></i>
+                    <p>請點擊網絡圖中的課程節點<br>查看詳細學習途徑與開課資訊</p>
+                </div>
+            `;
+            lucide.createIcons();
+        }
+
+        // 局部一度高亮
+        function highlightNetwork(focusNode) {
+            const connectedNodeIds = new Set([focusNode.id]);
+
+            graphData.links.forEach(l => {
+                const sourceId = typeof l.source === 'object' ? l.source.id : l.source;
+                const targetId = typeof l.target === 'object' ? l.target.id : l.target;
+
+                if (sourceId === focusNode.id) {
+                    connectedNodeIds.add(targetId);
+                } else if (targetId === focusNode.id) {
+                    connectedNodeIds.add(sourceId);
+                }
+            });
+
+            d3.selectAll(".node")
+                .style("opacity", n => connectedNodeIds.has(n.id) ? 1 : 0.12);
+
+            d3.selectAll(".node-label")
+                .style("opacity", n => connectedNodeIds.has(n.id) ? 1 : 0.15);
+
+            d3.selectAll(".link")
+                .style("stroke-opacity", l => {
+                    const sourceId = typeof l.source === 'object' ? l.source.id : l.source;
+                    const targetId = typeof l.target === 'object' ? l.target.id : l.target;
+                    
+                    // 如果該連線的兩端節點都與當前選中節點有關係，也予以高亮
+                    const isFullyConnected = connectedNodeIds.has(sourceId) && connectedNodeIds.has(targetId);
+                    return isFullyConnected ? 1 : 0.04;
+                })
+                .style("stroke", l => {
+                    const sourceId = typeof l.source === 'object' ? l.source.id : l.source;
+                    const targetId = typeof l.target === 'object' ? l.target.id : l.target;
+                    
+                    const isDirect = (sourceId === focusNode.id || targetId === focusNode.id);
+                    const isFullyConnected = connectedNodeIds.has(sourceId) && connectedNodeIds.has(targetId);
+                    
+                    if (isFullyConnected) {
+                        if (isDirect) {
+                            if (l.type === "flow") return "#2563eb";
+                            if (l.type === "substitute") return "#0284c7"; // 使用淡藍色系高亮
+                            if (l.type === "extension") return "#e11d48";  // 使用淺紅色系高亮
+                        } else {
+                            // 相關節點彼此之間的關係線，使用稍淡但仍高亮的顏色
+                            if (l.type === "flow") return "rgba(59, 130, 246, 0.75)";
+                            if (l.type === "substitute") return "rgba(56, 189, 248, 0.75)";
+                            if (l.type === "extension") return "rgba(244, 63, 94, 0.75)";
+                        }
+                    }
+                    return "var(--link-default)";
+                })
+                .attr("marker-end", l => {
+                    const sourceId = typeof l.source === 'object' ? l.source.id : l.source;
+                    const targetId = typeof l.target === 'object' ? l.target.id : l.target;
+                    
+                    const isFullyConnected = connectedNodeIds.has(sourceId) && connectedNodeIds.has(targetId);
+                    if (l.type === "flow") {
+                        return isFullyConnected ? "url(#arrow-flow-active)" : "url(#arrow-flow)";
+                    }
+                    if (l.type === "extension") {
+                        return isFullyConnected ? "url(#arrow-extension-active)" : "url(#arrow-extension)";
+                    }
+                    return "none";
+                });
+
+            // 當點擊或選中節點時，若該節點本身屬於 AI素養 (sts)，或與 AI素養 節點相連，則保持分組框高亮，否則半透明淡出
+            const focusInSts = focusNode.category === "sts" || 
+                               Array.from(connectedNodeIds).some(id => {
+                                   const n = graphData.nodes.find(node => node.id === id);
+                                   return n && n.category === "sts" && !n.isPeripheral;
+                               });
+            d3.select(".sts-bounding-group")
+                .style("opacity", focusInSts ? 1 : 0.08);
+        }
+
+        // 更新右側面板詳細內容
+        function updateSidebar(d) {
+            const panel = document.getElementById("detail-panel");
+            
+            const preFlows = [];
+            const postFlows = [];
+            const substitutes = [];
+            const preExtensions = [];
+            const postExtensions = [];
+
+            graphData.links.forEach(l => {
+                const sourceId = typeof l.source === 'object' ? l.source.id : l.source;
+                const targetId = typeof l.target === 'object' ? l.target.id : l.target;
+
+                if (l.type === "flow") {
+                    if (targetId === d.id) preFlows.push(graphData.nodes.find(n => n.id === sourceId));
+                    if (sourceId === d.id) postFlows.push(graphData.nodes.find(n => n.id === targetId));
+                } else if (l.type === "substitute") {
+                    if (sourceId === d.id) substitutes.push(graphData.nodes.find(n => n.id === targetId));
+                    if (targetId === d.id) substitutes.push(graphData.nodes.find(n => n.id === sourceId));
+                } else if (l.type === "extension") {
+                    if (targetId === d.id) preExtensions.push(graphData.nodes.find(n => n.id === sourceId));
+                    if (sourceId === d.id) postExtensions.push(graphData.nodes.find(n => n.id === targetId));
+                }
+            });
+
+            let relationsHtml = "";
+
+            if (preFlows.length > 0) {
+                relationsHtml += `<h3 class="detail-connections-title">前置基礎課程</h3><div class="conn-list">`;
+                relationsHtml += preFlows.map(n => `
+                    <div class="conn-item" onclick="selectNodeById('${n.id}')">
+                        <span class="conn-name"><i data-lucide="corner-down-right" style="width:11px;height:11px;display:inline;margin-right:3px;"></i>${n.label}</span>
+                        <span class="conn-relation">${n.level}</span>
+                    </div>
+                `).join('');
+                relationsHtml += `</div>`;
+            }
+
+            if (postFlows.length > 0) {
+                relationsHtml += `<h3 class="detail-connections-title">推薦後續課程</h3><div class="conn-list">`;
+                relationsHtml += postFlows.map(n => `
+                    <div class="conn-item" onclick="selectNodeById('${n.id}')">
+                        <span class="conn-name"><i data-lucide="arrow-up-right" style="width:11px;height:11px;display:inline;margin-right:3px;"></i>${n.label}</span>
+                        <span class="conn-relation">${n.level}</span>
+                    </div>
+                `).join('');
+                relationsHtml += `</div>`;
+            }
+
+            if (substitutes.length > 0) {
+                relationsHtml += `<h3 class="detail-connections-title" style="color: var(--color-intro);">替代課程 (可互相替換)</h3><div class="conn-list">`;
+                relationsHtml += substitutes.map(n => `
+                    <div class="conn-item" onclick="selectNodeById('${n.id}')" style="border-left: 2px solid var(--link-substitute);">
+                        <span class="conn-name"><i data-lucide="refresh-cw" style="width:11px;height:11px;display:inline;margin-right:3px;"></i>${n.label}</span>
+                        <span class="conn-relation">${n.level}</span>
+                    </div>
+                `).join('');
+                relationsHtml += `</div>`;
+            }
+
+            if (preExtensions.length > 0) {
+                relationsHtml += `<h3 class="detail-connections-title" style="color: var(--color-capstone);">基礎延伸來源</h3><div class="conn-list">`;
+                relationsHtml += preExtensions.map(n => `
+                    <div class="conn-item" onclick="selectNodeById('${n.id}')" style="border-left: 2px solid var(--link-extension);">
+                        <span class="conn-name"><i data-lucide="corner-down-right" style="width:11px;height:11px;display:inline;margin-right:3px;color:var(--color-capstone);"></i>${n.label}</span>
+                        <span class="conn-relation">${n.level}</span>
+                    </div>
+                `).join('');
+                relationsHtml += `</div>`;
+            }
+
+            if (postExtensions.length > 0) {
+                relationsHtml += `<h3 class="detail-connections-title" style="color: var(--color-capstone);">延伸推薦課程</h3><div class="conn-list">`;
+                relationsHtml += postExtensions.map(n => `
+                    <div class="conn-item" onclick="selectNodeById('${n.id}')" style="border-left: 2px solid var(--link-extension);">
+                        <span class="conn-name"><i data-lucide="arrow-up-right" style="width:11px;height:11px;display:inline;margin-right:3px;color:var(--color-capstone);"></i>${n.label}</span>
+                        <span class="conn-relation">${n.level}</span>
+                    </div>
+                `).join('');
+                relationsHtml += `</div>`;
+            }
+
+            let catText = "基礎能力";
+            let catIcon = "book-open";
+            let customStyle = `color: var(--color-${d.category}); background: var(--fill-${d.category}); border-color: rgba(0,0,0,0.03);`;
+
+            if (d.category === "aicore") { catText = "AI 核心"; catIcon = "cpu"; }
+            if (d.category === "sts") { catText = "AI素養"; catIcon = "compass"; }
+            if (d.category === "advanced") { catText = "進階應用"; catIcon = "trending-up"; }
+            if (d.category === "capstone") { catText = "總整課程"; catIcon = "award"; }
+            if (d.isPeripheral) {
+                catText = "相關課程";
+                catIcon = "compass";
+                customStyle = `color: var(--color-peripheral); background: var(--fill-peripheral); border-color: rgba(0,0,0,0.03);`;
+            }
+
+            panel.innerHTML = `
+                <div class="detail-card">
+                    <div class="detail-header">
+                        <span class="detail-dept-badge" style="background-color: ${getDeptLabelColor(d.dept)};">
+                            ${d.dept}系所
+                        </span>
+                        <h2 class="detail-title">${d.label}</h2>
+                        ${d.note ? `<div style="font-size: 0.8rem; color: var(--color-intro); margin-top: 4px; font-weight: 500;">${d.note}</div>` : ''}
+                    </div>
+                    
+                    <div class="detail-meta">
+                        <span class="meta-pill" style="${customStyle}">
+                            <i data-lucide="${catIcon}" style="width:11px;height:11px;"></i>
+                            ${catText}
+                        </span>
+                        <span class="meta-pill tech">
+                            <i data-lucide="cpu" style="width:11px;height:11px;"></i>
+                            ${d.tech}
+                        </span>
+                    </div>
+
+                    <p class="detail-desc">${d.desc}</p>
+                    
+                    ${relationsHtml}
+                </div>
+            `;
+            lucide.createIcons();
+        }
+
+        // 外部定位
+        function selectNodeById(id) {
+            const targetNode = graphData.nodes.find(n => n.id === id);
+            if (targetNode) {
+                d3.selectAll(".node")
+                    .filter(n => n.id === id)
+                    .each(function(n) {
+                        handleNodeClick(window.event || {stopPropagation: () => {}}, n);
+                    });
+            }
+        }
+
+        // 視角對焦
+        function focusOnNode(d) {
+            const transform = d3.zoomTransform(svg.node());
+            const w = window.innerWidth || document.documentElement.clientWidth || 1024;
+            const h = window.innerHeight || document.documentElement.clientHeight || 768;
+            const targetX = w / 2 - 100 - d.x * transform.k;
+            const targetY = h / 2 - d.y * transform.k;
+            
+            svg.transition()
+                .duration(750)
+                .call(zoom.transform, d3.zoomIdentity.translate(targetX, targetY).scale(transform.k));
+        }
+
+        // 點空白處還原
+        svg.on("click", () => {
+            clearSelection();
+        });
+
+        // 縮放按鈕
+        document.getElementById("btn-zoom-in").addEventListener("click", () => {
+            svg.transition().duration(250).call(zoom.scaleBy, 1.25);
+        });
+
+        document.getElementById("btn-zoom-out").addEventListener("click", () => {
+            svg.transition().duration(250).call(zoom.scaleBy, 0.8);
+        });
+
+        document.getElementById("btn-zoom-reset").addEventListener("click", () => {
+            resetZoom();
+        });
+
+        // 顯示/隱藏連線文字按鈕事件
+        document.getElementById("btn-labels-toggle").addEventListener("click", () => {
+            const isShown = document.body.classList.toggle("show-link-labels");
+            const toggleText = document.getElementById("labels-toggle-text");
+            if (toggleText) {
+                toggleText.textContent = isShown ? "隱藏連線文字" : "顯示連線文字";
+            }
+            localStorage.setItem("show_link_labels", isShown);
+        });
+
+        // 切換流向排版事件與力學更替
+        function updateLayoutForces() {
+            if (currentLayout === "horizontal") {
+                // X 軸力：依性質分行 (左右流向)
+                simulation.force("x", d3.forceX(d => {
+                    if (d.isPeripheral || d.id === "course-社會統計") return -360;
+                    if (d.category === "intro") return -220;
+                    if (d.category === "aicore") return -80;
+                    if (d.category === "sts") return 40;
+                    if (d.category === "advanced") return 170;
+                    if (d.category === "capstone") return 300;
+                    return 0;
+                }).strength(0.95));
+
+                // Y 軸力：依開課學科分行 (橫向軌道)
+                simulation.force("y", d3.forceY(d => {
+                    if (isSingleNode(d)) return -360;
+                    if (d.isPeripheral || d.id === "course-社會統計") return -220;
+                    switch (d.dept) {
+                        case "社工": return -160;
+                        case "社會": return -80;
+                        case "新聞": return 0;
+                        case "經濟": return 80;
+                        case "政治": return 160;
+                        default:
+                            let hash = 0;
+                            const deptStr = d.dept || "";
+                            for (let i = 0; i < deptStr.length; i++) {
+                                hash = deptStr.charCodeAt(i) + ((hash << 5) - hash);
+                            }
+                            return ((Math.abs(hash) % 5) - 2) * 80;
+                    }
+                }).strength(0.95));
+            } else {
+                // Y 軸力：依性質分行 (上下流向)
+                simulation.force("y", d3.forceY(d => {
+                    if (isSingleNode(d)) return -360;
+                    if (d.isPeripheral || d.id === "course-社會統計") return -360;
+                    if (d.category === "intro") return -220;
+                    if (d.category === "aicore") return -80;
+                    if (d.category === "sts") return 40;
+                    if (d.category === "advanced") return 170;
+                    if (d.category === "capstone") return 300;
+                    return 0;
+                }).strength(0.95));
+
+                // X 軸力：依開課學科分列 (縱向軌道)
+                simulation.force("x", d3.forceX(d => {
+                    if (d.isPeripheral || d.id === "course-社會統計") return -300;
+                    switch (d.dept) {
+                        case "社工": return -240;
+                        case "社會": return -120;
+                        case "新聞": return 0;
+                        case "經濟": return 120;
+                        case "政治": return 240;
+                        default:
+                            let hash = 0;
+                            const deptStr = d.dept || "";
+                            for (let i = 0; i < deptStr.length; i++) {
+                                hash = deptStr.charCodeAt(i) + ((hash << 5) - hash);
+                            }
+                            return ((Math.abs(hash) % 5) - 2) * 120;
+                    }
+                }).strength(0.95));
+            }
+            
+            // 重啟模擬，讓重力引導節點
+            simulation.alpha(1).restart();
+        }
+
+        const layoutBtn = document.getElementById("btn-layout-toggle");
+        layoutBtn.addEventListener("click", () => {
+            currentLayout = currentLayout === "horizontal" ? "vertical" : "horizontal";
+            const textSpan = document.getElementById("layout-text");
+            const iconWrapper = document.getElementById("layout-icon-wrapper");
+            
+            if (currentLayout === "horizontal") {
+                textSpan.textContent = "左右流向";
+                iconWrapper.innerHTML = `<i data-lucide="arrow-right" style="width:14px; height:14px;"></i>`;
+            } else {
+                textSpan.textContent = "上下流向";
+                iconWrapper.innerHTML = `<i data-lucide="arrow-down" style="width:14px; height:14px;"></i>`;
+            }
+            lucide.createIcons();
+            updateLayoutForces();
+            setTimeout(resetZoom, 150);
+        });
+
+        // 即時搜尋
+        const searchInput = document.getElementById("course-search");
+        searchInput.addEventListener("input", function(e) {
+            const query = e.target.value.trim().toLowerCase();
+            
+            if (!query) {
+                clearSelection();
+                return;
+            }
+
+            const matchNodes = graphData.nodes.filter(n => 
+                n.label.toLowerCase().includes(query) || 
+                n.tech.toLowerCase().includes(query) ||
+                n.level.toLowerCase().includes(query) ||
+                n.desc.toLowerCase().includes(query)
+            );
+
+            if (matchNodes.length > 0) {
+                const bestMatch = matchNodes[0];
+                d3.selectAll(".node")
+                    .style("opacity", n => matchNodes.some(m => m.id === n.id) ? 1 : 0.12)
+                    .classed("selected", n => n.id === bestMatch.id);
+
+                highlightNetwork(bestMatch);
+                updateSidebar(bestMatch);
+                focusOnNode(bestMatch);
+                selectedNodeId = bestMatch.id;
+            } else {
+                d3.selectAll(".node").style("opacity", 0.05);
+                d3.selectAll(".link").style("stroke-opacity", 0.02);
+            }
+        });
+
+        // 學習性質分類篩選
+        const filterBtns = document.querySelectorAll(".filter-btn[data-filter]");
+        filterBtns.forEach(btn => {
+            btn.addEventListener("click", function() {
+                filterBtns.forEach(b => b.classList.remove("active"));
+                this.classList.add("active");
+                applyFilters(this.getAttribute("data-filter"), getActiveDeptFilter());
+            });
+        });
+
+        // 學科分類篩選
+        const deptBtns = document.querySelectorAll(".filter-btn[data-dept]");
+        deptBtns.forEach(btn => {
+            btn.addEventListener("click", function() {
+                deptBtns.forEach(b => b.classList.remove("active"));
+                this.classList.add("active");
+                applyFilters(getActiveTypeFilter(), this.getAttribute("data-dept"));
+            });
+        });
+
+        function getActiveTypeFilter() {
+            const activeBtn = document.querySelector(".filter-btn[data-filter].active");
+            return activeBtn ? activeBtn.getAttribute("data-filter") : "all";
+        }
+
+        function getActiveDeptFilter() {
+            const activeBtn = document.querySelector(".filter-btn[data-dept].active");
+            return activeBtn ? activeBtn.getAttribute("data-dept") : "all";
+        }
+
+        // 交叉篩選
+        function applyFilters(typeFilter, deptFilter) {
+            clearSelection();
+
+            if (typeFilter === "all" && deptFilter === "all") {
+                d3.selectAll(".node").style("opacity", 1);
+                d3.selectAll(".link").style("stroke-opacity", l => {
+                    if (l.type === "substitute") return 0.65;
+                    if (l.type === "extension") return 0.75;
+                    return 0.5;
+                });
+                d3.selectAll(".node-label").style("opacity", 1);
+                d3.select(".sts-bounding-group").style("opacity", 1);
+                return;
+            }
+
+            const visibleNodes = new Set();
+            graphData.nodes.forEach(n => {
+                const matchType = (typeFilter === "all") || (n.category === typeFilter);
+                const matchDept = (deptFilter === "all") || (n.dept === deptFilter);
+                
+                if (matchType && matchDept) {
+                    visibleNodes.add(n.id);
+                }
+            });
+
+            d3.selectAll(".node")
+                .style("opacity", n => visibleNodes.has(n.id) ? 1 : 0.12);
+
+            d3.selectAll(".node-label")
+                .style("opacity", n => visibleNodes.has(n.id) ? 1 : 0.15);
+
+            d3.selectAll(".link")
+                .style("stroke-opacity", l => {
+                    const sourceId = typeof l.source === 'object' ? l.source.id : l.source;
+                    const targetId = typeof l.target === 'object' ? l.target.id : l.target;
+                    if (visibleNodes.has(sourceId) && visibleNodes.has(targetId)) {
+                        if (l.type === "substitute") return 0.65;
+                        if (l.type === "extension") return 0.75;
+                        return 0.5;
+                    }
+                    return 0.03;
+                });
+
+            // 動態更新分組框的可見度
+            const stsGroupEl = d3.select(".sts-bounding-group");
+            const hasVisibleStsNodes = graphData.nodes.some(n => n.category === "sts" && !n.isPeripheral && visibleNodes.has(n.id));
+            if ((typeFilter === "all" || typeFilter === "sts") && hasVisibleStsNodes) {
+                stsGroupEl.style("opacity", 1);
+            } else {
+                stsGroupEl.style("opacity", 0.05);
+            }
+        }
+
+        // ----------------------------------------------------
+        // 地圖編輯器與動畫核心邏輯
+        // ----------------------------------------------------
+
+        // 1. 動態更新流動小球動畫路徑
+        function updateDotMotionPaths() {
+            d3.selectAll(".flow-dot-container")
+                .each(function(d) {
+                    const container = d3.select(this);
+                    const pathId = `link-path-${d.originalIndex}`;
+                    const pathEl = document.getElementById(pathId);
+                    if (!pathEl) return;
+
+                    // 清空該小球容器內的舊元素
+                    container.selectAll("*").remove();
+
+                    // 新增小球
+                    const circle = container.append("circle")
+                        .attr("r", 2.2)
+                        .attr("class", "flow-dot")
+                        .style("fill", "#2563eb");
+
+                    // 綁定 animateMotion 動畫
+                    const anim = circle.append("animateMotion")
+                        .attr("dur", `${3.5 + Math.random() * 2}s`) // 隨機秒數防止同步起跑
+                        .attr("repeatCount", "indefinite");
+
+                    anim.append("mpath")
+                        .attr("href", `#${pathId}`)
+                        .attr("xlink:href", `#${pathId}`);
+                });
+        }
+
+        // 2. 側邊欄分頁切換邏輯
+        function switchTab(tabId) {
+            const tabInfo = document.getElementById("tab-info");
+            const tabEdit = document.getElementById("tab-edit");
+            const infoContent = document.getElementById("sidebar-info-content");
+            const editContent = document.getElementById("sidebar-edit-content");
+
+            if (tabId === "info") {
+                tabInfo.classList.add("active");
+                tabInfo.style.borderColor = "var(--panel-border)";
+                tabInfo.style.background = "var(--panel-bg)";
+                tabInfo.style.fontWeight = "600";
+                tabInfo.style.color = "var(--text-primary)";
+
+                tabEdit.classList.remove("active");
+                tabEdit.style.borderColor = "transparent";
+                tabEdit.style.background = "transparent";
+                tabEdit.style.fontWeight = "500";
+                tabEdit.style.color = "var(--text-secondary)";
+
+                infoContent.style.display = "block";
+                editContent.style.display = "none";
+            } else {
+                tabEdit.classList.add("active");
+                tabEdit.style.borderColor = "var(--panel-border)";
+                tabEdit.style.background = "var(--panel-bg)";
+                tabEdit.style.fontWeight = "600";
+                tabEdit.style.color = "var(--text-primary)";
+
+                tabInfo.classList.remove("active");
+                tabInfo.style.borderColor = "transparent";
+                tabInfo.style.background = "transparent";
+                tabInfo.style.fontWeight = "500";
+                tabInfo.style.color = "var(--text-secondary)";
+
+                infoContent.style.display = "none";
+                editContent.style.display = "flex";
+                
+                updateEditorPanel();
+            }
+        }
+        document.getElementById("tab-info").addEventListener("click", () => switchTab("info"));
+        document.getElementById("tab-edit").addEventListener("click", () => switchTab("edit"));
+
+        // 3. 取得乾淨、不含 D3 運算欄位的 JSON 資料拷貝
+        function getCleanDataCopy(data, forceFixAll = true) {
+            const cleanNodes = data.nodes.map(n => {
+                const { vx, vy, index, ...cleanNode } = n;
+                if (forceFixAll) {
+                    cleanNode.fx = n.x !== undefined ? n.x : null;
+                    cleanNode.fy = n.y !== undefined ? n.y : null;
+                } else {
+                    // 僅在有設定手動固定座標時保留 fx 與 fy，否則予以刪除
+                    if (cleanNode.fx === null || cleanNode.fx === undefined) delete cleanNode.fx;
+                    if (cleanNode.fy === null || cleanNode.fy === undefined) delete cleanNode.fy;
+                }
+                return cleanNode;
+            });
+
+            const cleanLinks = data.links.map(l => {
+                const cleanLink = { ...l };
+                if (typeof cleanLink.source === 'object' && cleanLink.source !== null) {
+                    cleanLink.source = cleanLink.source.id;
+                }
+                if (typeof cleanLink.target === 'object' && cleanLink.target !== null) {
+                    cleanLink.target = cleanLink.target.id;
+                }
+                delete cleanLink.index;
+                delete cleanLink.originalIndex;
+                return cleanLink;
+            });
+
+            return {
+                nodes: cleanNodes,
+                links: cleanLinks
+            };
+        }
+
+        // ----------------------------------------------------
+        // 網頁儲存與乾淨匯出功能
+        // ----------------------------------------------------
+
+        function downloadFile(content, filename) {
+            const blob = new Blob([content], { type: "text/html;charset=utf-8" });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        function processHtmlSource(htmlText, cleanData, cleanMode) {
+            // 1. 取代 fallbackData 內容以保存目前所有的節點與連線（包含手動拖曳後的 fx, fy 座標）
+            const regexData = /const\s+fallbackData\s*=\s*\{[\s\S]*?\};/;
+            htmlText = htmlText.replace(regexData, `const fallbackData = ${JSON.stringify(cleanData, null, 2)};`);
+
+            // 2. 取代 isExportMode 的設定值
+            const regexExport = /const\s+isExportMode\s*=\s*(true|false);/;
+            htmlText = htmlText.replace(regexExport, `const isExportMode = ${cleanMode ? "true" : "false"};`);
+
+            return htmlText;
+        }
+
+        function exportHtml(cleanMode) {
+            const cleanData = getCleanDataCopy(graphData, cleanMode);
+
+            // 嘗試抓取目前網頁的原始碼文字
+            fetch(window.location.href)
+                .then(response => response.text())
+                .then(htmlText => {
+                    const processedHtml = processHtmlSource(htmlText, cleanData, cleanMode);
+                    downloadFile(processedHtml, cleanMode ? "course_network_clean.html" : "course_network.html");
+                })
+                .catch(err => {
+                    console.warn("Fetch failed, falling back to DOM HTML extraction.", err);
+                    
+                    // Fallback：從 DOM 樹複製出一份，清理掉 D3 動態繪製與提示橫幅
+                    const clonedDoc = document.documentElement.cloneNode(true);
+                    
+                    // 移除警告橫幅（若有）
+                    const warn = clonedDoc.querySelector(".cors-warning-banner");
+                    if (warn) warn.remove();
+
+                    // 移除 Tooltip 浮動框
+                    const tt = clonedDoc.querySelector("#tooltip");
+                    if (tt) tt.remove();
+
+                    // 移除 D3 動態產生的 SVG 元素子項目，使其重啟時是乾淨的
+                    const zoomG = clonedDoc.querySelector("#zoom-g");
+                    if (zoomG) {
+                        const lg = zoomG.querySelector("#links-group");
+                        const dg = zoomG.querySelector("#dots-group");
+                        const ng = zoomG.querySelector("#nodes-group");
+                        if (lg) lg.innerHTML = "";
+                        if (dg) dg.innerHTML = "";
+                        if (ng) ng.innerHTML = "";
+                    }
+
+                    // 重建 HTML 字串
+                    let htmlString = "<!DOCTYPE html>\n<html lang=\"zh-TW\">\n" + clonedDoc.outerHTML + "\n</html>";
+                    const processedHtml = processHtmlSource(htmlString, cleanData, cleanMode);
+                    downloadFile(processedHtml, cleanMode ? "course_network_clean.html" : "course_network.html");
+                });
+        }
+
+
+
+        // 4. 更新編輯面板中的所有欄位 (包含 Textarea, 下拉選單, 與現有項目刪除清單)
+        function updateEditorPanel() {
+            if (!graphData) return;
+            const cleanData = getCleanDataCopy(graphData);
+            
+            // A. 更新 JSON 文字輸入區
+            const jsonArea = document.getElementById("edit-json-area");
+            jsonArea.value = JSON.stringify(cleanData, null, 2);
+
+            // B. 更新連線下拉選單
+            const sourceSelect = document.getElementById("edit-link-source");
+            const targetSelect = document.getElementById("edit-link-target");
+
+            sourceSelect.innerHTML = '<option value="">選擇起點課程...</option>';
+            targetSelect.innerHTML = '<option value="">選擇終點課程...</option>';
+
+            const sortedNodes = [...cleanData.nodes].sort((a, b) => a.label.localeCompare(b.label, 'zh-TW'));
+            sortedNodes.forEach(node => {
+                const optSource = document.createElement("option");
+                optSource.value = node.id;
+                optSource.textContent = node.label;
+                sourceSelect.appendChild(optSource);
+
+                const optTarget = document.createElement("option");
+                optTarget.value = node.id;
+                optTarget.textContent = node.label;
+                targetSelect.appendChild(optTarget);
+            });
+
+            // C. 繪製現有項目的刪除管理介面
+            renderDeleteLists(cleanData);
+        }
+
+        // 5. 渲染課程與連線的刪除列表
+        function renderDeleteLists(cleanData) {
+            const nodesList = document.getElementById("edit-nodes-list");
+            const linksList = document.getElementById("edit-links-list");
+
+            nodesList.innerHTML = '';
+            linksList.innerHTML = '';
+
+            // 節點列表
+            cleanData.nodes.forEach(node => {
+                const item = document.createElement("div");
+                item.style.display = "flex";
+                item.style.justifyContent = "space-between";
+                item.style.alignItems = "center";
+                item.style.padding = "4px 8px";
+                item.style.background = "rgba(15,23,42,0.02)";
+                item.style.border = "1px solid var(--panel-border)";
+                item.style.borderRadius = "4px";
+                item.style.fontSize = "0.7rem";
+
+                const labelSpan = document.createElement("span");
+                labelSpan.textContent = node.label;
+                labelSpan.style.color = "var(--text-primary)";
+                labelSpan.style.fontWeight = "500";
+                
+                const deleteBtn = document.createElement("button");
+                deleteBtn.textContent = "🗑️";
+                deleteBtn.style.border = "none";
+                deleteBtn.style.background = "none";
+                deleteBtn.style.cursor = "pointer";
+                deleteBtn.style.fontSize = "0.75rem";
+                deleteBtn.title = `刪除課程：${node.label}`;
+                deleteBtn.addEventListener("click", (e) => {
+                    e.stopPropagation();
+                    deleteNode(node.id);
+                });
+
+                item.appendChild(labelSpan);
+                item.appendChild(deleteBtn);
+                nodesList.appendChild(item);
+            });
+
+            // 連線列表
+            cleanData.links.forEach((link, idx) => {
+                const sourceNode = cleanData.nodes.find(n => n.id === link.source);
+                const targetNode = cleanData.nodes.find(n => n.id === link.target);
+                
+                const sourceLabel = sourceNode ? sourceNode.label.split(" (")[0] : link.source;
+                const targetLabel = targetNode ? targetNode.label.split(" (")[0] : link.target;
+
+                const item = document.createElement("div");
+                item.style.display = "flex";
+                item.style.justifyContent = "space-between";
+                item.style.alignItems = "center";
+                item.style.padding = "4px 8px";
+                item.style.background = "rgba(15,23,42,0.02)";
+                item.style.border = "1px solid var(--panel-border)";
+                item.style.borderRadius = "4px";
+                item.style.fontSize = "0.7rem";
+
+                const labelSpan = document.createElement("span");
+                let typeText = "➔路徑";
+                let typeColor = "color: var(--color-intro);";
+                if (link.type === "substitute") {
+                    typeText = "⬌替代";
+                    typeColor = "color: var(--color-economics);";
+                } else if (link.type === "extension") {
+                    typeText = "┄延伸";
+                    typeColor = "color: var(--color-capstone);";
+                }
+                const customLabel = link.label ? ` (${link.label})` : "";
+                labelSpan.innerHTML = `${sourceLabel} <strong style="${typeColor}">${typeText}</strong> ${targetLabel}${customLabel}`;
+                labelSpan.style.color = "var(--text-secondary)";
+
+                const deleteBtn = document.createElement("button");
+                deleteBtn.textContent = "🗑️";
+                deleteBtn.style.border = "none";
+                deleteBtn.style.background = "none";
+                deleteBtn.style.cursor = "pointer";
+                deleteBtn.style.fontSize = "0.75rem";
+                deleteBtn.title = "刪除此連線";
+                deleteBtn.addEventListener("click", (e) => {
+                    e.stopPropagation();
+                    deleteLink(link.source, link.target);
+                });
+
+                item.appendChild(labelSpan);
+                item.appendChild(deleteBtn);
+                linksList.appendChild(item);
+            });
+        }
+
+        // 6. 表單提交：新增課程節點
+        function addNodeFromForm() {
+            const name = document.getElementById("edit-node-name").value.trim();
+            const dept = document.getElementById("edit-node-dept").value;
+            const category = document.getElementById("edit-node-cat").value;
+            const tech = document.getElementById("edit-node-tech").value.trim();
+            const note = document.getElementById("edit-node-note").value.trim();
+            const desc = document.getElementById("edit-node-desc").value.trim();
+
+            if (!name) {
+                alert("請輸入課程名稱！");
+                return;
+            }
+            if (!dept) {
+                alert("請選擇系所！");
+                return;
+            }
+            if (!category) {
+                alert("請選擇修課性質！");
+                return;
+            }
+
+            const id = "course-" + name;
+            
+            // 檢查重複
+            if (graphData.nodes.some(n => n.id === id)) {
+                alert("課程名稱已存在！");
+                return;
+            }
+
+            const newNode = {
+                id: id,
+                label: `${name} (${dept})`,
+                category: category,
+                tech: tech || "無",
+                level: category === "intro" ? "基礎能力 (程式基礎)" : (category === "aicore" ? "AI 核心" : (category === "sts" ? "AI素養 (STS與治理)" : (category === "advanced" ? "進階應用" : "總整課程 (Capstone)"))),
+                dept: dept,
+                size: category === "capstone" ? 21 : 16,
+                desc: desc || "尚無描述。"
+            };
+
+            if (note) {
+                newNode.note = note;
+            }
+
+            graphData.nodes.push(newNode);
+
+            // 清空輸入
+            document.getElementById("edit-node-name").value = "";
+            document.getElementById("edit-node-tech").value = "";
+            document.getElementById("edit-node-note").value = "";
+            document.getElementById("edit-node-desc").value = "";
+
+            // 重置選取，重新繪圖並更新面板
+            clearSelection();
+            initVisualization();
+            updateEditorPanel();
+            
+            setTimeout(resetZoom, 150);
+        }
+
+        // 6.1 表單欄位填入與切換至編輯模式
+        function populateNodeForm(d) {
+            editingNodeId = d.id;
+            
+            const nameInput = document.getElementById("edit-node-name");
+            const deptSelect = document.getElementById("edit-node-dept");
+            const catSelect = document.getElementById("edit-node-cat");
+            const techInput = document.getElementById("edit-node-tech");
+            const noteInput = document.getElementById("edit-node-note");
+            const descInput = document.getElementById("edit-node-desc");
+            
+            const title = d.label.split(" (")[0];
+            nameInput.value = title;
+            deptSelect.value = d.dept;
+            catSelect.value = d.category;
+            techInput.value = d.tech;
+            noteInput.value = d.note || "";
+            descInput.value = d.desc;
+            
+            document.getElementById("node-form-mode-text").textContent = "編輯課程節點";
+            
+            const titleIcon = document.querySelector("#node-form-title i");
+            if (titleIcon) {
+                titleIcon.setAttribute("data-lucide", "edit");
+            }
+            
+            document.getElementById("btn-add-node").style.display = "none";
+            document.getElementById("edit-node-actions").style.display = "flex";
+            
+            lucide.createIcons();
+        }
+
+        // 6.2 取消編輯，重設為新增模式
+        function cancelNodeEdit() {
+            editingNodeId = null;
+            
+            document.getElementById("edit-node-name").value = "";
+            document.getElementById("edit-node-dept").value = "";
+            document.getElementById("edit-node-cat").value = "";
+            document.getElementById("edit-node-tech").value = "";
+            document.getElementById("edit-node-note").value = "";
+            document.getElementById("edit-node-desc").value = "";
+            
+            document.getElementById("node-form-mode-text").textContent = "新增課程節點";
+            
+            const titleIcon = document.querySelector("#node-form-title i");
+            if (titleIcon) {
+                titleIcon.setAttribute("data-lucide", "plus-circle");
+            }
+            
+            document.getElementById("btn-add-node").style.display = "flex";
+            document.getElementById("edit-node-actions").style.display = "none";
+            
+            lucide.createIcons();
+        }
+
+        // 6.3 儲存修改內容至節點
+        function saveNodeFromForm() {
+            if (!editingNodeId) return;
+            
+            const name = document.getElementById("edit-node-name").value.trim();
+            const dept = document.getElementById("edit-node-dept").value;
+            const category = document.getElementById("edit-node-cat").value;
+            const tech = document.getElementById("edit-node-tech").value.trim();
+            const note = document.getElementById("edit-node-note").value.trim();
+            const desc = document.getElementById("edit-node-desc").value.trim();
+
+            if (!name) {
+                alert("請輸入課程名稱！");
+                return;
+            }
+            if (!dept) {
+                alert("請選擇系所！");
+                return;
+            }
+            if (!category) {
+                alert("請選擇修課性質！");
+                return;
+            }
+
+            const targetNode = graphData.nodes.find(n => n.id === editingNodeId);
+            if (!targetNode) {
+                alert("找不到要編輯的課程節點！");
+                return;
+            }
+
+            const newId = "course-" + name;
+            const oldId = targetNode.id;
+            
+            if (oldId !== newId) {
+                if (graphData.nodes.some(n => n.id === newId)) {
+                    alert("課程名稱已存在！");
+                    return;
+                }
+                
+                // 更替所有連線的起終點 ID
+                graphData.links.forEach(l => {
+                    const sId = typeof l.source === 'object' ? l.source.id : l.source;
+                    const tId = typeof l.target === 'object' ? l.target.id : l.target;
+                    
+                    if (sId === oldId) {
+                        if (typeof l.source === 'object') l.source.id = newId;
+                        else l.source = newId;
+                    }
+                    if (tId === oldId) {
+                        if (typeof l.target === 'object') l.target.id = newId;
+                        else l.target = newId;
+                    }
+                });
+                
+                targetNode.id = newId;
+            }
+
+            targetNode.label = `${name} (${dept})`;
+            targetNode.category = category;
+            targetNode.tech = tech || "無";
+            targetNode.level = category === "intro" ? "基礎能力 (程式基礎)" : (category === "aicore" ? "AI 核心" : (category === "sts" ? "AI素養 (STS與治理)" : (category === "advanced" ? "進階應用" : "總整課程 (Capstone)")));
+            targetNode.dept = dept;
+            targetNode.size = category === "capstone" ? 21 : 16;
+            targetNode.desc = desc || "尚無描述。";
+            
+            if (note) {
+                targetNode.note = note;
+            } else {
+                delete targetNode.note;
+            }
+
+            // 重新載入 D3 畫布與編輯欄位
+            initVisualization();
+            updateEditorPanel();
+            
+            // 如果當前修改的節點正被選中，則同步更新詳細資訊側欄
+            if (selectedNodeId === oldId || selectedNodeId === newId) {
+                selectedNodeId = targetNode.id;
+                updateSidebar(targetNode);
+                highlightNetwork(targetNode);
+            }
+            
+            cancelNodeEdit();
+            alert("課程節點已成功更新！");
+        }
+
+        // 7. 表單提交：新增課程連線
+        function addLinkFromForm() {
+            const source = document.getElementById("edit-link-source").value;
+            const target = document.getElementById("edit-link-target").value;
+            const type = document.getElementById("edit-link-type").value;
+            const label = document.getElementById("edit-link-label").value.trim();
+
+            if (!source || !target) {
+                alert("請選擇起點與終點課程！");
+                return;
+            }
+
+            if (source === target) {
+                alert("起點與終點不能為同一個課程！");
+                return;
+            }
+
+            // 檢查重複連線
+            const duplicate = graphData.links.some(l => {
+                const sId = typeof l.source === 'object' ? l.source.id : l.source;
+                const tId = typeof l.target === 'object' ? l.target.id : l.target;
+                return (sId === source && tId === target) || (l.type === "substitute" && sId === target && tId === source);
+            });
+
+            if (duplicate) {
+                alert("此連線已存在！");
+                return;
+            }
+
+            const newLink = {
+                source: source,
+                target: target,
+                type: type
+            };
+            if (label) {
+                newLink.label = label;
+            }
+
+            graphData.links.push(newLink);
+
+            // 清空輸入
+            document.getElementById("edit-link-label").value = "";
+
+            clearSelection();
+            initVisualization();
+            updateEditorPanel();
+        }
+
+        // 8. 刪除課程節點
+        function deleteNode(nodeId) {
+            const nodeName = graphData.nodes.find(n => n.id === nodeId)?.label || nodeId;
+            if (!confirm(`確定要刪除「${nodeName}」課程嗎？這將會一併刪除所有與其相關的連線！`)) {
+                return;
+            }
+
+            // 過濾節點
+            graphData.nodes = graphData.nodes.filter(n => n.id !== nodeId);
+
+            // 過濾相關連線
+            graphData.links = graphData.links.filter(l => {
+                const sId = typeof l.source === 'object' ? l.source.id : l.source;
+                const tId = typeof l.target === 'object' ? l.target.id : l.target;
+                return sId !== nodeId && tId !== nodeId;
+            });
+
+            clearSelection();
+            initVisualization();
+            updateEditorPanel();
+        }
+
+        // 9. 刪除連線
+        function deleteLink(sourceId, targetId) {
+            if (!confirm(`確定要刪除此連線嗎？`)) {
+                return;
+            }
+
+            graphData.links = graphData.links.filter(l => {
+                const sId = typeof l.source === 'object' ? l.source.id : l.source;
+                const tId = typeof l.target === 'object' ? l.target.id : l.target;
+                return !(sId === sourceId && tId === targetId);
+            });
+
+            clearSelection();
+            initVisualization();
+            updateEditorPanel();
+        }
+
+        // 10. 套用文字輸入區裝飾的 JSON 資料變更
+        function applyJsonFromTextarea() {
+            const textarea = document.getElementById("edit-json-area");
+            try {
+                const parsed = JSON.parse(textarea.value);
+                if (!parsed.nodes || !parsed.links) {
+                    alert("JSON 格式必須包含 nodes 與 links 陣列！");
+                    return;
+                }
+                
+                // 深拷貝全新 JSON 資料
+                graphData = JSON.parse(JSON.stringify(parsed));
+                
+                clearSelection();
+                initVisualization();
+                updateEditorPanel();
+                
+                alert("已成功解析並套用 JSON 資料！");
+                setTimeout(resetZoom, 150);
+            } catch (e) {
+                alert("JSON 語法解析錯誤：" + e.message);
+            }
+        }
+
+        // 11. 一鍵複製乾淨 JSON 到剪貼簿
+        function copyJsonToClipboard() {
+            const textarea = document.getElementById("edit-json-area");
+            navigator.clipboard.writeText(textarea.value)
+                .then(() => {
+                    const btn = document.getElementById("btn-copy-json");
+                    const originalText = btn.textContent;
+                    btn.textContent = "✅ 已複製！";
+                    btn.style.color = "#10b981";
+                    btn.style.borderColor = "#10b981";
+                    setTimeout(() => {
+                        btn.textContent = originalText;
+                        btn.style.color = "";
+                        btn.style.borderColor = "";
+                    }, 2000);
+                })
+                .catch(err => {
+                    console.error("無法複製 JSON 到剪貼簿: ", err);
+                    alert("瀏覽器不支援直接複製，請選取文字區手動進行複製。");
+                });
+        }
+
+        // 12. 儲存變更至 localStorage 與本機硬碟檔案
+        function saveToLocalStorage() {
+            const cleanData = getCleanDataCopy(graphData);
+            localStorage.setItem("course_map_data", JSON.stringify(cleanData));
+            
+            // 試圖向本機 Python 伺服器發送存檔請求以更新實體 HTML 檔案內容
+            fetch("/api/save", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(cleanData)
+            })
+            .then(res => {
+                if (res.ok) {
+                    return res.json().then(data => {
+                        console.log("已成功同步變更至本機實體檔案！", data);
+                        alert("變更已成功同步儲存於本機實體 HTML 檔案與瀏覽器！\n下次啟動伺服器或重新載入網頁時，均將載入全新編修後的結果。");
+                    });
+                } else {
+                    console.warn("本機伺服器不支援或回傳錯誤，已僅存檔於瀏覽器快取 (Local Storage)。");
+                    alert("變更已儲存至瀏覽器！\n(本機實體檔案未被覆寫。如需同步更新實體 HTML 檔，請確保您是使用 python serve.py 啟動伺服器)");
+                }
+            })
+            .catch(err => {
+                console.log("未啟動本機儲存伺服器或處於靜態託管環境，已僅存檔於瀏覽器快取 (Local Storage)。", err);
+                alert("變更已儲存至瀏覽器！下次開啟此網頁時會自動載入最新變更。\n(提示：本機實體檔案未被覆寫。如需同步更新實體 HTML 檔，請啟動專屬本機伺服器 python serve.py 並於該伺服器頁面進行操作)");
+            });
+        }
+
+        // 13. 重置 localStorage 資料
+        function resetDefaultData() {
+            if (confirm("確定要清除瀏覽器存檔並還原為原網頁預設資料嗎？這將遺失所有未下載的變更。")) {
+                localStorage.removeItem("course_map_data");
+                location.reload();
+            }
+        }
+
+        // 載入資料並直接初始化
+        
+        // A. 初始化連線文字顯示狀態
+        const storedLabelsPref = localStorage.getItem("show_link_labels");
+        const showLabelsByDefault = storedLabelsPref !== "false"; // default to true
+        if (showLabelsByDefault) {
+            document.body.classList.add("show-link-labels");
+        } else {
+            document.body.classList.remove("show-link-labels");
+        }
+        const toggleText = document.getElementById("labels-toggle-text");
+        if (toggleText) {
+            toggleText.textContent = showLabelsByDefault ? "隱藏連線文字" : "顯示連線文字";
+        }
+
+        // B. 載入課程資料 (優先從 localStorage 讀取)
+        const storedData = isExportMode ? null : localStorage.getItem("course_map_data");
+        if (storedData) {
+            try {
+                graphData = JSON.parse(storedData);
+                console.log("Loaded data from localStorage");
+                
+                // --- 資料結構自動升級 (Migration) ---
+                let updated = false;
+
+                // 1. 將舊的 sts (原 "AI 核心") 相關的 level 文字更新為 "AI素養"
+                graphData.nodes.forEach(n => {
+                    if (n.category === "sts") {
+                        if (n.level && (n.level.includes("AI 核心") || n.level.includes("素養核心"))) {
+                            n.level = n.level.replace("AI 核心", "AI素養").replace("素養核心", "AI素養");
+                            updated = true;
+                        }
+                    }
+                });
+
+                // 2. 將 "資料科學與社會研究" 與 "AI 的社會科學應用" 升級為 "aicore" 類別，Level 設為 "AI 核心"
+                graphData.nodes.forEach(n => {
+                    if (n.id === "course-資料科學與社會研究" && n.category !== "aicore") {
+                        n.category = "aicore";
+                        n.level = "AI 核心";
+                        updated = true;
+                    }
+                    if (n.id === "course-AI 的社會科學應用" && n.category !== "aicore") {
+                        n.category = "aicore";
+                        n.level = "AI 核心";
+                        updated = true;
+                    }
+                });
+
+                // 3. 確保 "AI 實作入門" 存在於節點列表
+                const hasAiIntro = graphData.nodes.some(n => n.id === "course-AI 實作入門");
+                if (!hasAiIntro) {
+                    graphData.nodes.push({
+                        "id": "course-AI 實作入門",
+                        "label": "AI 實作入門 (社會)",
+                        "category": "aicore",
+                        "tech": "Python / ML",
+                        "level": "AI 核心",
+                        "dept": "社會",
+                        "size": 17,
+                        "desc": "社會學領域專長的 AI 實作與資料科學入門。作為 Level 1 基礎課程，教授基本語法與機器學習實作應用。"
+                    });
+                    updated = true;
+                }
+
+
+
+                // 如果有變更，則更新 localStorage 以維持資料一致
+                if (updated) {
+                    localStorage.setItem("course_map_data", JSON.stringify(graphData));
+                    console.log("Successfully migrated localStorage to support the new AI Core & AI Literacy categories.");
+                }
+
+            } catch (e) {
+                console.error("Failed to parse stored data:", e);
+                graphData = fallbackData;
+            }
+        } else {
+            graphData = fallbackData;
+        }
+
+        initVisualization();
+        updateEditorPanel();
+    </script>
+</body>
+</html>

@@ -1,5 +1,3 @@
-
-
 # COURSE
 - [Courses](https://p4css.github.io)
 
@@ -36,6 +34,14 @@
 * [Network Visualizer v1 by json](/app/network_vis_json.html)
 * [Network Visualizer v2 by csv](/app/network_vis_csv.html)
 * [Tokenizer](https://jirlong-jirlong-github-io-app-44onnq.streamlit.app/)
+
+# 2026
+- [2026-06-04 跨學科 AI 與資料科學課程地圖](course_network_0604.html)
+- [2026-05-29 Advantage vs Disadvantage Comparison Demo](slides/2026-05-29-comparison-demo.html)
+- [2026-05-28 Generative AI for Social Science](slides/2026-05-28-generative-ai-for-social-science.html)
+- [2026-05-25 MCP Evaluation Methodology](slides/mcp_eval_methodology_20260525.html)
+- [2026-05-02 AI for Humanity & Social Science](slides/2026-05-02-ai-humanity.html)
+- [2026-05-02 AI and Humanity Test](slides/2026-05-02-ai-humanity-test.html)
 
 # 2024
 - [Resiliencer Center Sub5 Report 1110](https://docs.google.com/presentation/d/106AEWFyIHRG4Mh-BP2JcE9H34LTEMyNSuknBe-uxnvI/edit?usp=sharing)
@@ -105,6 +111,7 @@
 
 ## Networks
 
+* [跨學科 AI 與資料科學課程地圖 (2026-06-04)](course_network_0604.html)
 * [ideology and network (data provided by ECON NTU Prof. Chung-Fang Chiang and Prof. Min-Jen Lin)](html/fbpage_network_lv10.html)
 * [Hate-Girl on PTT (data provided by jenyiyu, Sociology, sinica)](html/mention.d3.html)
 * [Co-authoring of Gary King on Google Scholar](html/gking_coauthor_2.html)
