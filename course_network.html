@@ -716,6 +716,10 @@
                         <input type="text" id="edit-node-tech" placeholder="關鍵技術 (例如: Python)" style="flex: 1; padding: 6px; font-size: 0.75rem; border: 1px solid var(--panel-border); border-radius: 4px; background: rgba(15,23,42,0.01); color: var(--text-primary); outline: none;">
                         <input type="text" id="edit-node-note" placeholder="備註 (例如: 替代課程)" style="flex: 1; padding: 6px; font-size: 0.75rem; border: 1px solid var(--panel-border); border-radius: 4px; background: rgba(15,23,42,0.01); color: var(--text-primary); outline: none;">
                     </div>
+                    <div style="display: flex; align-items: center; gap: 6px; margin: 2px 0;">
+                        <input type="checkbox" id="edit-node-isnew" style="cursor: pointer; width: 14px; height: 14px;">
+                        <label for="edit-node-isnew" style="font-size: 0.75rem; color: var(--text-secondary); cursor: pointer; user-select: none;">標記為「新開課程」 (標題顯示「新」標籤)</label>
+                    </div>
                     <textarea id="edit-node-desc" placeholder="課程簡介描述..." rows="2" style="width:100%; padding: 6px; font-size: 0.75rem; border: 1px solid var(--panel-border); border-radius: 4px; background: rgba(15,23,42,0.01); color: var(--text-primary); resize: vertical; outline: none; font-family: inherit;"></textarea>
                     
                     <div id="node-form-buttons" style="width: 100%;">
@@ -896,6 +900,7 @@
               "level": "AI 核心",
               "dept": "新聞",
               "size": 17,
+              "isNew": true,
               "note": "（原「社會科學程式設計」替代課程）",
               "desc": "新聞傳播領域專長 Level 1 的 Python 基礎程式。結合資料處理基本邏輯，以及生成式 AI 在輔助新聞與社會科學研究中的應用基礎。",
               "x": 360,
@@ -911,6 +916,7 @@
               "level": "AI 核心",
               "dept": "社會",
               "size": 17,
+              "isNew": true,
               "desc": "社會學領域專長的 AI 實作與資料科學入門。作為 Level 1 基礎課程，教授基本語法與機器學習實作應用。",
               "x": -160,
               "y": -80,
@@ -925,6 +931,7 @@
               "level": "AI素養 (STS與治理)",
               "dept": "新聞",
               "size": 16,
+              "isNew": true,
               "desc": "探討人工智慧與文化政治、社會結構變遷之間的關係。關注演算法歧視、數位文化霸權以及技術倫理，屬 STS（科學、技術與社會）研究領域。",
               "x": 360,
               "y": -320,
@@ -939,6 +946,7 @@
               "level": "AI素養 (STS與治理)",
               "dept": "社工",
               "size": 16,
+              "isNew": true,
               "desc": "以人機互動（HCI）為視角切入，深度探討 AI 倫理、資料隱私與法制。特別關注社工福利系統中演算法決策對弱勢群體的社會影響。",
               "x": 140,
               "y": -320,
@@ -953,6 +961,7 @@
               "level": "AI素養 (在職專班)",
               "dept": "政治",
               "size": 16,
+              "isNew": true,
               "desc": "政治系在職專班課程。從公共行政、政府數位決策與國家治理模式出發，探討數位時代的人工智慧監管法治與資料治理框架。",
               "x": 260,
               "y": -320,
@@ -1068,6 +1077,7 @@
               "level": "進階應用",
               "dept": "政治",
               "size": 16,
+              "isNew": true,
               "desc": "尚無描述。",
               "x": 260,
               "y": 60,
@@ -1082,6 +1092,7 @@
               "level": "基礎能力 (程式基礎)",
               "dept": "社會",
               "size": 16,
+              "isNew": true,
               "desc": "尚無描述。",
               "x": -160,
               "y": -200,
@@ -1628,12 +1639,26 @@
                 const lineHeight = 15;
                 
                 lines.forEach((line, idx) => {
-                    textEl.append("tspan")
-                        .attr("x", 0)
-                        .attr("dy", idx === 0 ? `${startOffset}px` : `${lineHeight}px`)
-                        .text(line)
-                        .style("font-weight", (idx < titleLines.length) ? "600" : "400")
-                        .style("fill", (idx < titleLines.length) ? "var(--text-primary)" : getDeptLabelColor(d.dept));
+                    if (idx === 0 && d.isNew) {
+                        textEl.append("tspan")
+                            .attr("x", 0)
+                            .attr("dy", `${startOffset}px`)
+                            .text("[新] ")
+                            .style("font-weight", "800")
+                            .style("fill", "#ef4444");
+                            
+                        textEl.append("tspan")
+                            .text(line)
+                            .style("font-weight", "600")
+                            .style("fill", "var(--text-primary)");
+                    } else {
+                        textEl.append("tspan")
+                            .attr("x", 0)
+                            .attr("dy", idx === 0 ? `${startOffset}px` : `${lineHeight}px`)
+                            .text(line)
+                            .style("font-weight", (idx < titleLines.length) ? "600" : "400")
+                            .style("fill", (idx < titleLines.length) ? "var(--text-primary)" : getDeptLabelColor(d.dept));
+                    }
                 });
             });
 
@@ -2070,7 +2095,9 @@
                         <span class="detail-dept-badge" style="background-color: ${getDeptLabelColor(d.dept)};">
                             ${d.dept}系所
                         </span>
-                        <h2 class="detail-title">${d.label}</h2>
+                        <h2 class="detail-title">
+                            ${d.isNew ? `<span style="display: inline-block; background-color: #ef4444; color: #ffffff; font-size: 0.7rem; font-weight: 700; padding: 1px 5px; border-radius: 4px; vertical-align: middle; margin-right: 6px;">新開</span>` : ''}${d.label}
+                        </h2>
                         ${d.note ? `<div style="font-size: 0.8rem; color: var(--color-intro); margin-top: 4px; font-weight: 500;">${d.note}</div>` : ''}
                     </div>
                     
@@ -2667,6 +2694,7 @@
             const tech = document.getElementById("edit-node-tech").value.trim();
             const note = document.getElementById("edit-node-note").value.trim();
             const desc = document.getElementById("edit-node-desc").value.trim();
+            const isNew = document.getElementById("edit-node-isnew").checked;
 
             if (!name) {
                 alert("請輸入課程名稱！");
@@ -2697,7 +2725,8 @@
                 level: category === "intro" ? "基礎能力 (程式基礎)" : (category === "aicore" ? "AI 核心" : (category === "sts" ? "AI素養 (STS與治理)" : (category === "advanced" ? "進階應用" : "總整課程 (Capstone)"))),
                 dept: dept,
                 size: category === "capstone" ? 21 : 16,
-                desc: desc || "尚無描述。"
+                desc: desc || "尚無描述。",
+                isNew: isNew
             };
 
             if (note) {
@@ -2711,6 +2740,7 @@
             document.getElementById("edit-node-tech").value = "";
             document.getElementById("edit-node-note").value = "";
             document.getElementById("edit-node-desc").value = "";
+            document.getElementById("edit-node-isnew").checked = false;
 
             // 重置選取，重新繪圖並更新面板
             clearSelection();
@@ -2730,6 +2760,7 @@
             const techInput = document.getElementById("edit-node-tech");
             const noteInput = document.getElementById("edit-node-note");
             const descInput = document.getElementById("edit-node-desc");
+            const isNewCheckbox = document.getElementById("edit-node-isnew");
             
             const title = d.label.split(" (")[0];
             nameInput.value = title;
@@ -2738,6 +2769,7 @@
             techInput.value = d.tech;
             noteInput.value = d.note || "";
             descInput.value = d.desc;
+            isNewCheckbox.checked = !!d.isNew;
             
             document.getElementById("node-form-mode-text").textContent = "編輯課程節點";
             
@@ -2762,6 +2794,7 @@
             document.getElementById("edit-node-tech").value = "";
             document.getElementById("edit-node-note").value = "";
             document.getElementById("edit-node-desc").value = "";
+            document.getElementById("edit-node-isnew").checked = false;
             
             document.getElementById("node-form-mode-text").textContent = "新增課程節點";
             
@@ -2786,6 +2819,7 @@
             const tech = document.getElementById("edit-node-tech").value.trim();
             const note = document.getElementById("edit-node-note").value.trim();
             const desc = document.getElementById("edit-node-desc").value.trim();
+            const isNew = document.getElementById("edit-node-isnew").checked;
 
             if (!name) {
                 alert("請輸入課程名稱！");
@@ -2840,6 +2874,7 @@
             targetNode.dept = dept;
             targetNode.size = category === "capstone" ? 21 : 16;
             targetNode.desc = desc || "尚無描述。";
+            targetNode.isNew = isNew;
             
             if (note) {
                 targetNode.note = note;
@@ -3098,7 +3133,22 @@
                     updated = true;
                 }
 
-
+                // 4. 自動標記新開課程
+                const defaultNewCourses = [
+                    "course-AI 的社會科學應用",
+                    "course-AI 應用與社會",
+                    "course-AI 實作入門",
+                    "course-人工智慧在社會科學調查研究中的應用",
+                    "course-人工智慧與文化政治",
+                    "course-人機互動視角下的AI倫理與法律",
+                    "course-數位治理與人工智慧專題"
+                ];
+                graphData.nodes.forEach(n => {
+                    if (defaultNewCourses.includes(n.id) && !n.isNew) {
+                        n.isNew = true;
+                        updated = true;
+                    }
+                });
 
                 // 如果有變更，則更新 localStorage 以維持資料一致
                 if (updated) {
