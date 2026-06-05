@@ -186,6 +186,62 @@
             gap: 16px;
             overflow-y: auto;
             max-height: calc(100vh - 40px);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+        }
+
+        body.sidebar-collapsed .sidebar-panel {
+            transform: translateX(390px);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* 側邊欄切換按鈕 */
+        .sidebar-toggle-btn {
+            position: absolute;
+            top: 20px;
+            right: 390px; /* 350px width + 20px margin + 20px space */
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.2s ease, transform 0.2s ease;
+            z-index: 11;
+        }
+
+        .sidebar-toggle-btn:hover {
+            background-color: #ffffff;
+            color: #2563eb;
+            transform: scale(1.05);
+        }
+
+        .sidebar-toggle-btn i {
+            width: 20px;
+            height: 20px;
+        }
+
+        body.sidebar-collapsed .sidebar-toggle-btn {
+            right: 20px;
+        }
+
+        @media (max-width: 600px) {
+            .sidebar-panel {
+                width: calc(100vw - 40px);
+                right: 20px;
+                left: 20px;
+            }
+            body.sidebar-collapsed .sidebar-panel {
+                transform: translateX(100vw);
+            }
+            .sidebar-toggle-btn {
+                top: 20px;
+                right: calc(100vw - 60px);
+            }
+            body.sidebar-collapsed .sidebar-toggle-btn {
+                right: 20px;
+            }
         }
 
         .search-container {
@@ -402,6 +458,11 @@
             gap: 6px;
             padding: 6px;
             border-radius: 8px;
+            transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body.sidebar-collapsed .controls-panel {
+            right: 20px;
         }
 
         .control-btn {
@@ -568,8 +629,13 @@
         </svg>
     </div>
 
+    <!-- 側邊欄收折按鈕 -->
+    <button class="glass-panel sidebar-toggle-btn" id="sidebar-toggle-btn" title="收合側邊欄">
+        <i data-lucide="panel-right-close"></i>
+    </button>
+
     <!-- 右側詳細資訊與篩選 -->
-    <div class="glass-panel sidebar-panel">
+    <div class="glass-panel sidebar-panel" id="sidebar-panel">
         <!-- 精簡圖例說明 -->
         <div class="sidebar-legend" style="border-bottom: 1px solid var(--panel-border); padding-bottom: 12px; display: flex; flex-direction: column; gap: 8px;">
             <div style="font-size: 0.65rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; display: flex; align-items: center; gap: 4px;">
@@ -854,6 +920,8 @@
             if (infoContent) infoContent.style.display = "block";
             const layoutToggle = document.getElementById("btn-layout-toggle");
             if (layoutToggle) layoutToggle.style.display = "none";
+            const toggleBtn = document.getElementById("sidebar-toggle-btn");
+            if (toggleBtn) toggleBtn.style.display = "none";
         }
 
         // 初始化 Lucide 圖標
@@ -1804,8 +1872,8 @@
             .style("position", "absolute")
             .style("display", "none")
             .style("pointer-events", "none")
-            .style("padding", "6px 12px")
-            .style("border-radius", "6px")
+            .style("padding", "10px 14px")
+            .style("border-radius", "8px")
             .style("font-size", "0.75rem")
             .style("z-index", "2000")
             .style("box-shadow", "var(--card-shadow)")
@@ -1817,13 +1885,42 @@
             .style("transition", "opacity 0.15s ease");
 
         function handleMouseOver(event, d) {
-            if (d.id === "course-AI 的社會科學應用") {
-                tooltip.html(`
-                    <div style="font-weight: 600; color: var(--text-primary); margin-bottom: 2px;">${d.label}</div>
-                    <div style="color: var(--color-intro); font-weight: 500; font-size: 0.7rem;">原「社會科學程式設計」替代課程</div>
-                `);
-                tooltip.style("display", "block").style("opacity", 1);
+            // 建立懸浮提示卡內容 (與右側面板風格一致的精美排版)
+            let catText = "基礎能力";
+            let customStyle = `color: var(--color-${d.category}); background: var(--fill-${d.category}); border-color: rgba(0,0,0,0.03);`;
+
+            if (d.category === "aicore") { catText = "AI 核心"; }
+            if (d.category === "sts") { catText = "AI素養"; }
+            if (d.category === "advanced") { catText = "進階應用"; }
+            if (d.category === "capstone") { catText = "總整課程"; }
+            if (d.isPeripheral) {
+                catText = "相關課程";
+                customStyle = `color: var(--color-peripheral); background: var(--fill-peripheral); border-color: rgba(0,0,0,0.03);`;
             }
+
+            const isNewBadge = d.isNew ? `<span style="display: inline-block; background-color: #ef4444; color: #ffffff; font-size: 0.65rem; font-weight: 700; padding: 1px 4px; border-radius: 3px; vertical-align: middle; margin-right: 6px;">新開</span>` : '';
+            const noteHtml = d.note ? `<div style="font-size: 0.7rem; color: var(--color-intro); margin-top: 3px; font-weight: 500;">${d.note}</div>` : '';
+
+            tooltip.html(`
+                <div style="max-width: 280px; font-family: system-ui, -apple-system, sans-serif;">
+                    <div style="font-weight: 700; color: var(--text-primary); font-size: 0.85rem; line-height: 1.3; margin-bottom: 4px; display: flex; align-items: center; flex-wrap: wrap; gap: 2px;">
+                        ${isNewBadge}${d.label}
+                    </div>
+                    ${noteHtml}
+                    <div style="display: flex; gap: 4px; margin: 6px 0;">
+                        <span style="font-size: 0.65rem; padding: 2px 6px; border-radius: 4px; border: 1px solid rgba(0,0,0,0.03); font-weight: 600; display: inline-flex; align-items: center; ${customStyle}">
+                            ${catText}
+                        </span>
+                        <span style="font-size: 0.65rem; padding: 2px 6px; border-radius: 4px; border: 1px solid var(--panel-border); background: rgba(59, 130, 246, 0.05); color: #2563eb; font-weight: 600; display: inline-flex; align-items: center;">
+                            ${d.tech || "無"}
+                        </span>
+                    </div>
+                    <div style="font-size: 0.72rem; line-height: 1.4; color: var(--text-secondary); border-top: 1px solid var(--panel-border); padding-top: 6px; margin-top: 6px; white-space: pre-line;">
+                        ${d.desc || "尚無描述。"}
+                    </div>
+                </div>
+            `);
+            tooltip.style("display", "block").style("opacity", 1);
         }
 
         function handleMouseMove(event) {
@@ -3162,6 +3259,41 @@
             }
         } else {
             graphData = fallbackData;
+        }
+
+        // --- 側邊欄收折與展開控制功能 ---
+        const sidebarToggleBtn = document.getElementById("sidebar-toggle-btn");
+        if (sidebarToggleBtn) {
+            sidebarToggleBtn.addEventListener("click", () => {
+                const isCollapsed = document.body.classList.toggle("sidebar-collapsed");
+                
+                // 更換按鈕圖標與提示文字
+                const icon = sidebarToggleBtn.querySelector("i");
+                if (icon) {
+                    if (isCollapsed) {
+                        icon.setAttribute("data-lucide", "panel-right-open");
+                        sidebarToggleBtn.title = "展開側邊欄";
+                    } else {
+                        icon.setAttribute("data-lucide", "panel-right-close");
+                        sidebarToggleBtn.title = "收合側邊欄";
+                    }
+                    lucide.createIcons();
+                }
+                
+                // 儲存收折狀態於瀏覽器
+                localStorage.setItem("sidebar_collapsed", isCollapsed);
+            });
+            
+            // 恢復上次的收折狀態 (如果不是匯出模式)
+            const isSidebarCollapsed = localStorage.getItem("sidebar_collapsed") === "true";
+            if (isSidebarCollapsed && !isExportMode) {
+                document.body.classList.add("sidebar-collapsed");
+                const icon = sidebarToggleBtn.querySelector("i");
+                if (icon) {
+                    icon.setAttribute("data-lucide", "panel-right-open");
+                }
+                sidebarToggleBtn.title = "展開側邊欄";
+            }
         }
 
         initVisualization();
