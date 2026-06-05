@@ -3285,7 +3285,16 @@
             });
             
             // 恢復上次的收折狀態 (如果不是匯出模式)
-            const isSidebarCollapsed = localStorage.getItem("sidebar_collapsed") === "true";
+            // 手機版網頁預設關閉側邊欄；桌機版則從 localStorage 讀取使用者先前的收折偏好 (預設為開啟)
+            const isMobile = window.innerWidth <= 600;
+            let isSidebarCollapsed = false;
+            if (isMobile) {
+                isSidebarCollapsed = true;
+            } else {
+                const storedCollapsed = localStorage.getItem("sidebar_collapsed");
+                isSidebarCollapsed = storedCollapsed !== null ? (storedCollapsed === "true") : false;
+            }
+
             if (isSidebarCollapsed && !isExportMode) {
                 document.body.classList.add("sidebar-collapsed");
                 const icon = sidebarToggleBtn.querySelector("i");
