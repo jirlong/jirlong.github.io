@@ -920,8 +920,6 @@
             if (infoContent) infoContent.style.display = "block";
             const layoutToggle = document.getElementById("btn-layout-toggle");
             if (layoutToggle) layoutToggle.style.display = "none";
-            const toggleBtn = document.getElementById("sidebar-toggle-btn");
-            if (toggleBtn) toggleBtn.style.display = "none";
         }
 
         // 初始化 Lucide 圖標
@@ -3295,7 +3293,7 @@
                 isSidebarCollapsed = storedCollapsed !== null ? (storedCollapsed === "true") : false;
             }
 
-            if (isSidebarCollapsed && !isExportMode) {
+            if (isSidebarCollapsed) {
                 document.body.classList.add("sidebar-collapsed");
                 const icon = sidebarToggleBtn.querySelector("i");
                 if (icon) {
