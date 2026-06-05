@@ -907,7 +907,7 @@
 
     <script>
         // 判定是否為匯出模式 (若為 true 則隱藏編輯器 UI)
-        const isExportMode = true;
+        const isExportMode = false;
 
         if (isExportMode) {
             const tabs = document.querySelector(".sidebar-tabs");
@@ -931,351 +931,351 @@
 
         // 預設內嵌資料 (作為 CORS 阻擋時的 Fallback 備用資料)
         const fallbackData = {
-  "nodes": [
-    {
-      "id": "course-計算社會學",
-      "label": "計算社會學 (社會)",
-      "category": "advanced",
-      "tech": "n8n 工作流",
-      "level": "進階應用",
-      "dept": "社會",
-      "size": 16,
-      "desc": "以自動化工作流工具 n8n 為主的基礎程式課程。著重於無程式碼 API 串接、工作流自動化與基本資料收集，專為社會學門零基礎學生設計。",
-      "x": -160,
-      "y": 60,
-      "fx": -160,
-      "fy": 60
-    },
-    {
-      "id": "course-資料科學與社會研究",
-      "label": "資料科學與社會研究 (經濟)",
-      "category": "aicore",
-      "tech": "Python",
-      "level": "AI 核心",
-      "dept": "經濟",
-      "size": 17,
-      "desc": "經濟領域的 Python 基礎程式設計與資料科學入門。作為 Level 1 基礎課程，教授基本語法、資料分析套件（Pandas、Numpy）與基礎敘述統計實作。",
-      "x": 20,
-      "y": -40,
-      "fx": 20,
-      "fy": -40
-    },
-    {
-      "id": "course-AI 的社會科學應用",
-      "label": "AI 的社會科學應用 (新聞)",
-      "category": "aicore",
-      "tech": "Python",
-      "level": "AI 核心",
-      "dept": "新聞",
-      "size": 17,
-      "isNew": true,
-      "note": "（原「社會科學程式設計」替代課程）",
-      "desc": "新聞傳播領域專長 Level 1 的 Python 基礎程式。結合資料處理基本邏輯，以及生成式 AI 在輔助新聞與社會科學研究中的應用基礎。",
-      "x": 360,
-      "y": -80,
-      "fx": 360,
-      "fy": -80
-    },
-    {
-      "id": "course-AI 實作入門",
-      "label": "AI 實作入門 (社會)",
-      "category": "aicore",
-      "tech": "Python / ML",
-      "level": "AI 核心",
-      "dept": "社會",
-      "size": 17,
-      "isNew": true,
-      "desc": "社會學領域專長的 AI 實作與資料科學入門。作為 Level 1 基礎課程，教授基本語法與機器學習實作應用。",
-      "x": -160,
-      "y": -80,
-      "fx": -160,
-      "fy": -80
-    },
-    {
-      "id": "course-人工智慧與文化政治",
-      "label": "人工智慧與文化政治 (新聞)",
-      "category": "sts",
-      "tech": "STS / 文化政治",
-      "level": "AI素養 (STS與治理)",
-      "dept": "新聞",
-      "size": 16,
-      "isNew": true,
-      "desc": "探討人工智慧與文化政治、社會結構變遷之間的關係。關注演算法歧視、數位文化霸權以及技術倫理，屬 STS（科學、技術與社會）研究領域。",
-      "x": 360,
-      "y": -320,
-      "fx": 360,
-      "fy": -320
-    },
-    {
-      "id": "course-人機互動視角下的AI倫理與法律",
-      "label": "人機互動視角下的AI倫理與法律 (社工)",
-      "category": "sts",
-      "tech": "STS / 倫理與法律",
-      "level": "AI素養 (STS與治理)",
-      "dept": "社工",
-      "size": 16,
-      "isNew": true,
-      "desc": "以人機互動（HCI）為視角切入，深度探討 AI 倫理、資料隱私與法制。特別關注社工福利系統中演算法決策對弱勢群體的社會影響。",
-      "x": 140,
-      "y": -320,
-      "fx": 140,
-      "fy": -320
-    },
-    {
-      "id": "course-數位治理與人工智慧專題",
-      "label": "數位治理與人工智慧專題 (政治)",
-      "category": "sts",
-      "tech": "在職專班 / STS治理",
-      "level": "AI素養 (在職專班)",
-      "dept": "政治",
-      "size": 16,
-      "isNew": true,
-      "desc": "政治系在職專班課程。從公共行政、政府數位決策與國家治理模式出發，探討數位時代的人工智慧監管法治與資料治理框架。",
-      "x": 260,
-      "y": -320,
-      "fx": 260,
-      "fy": -320
-    },
-    {
-      "id": "course-輿情分析與選舉研究專題",
-      "label": "輿情分析與選舉研究專題 (政治)",
-      "category": "advanced",
-      "tech": "輿情分析 / 選舉研究",
-      "level": "進階應用",
-      "dept": "政治",
-      "size": 18,
-      "desc": "結合政治學理論與大數據分析技術。探討社群媒體時代下的選情觀測、選民網路行為、輿情傳播與政治極化現象。",
-      "x": 260,
-      "y": 180,
-      "fx": 260,
-      "fy": 180
-    },
-    {
-      "id": "course-社會福利大數據分析",
-      "label": "社會福利大數據分析 (社工)",
-      "category": "advanced",
-      "tech": "大數據分析",
-      "level": "進階應用",
-      "dept": "社工",
-      "size": 18,
-      "desc": "應用大數據技術於社會福利政策評估。分析政府公開資料、福利體系數據，以優化福利資源輸送與弱勢群體扶助規劃。",
-      "x": 140,
-      "y": -140,
-      "fx": 140,
-      "fy": -140
-    },
-    {
-      "id": "course-機器學習與經濟計量",
-      "label": "機器學習與經濟計量 (經濟)",
-      "category": "advanced",
-      "tech": "機器學習 / 經濟計量",
-      "level": "進階應用 (研究所)",
-      "dept": "經濟",
-      "size": 19,
-      "desc": "研究所偏應用與技術進階之課程.強調機器學習方法（ML）與計量模型的結合，探討因果推論、高維度資料處理與經濟決策預測。",
-      "x": -40,
-      "y": 60,
-      "fx": -40,
-      "fy": 60
-    },
-    {
-      "id": "course-社群媒體與社會網絡分析",
-      "label": "社群媒體與社會網絡分析 (新聞)",
-      "category": "advanced",
-      "tech": "社會網絡 (SNA) / AI 設計",
-      "level": "進階應用 (研究所)",
-      "dept": "新聞",
-      "size": 19,
-      "desc": "研究所偏應用課程。以社會網絡分析（SNA）為核心，探討社群媒體資料運用與傳播網絡建模，並鼓勵在網絡研究設計中結合 AI 應用。",
-      "x": 420,
-      "y": 60,
-      "fx": 420,
-      "fy": 60
-    },
-    {
-      "id": "course-社群媒介輿論分析",
-      "label": "社群媒介輿論分析 (新聞)",
-      "category": "capstone",
-      "tech": "Python / 總整專案",
-      "level": "總整課程 (Capstone)",
-      "dept": "新聞",
-      "size": 21,
-      "isCapstone": true,
-      "desc": "新聞傳播領域專長的總整課程（Capstone）。實作社群媒體巨量資料爬取、自然語言處理、情感分析與網絡結構分析，並進行完整專案實作。",
-      "x": 360,
-      "y": 240,
-      "fx": 360,
-      "fy": 240
-    },
-    {
-      "id": "course-智慧社福與資料治理專題",
-      "label": "智慧社福與資料治理專題 (社工)",
-      "category": "capstone",
-      "tech": "資料治理 / 總整專案",
-      "level": "總整課程 (Capstone)",
-      "dept": "社工",
-      "size": 21,
-      "isCapstone": true,
-      "desc": "社工領域專長總整課程。深入結合智慧化福利系統設計與資料治理架構，反思社會服務資料在資訊安全、隱私保護與倫理治理的實務挑戰。",
-      "x": 140,
-      "y": 240,
-      "fx": 140,
-      "fy": 240
-    },
-    {
-      "id": "course-資料科學與社會研究總整課程",
-      "label": "資料科學與社會研究總整課程 (經濟)",
-      "category": "capstone",
-      "tech": "Python / 總整專案",
-      "level": "總整課程 (Capstone)",
-      "dept": "經濟",
-      "size": 21,
-      "isCapstone": true,
-      "desc": "經濟學領域專長的總整課程（Capstone）。學生將融會貫通 Python 資料科學技能與計量統計分析，針對特定經濟與社會政策進行完整的實證數據研究專案實作。",
-      "x": 20,
-      "y": 240,
-      "fx": 20,
-      "fy": 240
-    },
-    {
-      "id": "course-人工智慧在社會科學調查研究中的應用",
-      "label": "人工智慧在社會科學調查研究中的應用 (政治)",
-      "category": "advanced",
-      "tech": "Python",
-      "level": "進階應用",
-      "dept": "政治",
-      "size": 16,
-      "isNew": true,
-      "desc": "尚無描述。",
-      "x": 260,
-      "y": 60,
-      "fx": 260,
-      "fy": 60
-    },
-    {
-      "id": "course-AI 應用與社會",
-      "label": "AI 應用與社會 (社會)",
-      "category": "intro",
-      "tech": "n8n",
-      "level": "基礎能力 (程式基礎)",
-      "dept": "社會",
-      "size": 16,
-      "isNew": true,
-      "desc": "尚無描述。",
-      "x": -160,
-      "y": -200,
-      "fx": -160,
-      "fy": -200
-    }
-  ],
-  "links": [
-    {
-      "source": "course-資料科學與社會研究",
-      "target": "course-AI 的社會科學應用",
-      "type": "substitute"
-    },
-    {
-      "source": "course-AI 實作入門",
-      "target": "course-AI 的社會科學應用",
-      "type": "substitute"
-    },
-    {
-      "source": "course-AI 實作入門",
-      "target": "course-資料科學與社會研究",
-      "type": "substitute"
-    },
-    {
-      "source": "course-社會福利大數據分析",
-      "target": "course-智慧社福與資料治理專題",
-      "type": "flow",
-      "label": "總整"
-    },
-    {
-      "source": "course-社會福利大數據分析",
-      "target": "course-人機互動視角下的AI倫理與法律",
-      "type": "extension",
-      "label": "素養"
-    },
-    {
-      "source": "course-人工智慧在社會科學調查研究中的應用",
-      "target": "course-輿情分析與選舉研究專題",
-      "type": "flow",
-      "label": "進階"
-    },
-    {
-      "source": "course-AI 的社會科學應用",
-      "target": "course-輿情分析與選舉研究專題",
-      "type": "flow",
-      "label": "進階"
-    },
-    {
-      "source": "course-AI 的社會科學應用",
-      "target": "course-人工智慧在社會科學調查研究中的應用",
-      "type": "flow",
-      "label": "應用"
-    },
-    {
-      "source": "course-AI 實作入門",
-      "target": "course-計算社會學",
-      "type": "flow",
-      "label": "進階"
-    },
-    {
-      "source": "course-AI 應用與社會",
-      "target": "course-AI 實作入門",
-      "type": "flow",
-      "label": "進階"
-    },
-    {
-      "source": "course-AI 的社會科學應用",
-      "target": "course-人工智慧與文化政治",
-      "type": "extension",
-      "label": "素養"
-    },
-    {
-      "source": "course-社會福利大數據分析",
-      "target": "course-資料科學與社會研究",
-      "type": "flow",
-      "label": "程式與應用AI"
-    },
-    {
-      "source": "course-社會福利大數據分析",
-      "target": "course-AI 的社會科學應用",
-      "type": "flow",
-      "label": "應用AI"
-    },
-    {
-      "source": "course-AI 的社會科學應用",
-      "target": "course-社群媒介輿論分析",
-      "type": "flow",
-      "label": "總整"
-    },
-    {
-      "source": "course-AI 的社會科學應用",
-      "target": "course-社群媒體與社會網絡分析",
-      "type": "flow",
-      "label": "進階應用"
-    },
-    {
-      "source": "course-社群媒體與社會網絡分析",
-      "target": "course-社群媒介輿論分析",
-      "type": "flow",
-      "label": "總整"
-    },
-    {
-      "source": "course-資料科學與社會研究",
-      "target": "course-資料科學與社會研究總整課程",
-      "type": "flow",
-      "label": "總整"
-    },
-    {
-      "source": "course-資料科學與社會研究",
-      "target": "course-機器學習與經濟計量",
-      "type": "flow",
-      "label": "機器學習進階"
-    }
-  ]
-};
+          "nodes": [
+            {
+              "id": "course-計算社會學",
+              "label": "計算社會學 (社會)",
+              "category": "advanced",
+              "tech": "n8n 工作流",
+              "level": "進階應用",
+              "dept": "社會",
+              "size": 16,
+              "desc": "以自動化工作流工具 n8n 為主的基礎程式課程。著重於無程式碼 API 串接、工作流自動化與基本資料收集，專為社會學門零基礎學生設計。",
+              "x": -160,
+              "y": 60,
+              "fx": -160,
+              "fy": 60
+            },
+            {
+              "id": "course-資料科學與社會研究",
+              "label": "資料科學與社會研究 (經濟)",
+              "category": "aicore",
+              "tech": "Python",
+              "level": "AI 核心",
+              "dept": "經濟",
+              "size": 17,
+              "desc": "經濟領域的 Python 基礎程式設計與資料科學入門。作為 Level 1 基礎課程，教授基本語法、資料分析套件（Pandas、Numpy）與基礎敘述統計實作。",
+              "x": 20,
+              "y": -40,
+              "fx": 20,
+              "fy": -40
+            },
+            {
+              "id": "course-AI 的社會科學應用",
+              "label": "AI 的社會科學應用 (新聞)",
+              "category": "aicore",
+              "tech": "Python",
+              "level": "AI 核心",
+              "dept": "新聞",
+              "size": 17,
+              "isNew": true,
+              "note": "（原「社會科學程式設計」替代課程）",
+              "desc": "新聞傳播領域專長 Level 1 的 Python 基礎程式。結合資料處理基本邏輯，以及生成式 AI 在輔助新聞與社會科學研究中的應用基礎。",
+              "x": 360,
+              "y": -80,
+              "fx": 360,
+              "fy": -80
+            },
+            {
+              "id": "course-AI 實作入門",
+              "label": "AI 實作入門 (社會)",
+              "category": "aicore",
+              "tech": "Python / ML",
+              "level": "AI 核心",
+              "dept": "社會",
+              "size": 17,
+              "isNew": true,
+              "desc": "社會學領域專長的 AI 實作與資料科學入門。作為 Level 1 基礎課程，教授基本語法與機器學習實作應用。",
+              "x": -160,
+              "y": -80,
+              "fx": -160,
+              "fy": -80
+            },
+            {
+              "id": "course-人工智慧與文化政治",
+              "label": "人工智慧與文化政治 (新聞)",
+              "category": "sts",
+              "tech": "STS / 文化政治",
+              "level": "AI素養 (STS與治理)",
+              "dept": "新聞",
+              "size": 16,
+              "isNew": true,
+              "desc": "探討人工智慧與文化政治、社會結構變遷之間的關係。關注演算法歧視、數位文化霸權以及技術倫理，屬 STS（科學、技術與社會）研究領域。",
+              "x": 360,
+              "y": -320,
+              "fx": 360,
+              "fy": -320
+            },
+            {
+              "id": "course-人機互動視角下的AI倫理與法律",
+              "label": "人機互動視角下的AI倫理與法律 (社工)",
+              "category": "sts",
+              "tech": "STS / 倫理與法律",
+              "level": "AI素養 (STS與治理)",
+              "dept": "社工",
+              "size": 16,
+              "isNew": true,
+              "desc": "以人機互動（HCI）為視角切入，深度探討 AI 倫理、資料隱私與法制。特別關注社工福利系統中演算法決策對弱勢群體的社會影響。",
+              "x": 140,
+              "y": -320,
+              "fx": 140,
+              "fy": -320
+            },
+            {
+              "id": "course-數位治理與人工智慧專題",
+              "label": "數位治理與人工智慧專題 (政治)",
+              "category": "sts",
+              "tech": "在職專班 / STS治理",
+              "level": "AI素養 (在職專班)",
+              "dept": "政治",
+              "size": 16,
+              "isNew": true,
+              "desc": "政治系在職專班課程。從公共行政、政府數位決策與國家治理模式出發，探討數位時代的人工智慧監管法治與資料治理框架。",
+              "x": 260,
+              "y": -320,
+              "fx": 260,
+              "fy": -320
+            },
+            {
+              "id": "course-輿情分析與選舉研究專題",
+              "label": "輿情分析與選舉研究專題 (政治)",
+              "category": "advanced",
+              "tech": "輿情分析 / 選舉研究",
+              "level": "進階應用",
+              "dept": "政治",
+              "size": 18,
+              "desc": "結合政治學理論與大數據分析技術。探討社群媒體時代下的選情觀測、選民網路行為、輿情傳播與政治極化現象。",
+              "x": 260,
+              "y": 180,
+              "fx": 260,
+              "fy": 180
+            },
+            {
+              "id": "course-社會福利大數據分析",
+              "label": "社會福利大數據分析 (社工)",
+              "category": "advanced",
+              "tech": "大數據分析",
+              "level": "進階應用",
+              "dept": "社工",
+              "size": 18,
+              "desc": "應用大數據技術於社會福利政策評估。分析政府公開資料、福利體系數據，以優化福利資源輸送與弱勢群體扶助規劃。",
+              "x": 140,
+              "y": -140,
+              "fx": 140,
+              "fy": -140
+            },
+            {
+              "id": "course-機器學習與經濟計量",
+              "label": "機器學習與經濟計量 (經濟)",
+              "category": "advanced",
+              "tech": "機器學習 / 經濟計量",
+              "level": "進階應用 (研究所)",
+              "dept": "經濟",
+              "size": 19,
+              "desc": "研究所偏應用與技術進階之課程.強調機器學習方法（ML）與計量模型的結合，探討因果推論、高維度資料處理與經濟決策預測。",
+              "x": -40,
+              "y": 60,
+              "fx": -40,
+              "fy": 60
+            },
+            {
+              "id": "course-社群媒體與社會網絡分析",
+              "label": "社群媒體與社會網絡分析 (新聞)",
+              "category": "advanced",
+              "tech": "社會網絡 (SNA) / AI 設計",
+              "level": "進階應用 (研究所)",
+              "dept": "新聞",
+              "size": 19,
+              "desc": "研究所偏應用課程。以社會網絡分析（SNA）為核心，探討社群媒體資料運用與傳播網絡建模，並鼓勵在網絡研究設計中結合 AI 應用。",
+              "x": 420,
+              "y": 60,
+              "fx": 420,
+              "fy": 60
+            },
+            {
+              "id": "course-社群媒介輿論分析",
+              "label": "社群媒介輿論分析 (新聞)",
+              "category": "capstone",
+              "tech": "Python / 總整專案",
+              "level": "總整課程 (Capstone)",
+              "dept": "新聞",
+              "size": 21,
+              "isCapstone": true,
+              "desc": "新聞傳播領域專長的總整課程（Capstone）。實作社群媒體巨量資料爬取、自然語言處理、情感分析與網絡結構分析，並進行完整專案實作。",
+              "x": 360,
+              "y": 240,
+              "fx": 360,
+              "fy": 240
+            },
+            {
+              "id": "course-智慧社福與資料治理專題",
+              "label": "智慧社福與資料治理專題 (社工)",
+              "category": "capstone",
+              "tech": "資料治理 / 總整專案",
+              "level": "總整課程 (Capstone)",
+              "dept": "社工",
+              "size": 21,
+              "isCapstone": true,
+              "desc": "社工領域專長總整課程。深入結合智慧化福利系統設計與資料治理架構，反思社會服務資料在資訊安全、隱私保護與倫理治理的實務挑戰。",
+              "x": 140,
+              "y": 240,
+              "fx": 140,
+              "fy": 240
+            },
+            {
+              "id": "course-資料科學與社會研究總整課程",
+              "label": "資料科學與社會研究總整課程 (經濟)",
+              "category": "capstone",
+              "tech": "Python / 總整專案",
+              "level": "總整課程 (Capstone)",
+              "dept": "經濟",
+              "size": 21,
+              "isCapstone": true,
+              "desc": "經濟學領域專長的總整課程（Capstone）。學生將融會貫通 Python 資料科學技能與計量統計分析，針對特定經濟與社會政策進行完整的實證數據研究專案實作。",
+              "x": 20,
+              "y": 240,
+              "fx": 20,
+              "fy": 240
+            },
+            {
+              "id": "course-人工智慧在社會科學調查研究中的應用",
+              "label": "人工智慧在社會科學調查研究中的應用 (政治)",
+              "category": "advanced",
+              "tech": "Python",
+              "level": "進階應用",
+              "dept": "政治",
+              "size": 16,
+              "isNew": true,
+              "desc": "尚無描述。",
+              "x": 260,
+              "y": 60,
+              "fx": 260,
+              "fy": 60
+            },
+            {
+              "id": "course-AI 應用與社會",
+              "label": "AI 應用與社會 (社會)",
+              "category": "intro",
+              "tech": "n8n",
+              "level": "基礎能力 (程式基礎)",
+              "dept": "社會",
+              "size": 16,
+              "isNew": true,
+              "desc": "尚無描述。",
+              "x": -160,
+              "y": -200,
+              "fx": -160,
+              "fy": -200
+            }
+          ],
+          "links": [
+            {
+              "source": "course-資料科學與社會研究",
+              "target": "course-AI 的社會科學應用",
+              "type": "substitute"
+            },
+            {
+              "source": "course-AI 實作入門",
+              "target": "course-AI 的社會科學應用",
+              "type": "substitute"
+            },
+            {
+              "source": "course-AI 實作入門",
+              "target": "course-資料科學與社會研究",
+              "type": "substitute"
+            },
+            {
+              "source": "course-社會福利大數據分析",
+              "target": "course-智慧社福與資料治理專題",
+              "type": "flow",
+              "label": "總整"
+            },
+            {
+              "source": "course-社會福利大數據分析",
+              "target": "course-人機互動視角下的AI倫理與法律",
+              "type": "extension",
+              "label": "素養"
+            },
+            {
+              "source": "course-人工智慧在社會科學調查研究中的應用",
+              "target": "course-輿情分析與選舉研究專題",
+              "type": "flow",
+              "label": "進階"
+            },
+            {
+              "source": "course-AI 的社會科學應用",
+              "target": "course-輿情分析與選舉研究專題",
+              "type": "flow",
+              "label": "進階"
+            },
+            {
+              "source": "course-AI 的社會科學應用",
+              "target": "course-人工智慧在社會科學調查研究中的應用",
+              "type": "flow",
+              "label": "應用"
+            },
+            {
+              "source": "course-AI 實作入門",
+              "target": "course-計算社會學",
+              "type": "flow",
+              "label": "進階"
+            },
+            {
+              "source": "course-AI 應用與社會",
+              "target": "course-AI 實作入門",
+              "type": "flow",
+              "label": "進階"
+            },
+            {
+              "source": "course-AI 的社會科學應用",
+              "target": "course-人工智慧與文化政治",
+              "type": "extension",
+              "label": "素養"
+            },
+            {
+              "source": "course-社會福利大數據分析",
+              "target": "course-資料科學與社會研究",
+              "type": "flow",
+              "label": "程式與應用AI"
+            },
+            {
+              "source": "course-社會福利大數據分析",
+              "target": "course-AI 的社會科學應用",
+              "type": "flow",
+              "label": "應用AI"
+            },
+            {
+              "source": "course-AI 的社會科學應用",
+              "target": "course-社群媒介輿論分析",
+              "type": "flow",
+              "label": "總整"
+            },
+            {
+              "source": "course-AI 的社會科學應用",
+              "target": "course-社群媒體與社會網絡分析",
+              "type": "flow",
+              "label": "進階應用"
+            },
+            {
+              "source": "course-社群媒體與社會網絡分析",
+              "target": "course-社群媒介輿論分析",
+              "type": "flow",
+              "label": "總整"
+            },
+            {
+              "source": "course-資料科學與社會研究",
+              "target": "course-資料科學與社會研究總整課程",
+              "type": "flow",
+              "label": "總整"
+            },
+            {
+              "source": "course-資料科學與社會研究",
+              "target": "course-機器學習與經濟計量",
+              "type": "flow",
+              "label": "機器學習進階"
+            }
+          ]
+        };
 
         // 性質分類樣式對照
         function getCategoryColor(d) {

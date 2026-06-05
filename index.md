@@ -36,7 +36,7 @@
 * [Tokenizer](https://jirlong-jirlong-github-io-app-44onnq.streamlit.app/)
 
 # 2026
-- [2026-06-04 跨學科 AI 與資料科學課程地圖](course_network_0604.html)
+- [2026-06-04 跨學科 AI 與資料科學課程地圖](course_network.html)
 - [2026-05-29 Advantage vs Disadvantage Comparison Demo](slides/2026-05-29-comparison-demo.html)
 - [2026-05-28 Generative AI for Social Science](slides/2026-05-28-generative-ai-for-social-science.html)
 - [2026-05-25 MCP Evaluation Methodology](slides/mcp_eval_methodology_20260525.html)
@@ -111,7 +111,7 @@
 
 ## Networks
 
-* [跨學科 AI 與資料科學課程地圖 (2026-06-04)](course_network_0604.html)
+* [跨學科 AI 與資料科學課程地圖](course_network.html)
 * [ideology and network (data provided by ECON NTU Prof. Chung-Fang Chiang and Prof. Min-Jen Lin)](html/fbpage_network_lv10.html)
 * [Hate-Girl on PTT (data provided by jenyiyu, Sociology, sinica)](html/mention.d3.html)
 * [Co-authoring of Gary King on Google Scholar](html/gking_coauthor_2.html)
