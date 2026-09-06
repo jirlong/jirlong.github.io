@@ -25,6 +25,7 @@
 - [NTU Journalism for students (Google sites)](https://sites.google.com/view/ntujour/tour-start)
 - [Pre-release](https://drive.google.com/file/d/1mgd7cc998r2B-Rb1LS_2TI1cwU0I7Dn6/view)
 - [2025/08/30 For New M1](https://docs.google.com/presentation/d/1fWg-X1qFkM6TM32KTVh4seqBosn2NJFigeSpHC-JVjI/edit?usp=sharing)
+- [2026/09/06 For New M1](https://docs.google.com/presentation/d/e/2PACX-1vSL71az3H1DyGelp2crcnY97ZYbGIfXzCgKZKebEWoR1teLHih-SSwq57gK6LAjwwsgESi0MmZBYltY/pub?start=false&loop=false&delayms=3000)
 
 # Tools
 - [Montely Calendar Generator](calendar_generator.html)
