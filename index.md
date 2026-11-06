@@ -1,3 +1,6 @@
+# TODAY
+- [2026-11-07 Health Info & AI Overview](https://docs.google.com/presentation/d/1tKYKefbrvcWPTrIkRCc3W6kjveKyBGD6xIwgR7TypDs/edit?usp=sharing)
+
 # COURSE
 - [Courses](https://p4css.github.io)
 
